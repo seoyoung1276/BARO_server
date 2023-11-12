@@ -1,5 +1,6 @@
 const passport = require('passport');
 const google = require('./googleStrategy');
+require('dotenv').config();
 
 const User = require('../models/users');
 
