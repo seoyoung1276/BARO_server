@@ -1,10 +1,5 @@
 const Sequelize = require('sequelize');
-const env = process.env.NODE_ENV || 'development'; // 지정된 환경변수가 없으면 'development'로 지정
-
-// config/config.json 파일에 있는 설정값들을 불러온다.
-// config객체의 env변수(development)키 의 객체값들을 불러온다.
-// 데이터베이스 설정을 불러온다는 뜻
-const config = require("../config/config.json")[env]
+const config = require('../config/config.json') [process.env.NODE_ENV || 'development']
 
 const db = {};
 
