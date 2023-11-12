@@ -3,7 +3,6 @@ const passportConfig = require('./passport');
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
 const session = require('express-session')
-
 const authRouter = require('./routes/auth')
 
 // index.js에 있는 db.sequelize 객체 모듈을 구조분해로 불러온다.
