@@ -3,7 +3,10 @@ const passport = require('passport');
 const { isLoggedin } = require('../middlewares');
 const router = express.Router()
 
-router.get('/logout', isLoggedin, logout);
+router.get('/logout', isLoggedin, (req, res) =>{
+    req.logOut();
+    res.redirect('/');
+});
 
 router.get('/google', passport.authenticate('google', {scope: ['profile', 'email']}));
 
@@ -14,5 +17,6 @@ router.get(
         res.redirect('/');
     }
 )
+
 
 module.exports = router
