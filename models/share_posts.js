@@ -30,7 +30,8 @@ module.exports = function(sequelize, DataTypes) {
     },
     isfinish: {
       type: DataTypes.BOOLEAN,
-      allowNull: true
+      allowNull: false,
+      defaultValue: false
     }
   }, {
     sequelize,
