@@ -30,12 +30,14 @@ module.exports = function(sequelize, DataTypes) {
     },
     isfinish: {
       type: DataTypes.BOOLEAN,
-      allowNull: true
+      allowNull: false,
+      defaultValue: false
     }
   }, {
     sequelize,
     tableName: 'learn_posts',
     timestamps: false,
+    alter: true,
     indexes: [
       {
         name: "PRIMARY",
