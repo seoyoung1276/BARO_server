@@ -12,23 +12,15 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(40),
       allowNull: true
     },
-    password: {
+    name: {
       type: DataTypes.STRING(40),
       allowNull: true
     },
-    grade: {
-      type: DataTypes.INTEGER,
+    major: {
+      type: DataTypes.STRING(40),
       allowNull: true
     },
-    class: {
-      type: DataTypes.INTEGER,
-      allowNull: true
-    },
-    number: {
-      type: DataTypes.INTEGER,
-      allowNull: true
-    },
-    name: {
+    snsId: {
       type: DataTypes.STRING(40),
       allowNull: true
     }

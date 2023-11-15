@@ -1,7 +1,10 @@
 const passport = require('passport');
+const dotenv = require('dotenv');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 
-const user = require('../models/users');
+dotenv.config();
+
+const User = require('../models/users');
 
 module.exports = () => {
     passport.use(
@@ -9,21 +12,36 @@ module.exports = () => {
             {
                 clientID: process.env.GOOGLE_ID,
                 clientSecret: process.env.GOOGLE_SECRET,
-                callbackURL: 'auth/google/callback'
+                callbackURL: 'auth/google/callback',
+                scope: ['profile', 'email']
             },
             async (accessToken, refreshToken, profile, done) =>{
                 console.log('google profile : ', profile);
                 try{
-                    const exUser = await user.findOne({
-                        where: {snsId: profile.id },
+                    const exUser = await User.findOne({
+                        where: {
+                            email: profile.email[0].value,
+                        },
                     });
                     
                     if(exUser) {
-                        done(null, exUser);
+                        return done(null, exUser);
                     } else {
-                        const newUser = await user.create({
+                        const email = profile.email[0].value;
+                        const firstWord = email.split('')[0];
+                        let major = "";
+                        if(firstWord === 's'){
+                            major = "뉴미디어소프트웨어과";
+                        }else if(firstWord === 'w'){
+                            major = "뉴미디어웹솔루션과";
+                        }else{
+                            major = "뉴미디어디자인과";
+                        }
+                        
+                        const newUser = await User.create({
                             email: profile?.email[0].value,
-                            nick: profile.displayName,
+                            name: profile.displayName,
+                            major: major,
                             snsId: profile.id,
                         });
                         done(null, newUser);
