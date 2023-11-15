@@ -22,9 +22,7 @@ exports.createPost = async (req, res) => {
 // 나누기의 모든 글 불러오기
 exports.getAllSharePost = async (req, res) => {
     try {
-    const allSharePost = await SharePost.findAll({
-        order: [['date', 'DESC']] // 최신순으로 정렬..
-    });
+    const allSharePost = await SharePost.findAll();
     res.json(allSharePost)
     }catch (error){
         console.log(error);

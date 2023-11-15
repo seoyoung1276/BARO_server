@@ -14,6 +14,7 @@ router.get('/post/:postno', getOneSharePost)
 
 // 게시글 수정과 삭제... 일단 내 글인지 확인 해야함 controller에서 req.user 와 글의 user.no 비교하면 될듯
 
+//나누기 완료 했는지 미들웨어
 
 
 module.exports = router;
