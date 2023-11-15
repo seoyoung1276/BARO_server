@@ -18,6 +18,7 @@ router.get(
     }
 )
 
+// 로그인한 유저 정보 조회 (내 정보)
 router.get('/userinfo', userController);
 
 router.get('/logout', isLoggedin, (req, res) =>{

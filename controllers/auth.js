@@ -1,5 +1,6 @@
 const User = require('../models/users');
 
+// 유저 정보 조회
 const userController = async (req, res) => {
     try{
     const currentUser = req.user;
