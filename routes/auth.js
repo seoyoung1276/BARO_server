@@ -4,25 +4,27 @@ const axios = require('axios');
 const { isLoggedin } = require('../middlewares');
 const router = express.Router()
 
-// router.get('/logout', isLoggedin, (req, res) =>{
-//     req.logOut();
-//     res.redirect('/');
-// });
 
-router.get('/google', function(req, res, next) {  // GET /auth/google
-    passport.authenticate('google', { scope: ['profile', 'email']}) (req, res, next);
-});
+router.get('/google', passport.authenticate('google', {scope: ['profile', 'email']}));
 
 
 router.get(
     '/google/callback',
-    passport.authenticate('google', { failureRedirecct: '/'}),
-    async (req, res, next) => { 
-        return res.status(200).redirect(frontURL)
+    passport.authenticate('google', { failureRedirect: '/login-failed'}),
+    (req, res) => { 
+        res.send("성공")
     }
 )
 
-// router.post('/auth/google', async (req, res) => {
+router.get('/', (req, res) => {
+    res.send("성공")
+})
+
+router.get('/logout', isLoggedin, (req, res) =>{
+    req.logOut();
+    res.redirect('/');
+});
+// router.post('/google', async (req, res) => {
 //     const { accessToken } = req.body;
 
 //     try {
@@ -38,9 +40,9 @@ router.get(
 //     }
 // })
 
-// router.get('/', (req, res) => {
-//     res.send("되냐?");
-// })
+router.get('/', (req, res) => {
+    res.send("되냐?");
+})
 
 
 module.exports = router

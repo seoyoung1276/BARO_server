@@ -12,12 +12,12 @@ const { db } = require('./models');
 const app = express();
 passportConfig();
 
-const corsOptions = {
-    origin: '*',
-    credentials: true
-}
+   const corsOptions = {
+      origin: '*',
+      credentials: true
+   }
 
-app.use(cors());
+   app.use(cors());
 
 app.use(cookieParser(process.env.COOKIE_SECRET));
 app.use(

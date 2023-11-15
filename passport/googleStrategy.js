@@ -12,7 +12,7 @@ module.exports = () => {
             {
                 clientID: process.env.GOOGLE_ID,
                 clientSecret: process.env.GOOGLE_SECRET,
-                callbackURL: 'auth/google/callback',
+                callbackURL: 'http://localhost:3000/auth/google/callback',
                 scope: ['profile', 'email']
             },
             async (accessToken, refreshToken, profile, done) =>{
@@ -20,14 +20,14 @@ module.exports = () => {
                 try{
                     const exUser = await User.findOne({
                         where: {
-                            email: profile.email[0].value,
+                            email: profile.emails[0].value,
                         },
                     });
                     
                     if(exUser) {
                         return done(null, exUser);
                     } else {
-                        const email = profile.email[0].value;
+                        const email = profile.emails[0].value;
                         const firstWord = email.split('')[0];
                         let major = "";
                         if(firstWord === 's'){
@@ -39,11 +39,12 @@ module.exports = () => {
                         }
                         
                         const newUser = await User.create({
-                            email: profile?.email[0].value,
+                            email: profile?.emails[0].value,
                             name: profile.displayName,
                             major: major,
                             snsId: profile.id,
                         });
+                        
                         done(null, newUser);
                     }
 
