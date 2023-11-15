@@ -2,6 +2,7 @@ const express = require('express')
 const passport = require('passport');
 const { isLoggedin } = require('../middlewares');
 const router = express.Router()
+const FRONT_URL = 'http://localhost:5500'
 
 
 router.get('/google', passport.authenticate('google', {scope: ['profile', 'email']}));
@@ -11,13 +12,9 @@ router.get(
     '/google/callback',
     passport.authenticate('google', { failureRedirect: '/login-failed'}),
     (req, res) => { 
-        res.send("성공")
+        res.redirect(`${FRONT_URL}/main.html`)
     }
 )
-
-router.get('/', (req, res) => {
-    res.send("성공")
-})
 
 router.get('/logout', isLoggedin, (req, res) =>{
     req.logOut();
