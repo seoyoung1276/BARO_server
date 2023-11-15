@@ -1,7 +1,11 @@
 // models/users.js 파일
 
+const dotenv = require('dotenv');
+dotenv.config();
+const SQL_PW = process.env.SQL_PW;
+
 const { Sequelize, DataTypes } = require('sequelize');
-const sequelize = new Sequelize('baro', 'root', '1234', {
+const sequelize = new Sequelize('baro', 'root', SQL_PW, {
   host: 'localhost',
   dialect: 'mysql'
 });

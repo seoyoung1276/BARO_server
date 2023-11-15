@@ -1,5 +1,9 @@
 const SequelizeAuto = require('sequelize-auto');
-const auto = new SequelizeAuto("baro", "root", "1234", {
+const dotenv = require('dotenv');
+
+dotenv.config();
+const SQL_PW = process.env.SQL_PW;
+const auto = new SequelizeAuto("baro", "root", SQL_PW, {
       host: "127.0.0.1",
       port: "3306",
       dialect: "mysql",
