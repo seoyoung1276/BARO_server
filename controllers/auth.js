@@ -1,7 +1,7 @@
 const User = require('../models/users');
 
 // 유저 정보 조회
-const userController = async (req, res) => {
+exports.userController = async (req, res) => {
     try{
         if(req.isAuthenticated()){
             res.json(req.user);
@@ -15,4 +15,8 @@ const userController = async (req, res) => {
     }
 }
 
-module.exports = { userController };
+exports.logout = (req, res) => {
+    req.logout(() => {
+        res.redirect('http://localhost:5500')
+    })
+}
