@@ -1,6 +1,8 @@
 const express = require('express')
+const session = require('express-session')
 const passport = require('passport');
-const { isLoggedin } = require('../middlewares');
+const { isLoggedin, isError } = require('../middlewares');
+const { userController } = require('../controllers/auth')
 const router = express.Router()
 const FRONT_URL = 'http://localhost:5500'
 
@@ -15,6 +17,8 @@ router.get(
         res.redirect(`${FRONT_URL}/main.html`)
     }
 )
+
+router.get('/userinfo', userController);
 
 router.get('/logout', isLoggedin, (req, res) =>{
     req.logOut();

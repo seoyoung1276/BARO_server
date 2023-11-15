@@ -7,6 +7,7 @@ const session = require('express-session')
 
 const authRouter = require('./routes/auth')
 const userRouter = require('./routes/user')
+const shareRouter = require('./routes/share')
 
 // index.js에 있는 db.sequelize 객체 모듈을 구조분해로 불러온다.
 const { db } = require('./models');
@@ -14,11 +15,11 @@ const app = express();
 passportConfig();
 
    const corsOptions = {
-      origin: '*',
+      origin: 'http://localhost:5500',
       credentials: true
    }
 
-   app.use(cors());
+   app.use(cors(corsOptions));
 
 app.use(cookieParser(process.env.COOKIE_SECRET));
 app.use(
@@ -27,7 +28,7 @@ app.use(
       saveUninitialized: false,
       secret: process.env.COOKIE_SECRET,
       cookie: {
-         httpOnly: true,
+         httpOnly: false,
          secure: false,
       },
    }),
@@ -35,7 +36,8 @@ app.use(
 
 
 app.use('/auth', authRouter);
-app.use('/user', userRouter)
+app.use('/user', userRouter);
+app.use('/share', shareRouter);
 
 app.set('port', process.env.PORT || 3000);
 
