@@ -1,11 +1,12 @@
-const Sequelize = require('sequelize');
-module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('share_posts', {
+const { DataTypes } = require('sequelize');
+
+module.exports = function(sequelize) {
+  return sequelize.define('SharePost', {
     id: {
-      autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     user_no: {
       type: DataTypes.INTEGER,
@@ -18,7 +19,7 @@ module.exports = function(sequelize, DataTypes) {
     date: {
       type: DataTypes.DATE,
       allowNull: true,
-      defaultValue: Sequelize.Sequelize.literal('CURRENT_TIMESTAMP')
+      defaultValue: DataTypes.NOW // CURRENT_TIMESTAMP 대신 DataTypes.NOW 사용
     },
     title: {
       type: DataTypes.STRING(1000),
@@ -34,25 +35,22 @@ module.exports = function(sequelize, DataTypes) {
       defaultValue: false
     }
   }, {
-    sequelize,
     tableName: 'share_posts',
     timestamps: false,
     indexes: [
       {
         name: "PRIMARY",
         unique: true,
-        using: "BTREE",
         fields: [
-          { name: "id" },
+          { name: "id" }
         ]
       },
       {
         name: "user_no",
-        using: "BTREE",
         fields: [
-          { name: "user_no" },
+          { name: "user_no" }
         ]
-      },
+      }
     ]
   });
 };
