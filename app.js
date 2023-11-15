@@ -6,6 +6,7 @@ const cors = require('cors')
 const session = require('express-session')
 
 const authRouter = require('./routes/auth')
+const userRouter = require('./routes/user')
 
 // index.js에 있는 db.sequelize 객체 모듈을 구조분해로 불러온다.
 const { db } = require('./models');
@@ -34,6 +35,7 @@ app.use(
 
 
 app.use('/auth', authRouter);
+app.use('/user', userRouter)
 
 app.set('port', process.env.PORT || 3000);
 
