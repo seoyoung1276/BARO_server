@@ -1,3 +1,5 @@
+const { share_posts } = require('../models'); // 모델 가져오기
+
 exports.createPost = async (req, res) =>{
     try {
         const {user_no, title, content} = req.body;
