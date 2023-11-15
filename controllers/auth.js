@@ -1,4 +1,5 @@
 const User = require('../models/users');
+const FRONT_URL = 'http://localhost:5500'
 
 // 유저 정보 조회
 exports.userController = async (req, res) => {
@@ -17,6 +18,6 @@ exports.userController = async (req, res) => {
 
 exports.logout = (req, res) => {
     req.logout(() => {
-        res.redirect('http://localhost:5500')
+        res.redirect(`${FRONT_URL}/index.html`)
     })
 }
