@@ -1,4 +1,5 @@
 const express = require('express');
+const passport = require('passport')
 const passportConfig = require('./passport');
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
@@ -34,6 +35,8 @@ app.use(
    }),
 )
 
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use('/auth', authRouter);
 app.use('/user', userRouter);
