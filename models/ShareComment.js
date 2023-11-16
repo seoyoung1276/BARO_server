@@ -1,6 +1,9 @@
-const Sequelize = require('sequelize');
-module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('share_comments', {
+const { Sequelize, DataTypes } = require('sequelize');
+
+
+class ShareComment extends Sequelize.Model {
+  static initModel(sequelize) {
+    ShareComment.init({
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
@@ -38,31 +41,18 @@ module.exports = function(sequelize, DataTypes) {
     }
   }, {
     sequelize,
-    tableName: 'share_comments',
     timestamps: false,
-    indexes: [
-      {
-        name: "PRIMARY",
-        unique: true,
-        using: "BTREE",
-        fields: [
-          { name: "id" },
-        ]
-      },
-      {
-        name: "user_no",
-        using: "BTREE",
-        fields: [
-          { name: "user_no" },
-        ]
-      },
-      {
-        name: "post_id",
-        using: "BTREE",
-        fields: [
-          { name: "post_id" },
-        ]
-      },
-    ]
+    underscored: false,
+    modelName: 'ShareComment',
+    tableName: 'share_comments',
+    paranoid: false,
+    charset: 'utf8',
+    collate: 'utf8_general_ci',
   });
+} static associate(db) {
+  db.ShareComment.belongsTo(db.User, {foriegnKey: 'user_no'})
+  db.ShareComment.belongsTo(db.SharePost, {foriegnKey: 'id'})
+}
 };
+
+module.exports = ShareComment;

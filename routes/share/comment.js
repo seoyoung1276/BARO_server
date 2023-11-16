@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 
 // 댓글 작성
-router.post('/')
+router.post('/:postid')
 
 // 댓글 불러오기
 router.get('/')
