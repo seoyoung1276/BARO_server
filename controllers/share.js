@@ -1,4 +1,3 @@
-const User = require('../models/User');
 const SharePost = require('../models/SharePost'); 
 
 // 나누기 글 쓰기
@@ -22,7 +21,9 @@ exports.createPost = async (req, res) => {
 // 나누기의 모든 글 불러오기
 exports.getAllSharePost = async (req, res) => {
     try {
-    const allSharePost = await SharePost.findAll();
+    const allSharePost = await SharePost.findAll({
+    order: [['start_date', 'DESC']]
+  });
     res.json(allSharePost)
     }catch (error){
         console.log(error);
@@ -46,27 +47,17 @@ exports.getOneSharePost = async (req, res) =>{
     }
 }
 
+// 수정
 exports.updateSharePost = async (req, res) =>{
   try{
     const postNo = req.params.postno;
     const { title, content } = req.body;
-    const currentUser = req.user;
 
-    const foundpost = await SharePost.findOne({
-        where: {
-          post_no: postNo,
-          user_no: currentUser.user_no
-        }
-    });
-    if(!foundpost){
-      return res.status(404).json({ message : "게시물을 찾을 수 없습니다." })
-    }
     const update = await SharePost.update(
       {title, content},
       {
         where: {
           post_no: postNo,
-          user_no: currentUser.user_no
         }
       }
     );
@@ -78,26 +69,17 @@ exports.updateSharePost = async (req, res) =>{
   }
 }
 
+// 삭제
 exports.deleteSharePost = async (req, res) =>{
   try{
     const postNo = req.params.postno;
-    const currentUser = req.user;
 
-    const foundpost = await SharePost.findOne({
-      where: {
-        post_no: postNo,
-        user_no: currentUser.user_no
-      }
-    })
-    if(!foundpost){
-      res.status(404).json( {message : "해당하는 게시글이 존재하지 않습니다."});
-    }
     const deletePost = await SharePost.destory({
       where: {
         post_no: postNo
       }
     }).then(() =>{
-      res.redirect("/share/post")
+      res.json(deletePost);
     })
 
   }catch(error){

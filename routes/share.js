@@ -5,7 +5,7 @@ const { createPost, getAllSharePost, getOneSharePost, updateSharePost, deleteSha
 // 나누기 글쓰기
 router.post('/post', createPost);
 
-//나누기 글 전체 조회 (나누기 카테고리를 누르면 전부 나와야 한다. 최신글이 위에 어떻게 나오게 해야할까... 아 데이트로 정렬하면될듯!)
+//나누기 글 전체 조회 나누기 카테고리를 누르면 전부 나와야 한다.
 router.get('/post', getAllSharePost);
 
 // 나누기 글 번호로 글 조회하기 (여기가 글 클릭시 나올것!) 
@@ -16,7 +16,7 @@ router.patch('/post/:postno', updateSharePost)
 
 router.delete('/post/:postno', deleteSharePost)
 
-//나누기 완료 해주는 라우터!! 완료하기 버튼을 누르면 해당 포스트에 저장된 user_no(fk)랑 req.user랑 비교하고 음....움.... 
+//나누기 완료 해주는 라우터!! 완료하기 버튼을 누르면 해당 포스트에 저장된 user_no(fk)랑 req.user랑 비교하고 음........ 
 router.post
 
 module.exports = router;
