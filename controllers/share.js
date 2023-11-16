@@ -22,7 +22,7 @@ exports.createPost = async (req, res) => {
 exports.getAllSharePost = async (req, res) => {
     try {
     const allSharePost = await SharePost.findAll({
-    order: [['start_date', 'DESC']]
+    order: [['date', 'DESC']]
   });
     res.json(allSharePost)
     }catch (error){
