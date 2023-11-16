@@ -22,7 +22,7 @@ router.get(
 router.get('/userinfo', userController);
 
 // 로그아웃
-router.get('/logout', logout);
+router.post('/logout', logout);
 
 
 
