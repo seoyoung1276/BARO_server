@@ -1,7 +1,8 @@
-const { DataTypes } = require('sequelize');
+const { Sequelize, DataTypes} = require('sequelize');
 
-module.exports = function(sequelize) {
-  return sequelize.define('SharePost', {
+class SharePost extends Sequelize.Model {
+  static initModel(sequelize){
+    SharePost.init({
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -19,7 +20,7 @@ module.exports = function(sequelize) {
     date: {
       type: DataTypes.DATE,
       allowNull: true,
-      defaultValue: DataTypes.NOW // CURRENT_TIMESTAMP 대신 DataTypes.NOW 사용
+      defaultValue: Sequelize.Sequelize.literal('CURRENT_TIMESTAMP') // CURRENT_TIMESTAMP 대신 DataTypes.NOW 사용
     },
     title: {
       type: DataTypes.STRING(1000),
@@ -33,24 +34,21 @@ module.exports = function(sequelize) {
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: false
-    }
+    },
   }, {
-    tableName: 'share_posts',
+    sequelize,
     timestamps: false,
-    indexes: [
-      {
-        name: "PRIMARY",
-        unique: true,
-        fields: [
-          { name: "id" }
-        ]
-      },
-      {
-        name: "user_no",
-        fields: [
-          { name: "user_no" }
-        ]
-      }
-    ]
+    underscored: false,
+    modelName: 'SharePost',
+    tableName: 'share_posts',
+    paranoid: false,
+    charset: 'utf8',
+    collate: 'utf8_general_ci',
   });
+}
+static associate(db) {
+  db.SharePost.belongsTo(db.User, {foreignKey: 'user_no'} )
+}
 };
+
+module.exports = SharePost;

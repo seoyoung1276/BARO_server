@@ -3,7 +3,7 @@ const session = require('express-session');
 const google = require('./googleStrategy');
 require('dotenv').config();
 
-const User = require('../models/users');
+const User = require('../models/User');
 
 module.exports = () => {
     
