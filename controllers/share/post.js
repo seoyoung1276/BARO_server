@@ -51,7 +51,7 @@ exports.getOnePost = async (req, res) =>{
 exports.getUserPost = async (req, res) =>{
   try{
     const userno = req.params.userno
-    const getUserPost = await SharePost.findOne({
+    const getUserPost = await SharePost.findAll({
       where: {user_no: userno}
     });
     res.json(getUserPost)
