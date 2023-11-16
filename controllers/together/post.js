@@ -1,4 +1,4 @@
-const TogetherPost = require('../models/TogetherPost'); 
+const TogetherPost = require('../../models/TogetherPost'); 
 
 // 글 쓰기
 exports.createPost = async (req, res) => {

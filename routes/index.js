@@ -6,11 +6,17 @@ const user = require('./user');
 const sharePost = require('./share/post');
 const shareComment = require('./share/comment');
 
+const learnPost = require('./learn/post');
+
+const togetherPost = require('./together/post');
+
 const router = express.Router();
 
 router.use('/auth', auth);
 router.use('/user', user);
 router.use('/share/post', sharePost);
+router.use('/together/post',togetherPost);
+router.use('/learn/post',learnPost);
 //router.use('/share/post/comment', shareComment);
 
 module.exports = router;

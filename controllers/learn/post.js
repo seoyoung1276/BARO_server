@@ -1,4 +1,4 @@
-const LearnPost = require('../models/LearnPost'); 
+const LearnPost = require('../../models/LearnPost'); 
 
 // 글 쓰기
 exports.createPost = async (req, res) => {

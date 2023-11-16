@@ -12,7 +12,7 @@ router.get('/', getAllPost);
 router.get('/:postno', getOnePost)
 
 // 나누기 글 유저로 조회하기
-router.get('/:userno', getUserPost)
+router.get('/user/:userno', getUserPost)
 
 // 게시글 수정
 router.patch('/:postno', updatePost)
