@@ -5,10 +5,7 @@ const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const session = require('express-session')
-
-const authRouter = require('./routes/auth')
-const userRouter = require('./routes/user')
-const shareRouter = require('./routes/share')
+const routes = require('./routes')
 
 
 
@@ -44,9 +41,7 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use('/auth', authRouter);
-app.use('/user', userRouter);
-app.use('/share', shareRouter);
+app.use(routes);
 
 app.set('port', process.env.PORT || 3000);
 

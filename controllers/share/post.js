@@ -1,4 +1,4 @@
-const SharePost = require('../models/SharePost'); 
+const SharePost = require('../../models/SharePost'); 
 
 // 나누기 글 쓰기
 exports.createPost = async (req, res) => {
@@ -45,6 +45,20 @@ exports.getOneSharePost = async (req, res) =>{
         console.log(error);
         res.status(500).json({ error: error})
     }
+}
+
+// 유저 글 불러오기
+exports.getUserPost = async (req, res) =>{
+  try{
+    const userno = req.params.userno
+    const getUserSharePost = await SharePost.findOne({
+      where: {user_no: userno}
+    });
+    res.json(getUserSharePost)
+  }catch (error) {
+    console.log(error);
+    res.status(500).json({ error: error})
+  }
 }
 
 // 수정
