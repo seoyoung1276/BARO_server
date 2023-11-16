@@ -1,5 +1,4 @@
 const express = require('express')
-const { isLoggedin } = require('../middlewares');
 const router = express.Router()
 const { createPost, getAllSharePost, getOneSharePost, updateSharePost, deleteSharePost} = require('../controllers/share');
 

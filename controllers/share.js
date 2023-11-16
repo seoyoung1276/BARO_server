@@ -1,17 +1,17 @@
-const SharePost = require('../models/share_posts'); // 모델 파일 경로에 맞게 변경
+const User = require('../models/User');
+const SharePost = require('../models/SharePost'); 
 
 // 나누기 글 쓰기
 exports.createPost = async (req, res) => {
   try {
-    const { title, content } = req.body;
-    const currentUser = req.user; 
+    const { user_no, title, content } = req.body;
+      const newPost = await SharePost.create({
+        user_no: user_no,
+        title: title,
+        content: content,
+      });
+      res.json(newPost);
 
-    const newPost = await SharePost.create({
-      user_no: currentUser.user_no,
-      title,
-      content,
-    });
-    res.json(newPost);
   } catch(error){
     console.log(error);
     res.status(500).json({ error : error });

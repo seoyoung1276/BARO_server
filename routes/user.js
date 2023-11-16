@@ -1,5 +1,4 @@
 const express = require('express')
-const { isLoggedin } = require('../middlewares');
 const router = express.Router()
 const userController = require('../controllers/user');
 

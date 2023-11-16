@@ -14,14 +14,18 @@ const shareRouter = require('./routes/share')
 
 // index.js에 있는 db.sequelize 객체 모듈을 구조분해로 불러온다.
 const { db } = require('./models');
+
 const app = express();
 passportConfig();
-   const corsOptions = {
-      origin: 'http://localhost:5500',
-      credentials: true
-   }
 
-   app.use(cors(corsOptions));
+const whiteList = ['http://localhost:5500', 'http://127.0.0.1:5500'];
+
+const corsOptions = {
+   origin: whiteList,
+   credentials: true
+}
+
+app.use(cors(corsOptions));
 
 app.use(bodyParser.json())
 app.use(cookieParser(process.env.COOKIE_SECRET));
