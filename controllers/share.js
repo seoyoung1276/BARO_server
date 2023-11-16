@@ -45,3 +45,63 @@ exports.getOneSharePost = async (req, res) =>{
         res.status(500).json({ error: error})
     }
 }
+
+exports.updateSharePost = async (req, res) =>{
+  try{
+    const postNo = req.params.postno;
+    const { title, content } = req.body;
+    const currentUser = req.user;
+
+    const foundpost = await SharePost.findOne({
+        where: {
+          post_no: postNo,
+          user_no: currentUser.user_no
+        }
+    });
+    if(!foundpost){
+      return res.status(404).json({ message : "게시물을 찾을 수 없습니다." })
+    }
+    const update = await SharePost.update(
+      {title, content},
+      {
+        where: {
+          post_no: postNo,
+          user_no: currentUser.user_no
+        }
+      }
+    );
+    res.json(update);
+
+  } catch (error){
+    console.log(error);
+    res.status(500).json({ error : "서버 오류입니다."})
+  }
+}
+
+exports.deleteSharePost = async (req, res) =>{
+  try{
+    const postNo = req.params.postno;
+    const currentUser = req.user;
+
+    const foundpost = await SharePost.findOne({
+      where: {
+        post_no: postNo,
+        user_no: currentUser.user_no
+      }
+    })
+    if(!foundpost){
+      res.status(404).json( {message : "해당하는 게시글이 존재하지 않습니다."});
+    }
+    const deletePost = await SharePost.destory({
+      where: {
+        post_no: postNo
+      }
+    }).then(() =>{
+      res.redirect("/share/post")
+    })
+
+  }catch(error){
+    console.log(error);
+    res.status(500).json({ error : "서버 오류"})
+  }
+}

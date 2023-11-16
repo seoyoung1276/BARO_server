@@ -1,7 +1,7 @@
 const express = require('express')
 const { isLoggedin } = require('../middlewares');
 const router = express.Router()
-const { createPost, getAllSharePost, getOneSharePost} = require('../controllers/share');
+const { createPost, getAllSharePost, getOneSharePost, updateSharePost, deleteSharePost} = require('../controllers/share');
 
 // 나누기 글쓰기
 router.post('/post', createPost);
@@ -13,8 +13,11 @@ router.get('/post', getAllSharePost);
 router.get('/post/:postno', getOneSharePost)
 
 // 게시글 수정과 삭제... 일단 내 글인지 확인 해야함 controller에서 req.user 와 글의 user.no 비교하면 될듯
+router.patch('/post/:postno', updateSharePost)
 
-//나누기 완료 했는지 미들웨어
+router.delete('/post/:postno', deleteSharePost)
 
+//나누기 완료 해주는 라우터!! 완료하기 버튼을 누르면 해당 포스트에 저장된 user_no(fk)랑 req.user랑 비교하고 음....움.... 
+router.post
 
 module.exports = router;
