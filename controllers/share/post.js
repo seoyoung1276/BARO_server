@@ -19,12 +19,12 @@ exports.createPost = async (req, res) => {
 
 
 // 나누기의 모든 글 불러오기
-exports.getAllSharePost = async (req, res) => {
+exports.getAllPost = async (req, res) => {
     try {
-    const allSharePost = await SharePost.findAll({
+    const allPost = await SharePost.findAll({
     order: [['date', 'DESC']]
   });
-    res.json(allSharePost)
+    res.json(allPost)
     }catch (error){
         console.log(error);
         res.status(500).json({ error : error})
@@ -33,13 +33,13 @@ exports.getAllSharePost = async (req, res) => {
 }
 
 // 나누기의 한가지 글 불러오기
-exports.getOneSharePost = async (req, res) =>{
+exports.getOnePost = async (req, res) =>{
     try{
         const postno = req.params.postno
-        const oneSharePost = await SharePost.findOne({
-            where: {post_no: postno}
+        const onePost = await SharePost.findOne({
+            where: {id: postno}
         });
-        res.json(oneSharePost)
+        res.json(onePost)
 
     }catch (error){
         console.log(error);
@@ -51,10 +51,10 @@ exports.getOneSharePost = async (req, res) =>{
 exports.getUserPost = async (req, res) =>{
   try{
     const userno = req.params.userno
-    const getUserSharePost = await SharePost.findOne({
+    const getUserPost = await SharePost.findOne({
       where: {user_no: userno}
     });
-    res.json(getUserSharePost)
+    res.json(getUserPost)
   }catch (error) {
     console.log(error);
     res.status(500).json({ error: error})
@@ -62,7 +62,7 @@ exports.getUserPost = async (req, res) =>{
 }
 
 // 수정
-exports.updateSharePost = async (req, res) =>{
+exports.updatePost = async (req, res) =>{
   try{
     const postNo = req.params.postno;
     const { title, content } = req.body;
@@ -84,7 +84,7 @@ exports.updateSharePost = async (req, res) =>{
 }
 
 // 삭제
-exports.deleteSharePost = async (req, res) =>{
+exports.deletePost = async (req, res) =>{
   try{
     const postNo = req.params.postno;
 
