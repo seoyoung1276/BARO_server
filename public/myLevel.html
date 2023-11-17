@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/basic.css">
+    <link rel="stylesheet" href="/css/myLevel.css">
+</head>
+<body>
+    <header id="header">
+        <iconify-icon icon="fluent:ios-arrow-24-filled" class="back-btn" onclick="backMyPage()"></iconify-icon>
+        <div id="title">나의 등급</div>
+    </header>
+
+    <div class="my-level-container">
+        <img src="/img/Lv1_stemp.png" class="my-level-stemp">
+        <div class="my-level">현재 등급은 Lv.3 거북이입니다</div>
+        <div class="to-next-level">다음 등급까지 7도움 남았습니다</div>
+    </div>
+
+    <div class="level-standard-container">
+        <div class="level-standard-title">등급 기준 안내</div>
+        <div class="level-standard-stemp-container">
+            <img src="/img/Lv1_stemp.png" class="stemps" onclick="showStempExplanation(event)">
+            <img src="/img/Lv2_stemp.png" class="stemps" onclick="showStempExplanation(event)">
+            <img src="/img/Lv3_stemp.png" class="stemps" onclick="showStempExplanation(event)">
+            <img src="/img/Lv4_stemp.png" class="stemps" onclick="showStempExplanation(event)">
+            <img src="/img/Lv5_stemp.png" class="stemps" onclick="showStempExplanation(event)">   
+        </div>
+        <div class="level-standard-explanation">
+            <div class="level-standard-explanation-title">Lv.1 거북이</div>
+            <div class="level-standard-explanation-content">0번 이상 도움을 줬을 경우</div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <script src="/js/myLevel.js"></script>
+</body>
+</html>

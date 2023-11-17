@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/basic.css">
+    <link rel="stylesheet" href="css/shareMyPost.css">
+</head>
+<body>
+    <iconify-icon icon="cil:x" class="back-btn" onclick="backHome()"></iconify-icon>
+    <div class="title-plus-div">
+        <div class="title-div">
+            <div class="title">나의 게시물</div>
+        </div>
+    </div>
+
+    <div class="edit-post-div">
+        <div class="edit-post" onclick="editMyPost()">글 수정</div>
+        <div class="line"></div>
+        <div class="delete-post" onclick="deleteMyPost()">글 삭제</div>
+    </div>
+
+    <div class="nav">
+        <div class="nav-page no-choose-page" onclick="navChoose(0, 1)">모든 게시물</div>
+        <div class="nav-page choose-page" onclick="navChoose(1, 0)">나의 게시물</div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <script src="/js/config.js"></script>
+    <script src="js/shareMyPost.js"></script>
+</body>
+</html>

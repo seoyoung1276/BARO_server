@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/basic.css">
+    <link rel="stylesheet" href="/css/togetherShowPost.css">
+</head>
+<body>
+    <iconify-icon icon="cil:x" class="back-btn" onclick="backBtn()"></iconify-icon>
+    <div class="post">
+        <div class="post-title">
+            <div class="post-title-name">배드민턴 칠 사람!</div>
+            <div class="post-info-div">
+                <div class="post-user-profile">
+                    <iconify-icon icon="healthicons:ui-user-profile" class="user-profile-img"></iconify-icon>
+                    <div class="post-user">2314_조서현</div>
+                    <div class="post-date">2023-09-14 12:01</div>
+                </div>
+                <div class="join-people-div">
+                    <div class="join-button" onclick="getJoin(event)">참여하기</div>
+                    <iconify-icon icon="ic:sharp-person" class="join-profile" onclick="showJoinPeople()"></iconify-icon>
+                    <div class="join-cnt">1/4</div>
+                </div>
+            </div>
+        </div>
+        <div class="line"></div>
+        <div class="post-detail">
+            오늘 5교시 체육인데 체육복을 안갖고 왔어요ㅜㅠㅠㅠ  
+            2학년 학생 중 점심시간에 체육복 빌려주실 분 구해요ㅜㅜ 6교시에 바로 돌려드릴게요!!!!!!!!!!!!!!
+            원하시면 빨래까지 해드릴게요ㅠㅠㅠㅠㅠㅠㅠ 
+        </div>
+        <div class="post-comment">
+            <div class="comment-title">댓글 달기</div>
+            <hr class="share-comment-line">
+            <div class="comment-area">
+                <div class="comments">
+                    <div class="comment-profile">
+                        <iconify-icon icon="healthicons:ui-user-profile" class="user-comment-profile-img"></iconify-icon>
+                        <div class="comment-username">2411_이서영</div>
+                    </div>
+                    <div class="comment-content">
+                        제가 빌려드릴게요!
+                    </div>
+                    <div class="comment-info">
+                        <div class="comment-date">2023-09-14 12:40</div>
+                        <iconify-icon icon="ic:baseline-comment" class="add-comment"></iconify-icon>
+                    </div>
+                </div>
+                <div class="sub-comments">
+                    <iconify-icon icon="tdesign:enter" class="sub-comment-enter"></iconify-icon>
+                    <div class="comment-detail">
+                        <div class="comment-profile">
+                            <iconify-icon icon="healthicons:ui-user-profile" class="user-comment-profile-img"></iconify-icon>
+                            <div class="comment-username">2411_이서영</div>
+                        </div>
+                        <div class="comment-content">
+                            제가 빌려드릴게요!
+                        </div>
+                        <div class="sub-comment-info">
+                            <div class="comment-date">2023-09-14 12:40</div>
+                            <iconify-icon icon="ic:baseline-comment" class="add-comment"></iconify-icon>
+                        </div>
+                    </div>
+                </div>
+                <div class="comments">
+                    <div class="comment-profile">
+                        <iconify-icon icon="healthicons:ui-user-profile" class="user-comment-profile-img"></iconify-icon>
+                        <div class="comment-username">2411_이서영</div>
+                    </div>
+                    <div class="comment-content">
+                        제가 빌려드릴게요!
+                    </div>
+                    <div class="comment-info">
+                        <div class="comment-date">2023-09-14 12:40</div>
+                        <iconify-icon icon="ic:baseline-comment" class="add-comment"></iconify-icon>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="input-comment-div">
+        <input type="text" placeholder="댓글 추가" class="input-comment">
+        <iconify-icon icon="material-symbols:send-outline" class="send-comment" onclick="sendComment()"></iconify-icon>
+    </div>
+    
+    <div class="show-join-people">
+        <div class="join-people-title">참여 인원</div>
+    </div>
+
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <script src="/js/togetherShowPost.js"></script>
+</body>
+</html>

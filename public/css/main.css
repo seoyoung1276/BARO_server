@@ -1,0 +1,43 @@
+.user-profile{
+    font-size: 48px;
+    margin: 20px;
+    margin-left: calc(100% - 48px - 20px);
+    color: #BEBEBE;
+
+}
+.title{
+    color: #414141;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 37px;
+    margin-left: 45px;
+}
+.logo{
+    margin-left: 45px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 40px;
+}
+.choose-div-set{
+    position: relative;
+    margin-top: 90px;
+    width: 260px;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+.chooseDiv{
+    width: 260px;
+    height: 60px;
+    border-radius: 10px;
+    background: #FFD159;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FFF;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.10);
+    font-size: 15px;
+    font-weight: 700;
+}

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/basic.css">
+    <link rel="stylesheet" href="/css/myAccount.css">
+</head>
+<body>
+    <header id="header">
+        <iconify-icon icon="fluent:ios-arrow-24-filled" class="back-btn" onclick="backMyPage()"></iconify-icon>
+        <div id="title">나의 계정</div>
+    </header>
+
+    <div class="account-container">
+        <div class="my-profile-container">
+            <div class="account-title">나의 프로필</div>
+            <div class="my-profile">
+                <iconify-icon icon="healthicons:ui-user-profile" class="user-profile"></iconify-icon>
+                <div class="my-name"></div>
+            </div>
+            <div class="my-Info">
+                <div class="my_major"></div>
+                <div class="my_class"></div>
+            </div>
+        </div>
+
+        <div class="my-login-account">
+            <div class="account-title">현재 로그인한 계정</div>
+            <div class="my-account"></div>
+        </div>
+    </div>
+
+    <div class="logout-div" onclick="logout()">
+        로그아웃
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <script src="/js/config.js"></script>
+    <script src="/js/myAccount.js"></script>
+</body>
+</html>

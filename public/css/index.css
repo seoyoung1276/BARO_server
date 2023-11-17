@@ -1,0 +1,35 @@
+main{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow-x: hidden;
+}
+.title-div{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.login-SignUp-div{
+    position: relative;
+    width: 265px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+    left: 50%;
+    transform: translate(-50%);
+    margin-top: 150px;
+    font-weight: 700;
+    color: #414141;
+}
+.logIn{
+    width: 90%;
+    margin-left: 5%;
+    height: 45px;
+    border-radius: 20px;
+    background: #FFD159;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

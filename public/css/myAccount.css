@@ -1,0 +1,96 @@
+body{
+    width: calc(100% - 40px);
+    margin-left: 20px;
+}
+
+#header{
+    margin-top: 20px;
+    display: flex;
+}
+
+.back-btn{
+    font-size: 24px;
+}
+
+#title{
+    width: 100%;
+    position: relative;
+    color: #414141;
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.account-container{
+    margin-top: 33px;
+    width: calc(100% - (20px * 2));
+    margin-left: 20px;
+    height: 250px;
+    box-shadow: 0px 6px 6px 0px rgba(0, 0, 0, 0.10);
+    border-radius: 10px;
+}
+.my-profile-container{
+    width: calc(100% - (20px * 2));
+    margin-left: 20px;
+    padding-top: 13px;
+}
+.account-title{
+    color: #797979;
+    font-size: 12px;
+    font-weight: 400;
+}
+.my-profile{
+    margin-top: 6px;
+    display: flex;
+    column-gap: 11px;
+    align-items: end;
+}
+.user-profile{
+    font-size: 40px;
+    color: #BEBEBE;
+}
+.my-name{
+    position: relative;
+    top: -6px;
+    color: #414141;
+    font-size: 16px;
+    font-weight: 700;
+}
+.my-Info{
+    margin-top: 8px;
+}
+.my_major{
+    color: #414141;
+    font-size: 13px;
+    font-weight: 600;
+}
+.my_class{
+    color: #414141;
+    font-size: 13px;
+    font-weight: 400;
+}
+.my-login-account{
+    width: calc(100% - (20px * 2));
+    margin-left: 20px;
+    margin-top: 30px;
+}
+.my-account{
+    margin-top: 4px;
+    color: #414141;
+    font-size: 15px;
+    font-weight: 400;
+}
+.logout-div{
+    display: flex;
+    width: calc(100% - (20px * 2 + 20px));
+    height: 50px;
+    margin: 20px 0 0 20px;
+    border-radius: 10px;
+    box-shadow: 0px 6px 6px 0px rgba(0, 0, 0, 0.10);
+    align-items: center;
+    padding-left: 20px;
+
+    color: #414141;
+    font-size: 14px;
+    font-weight: 700;
+}

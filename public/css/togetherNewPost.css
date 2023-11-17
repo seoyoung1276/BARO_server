@@ -1,0 +1,89 @@
+.main{
+    width: calc(100% - (37px * 2));
+    margin-left: 37px;
+    margin-top: 57px;
+}
+.close-btn{
+    margin-left: calc(100% - (30px + 16px));
+    margin-top: 10px;
+    font-size: 30px;
+}
+.new-post-write-title-div{
+    width: 100%;
+}
+.new-post-title{
+    width: 100%;
+    height: 20px;
+    border: 0;
+    outline: none;
+    color: #797979;
+    font-size: 22px;
+}
+.line{
+    width: 100%;
+    height: 1px;
+    background-color: black;
+    margin-top: 11px;
+}
+.post-content-div{
+    margin-top: 24px;
+}
+.post-title{
+    color: #414141;
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 7px;
+}
+.post-content{
+    border-radius: 10px;
+    width: 100%;
+}
+.post-content-input{
+    height: 200px;
+}
+.place-div{
+    margin-top: 35px;
+}
+.post-input{
+    width: 100%;
+    border-width: 0 0 1px 0;
+    border-color: #414141;
+    outline: none;
+    height: 30px;
+}
+.date-div{
+    margin-top: 41px;
+}
+.recruitment{
+    margin-top: 45px;
+}
+.recruitment-input-div{
+    display: flex;
+    align-items: end;
+}
+.recruitment-input{
+    width: 40%;
+    padding-right: 5%;
+    text-align: right;
+}
+.myung{
+    color: #414141;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.make-btn{
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+    width: 275px;
+    height: 49px;
+    top: 30px;
+    margin-top: 30px;
+    margin-bottom: 50px;
+    border-radius: 10px;
+    background: #FFD159;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/basic.css">
+    <link rel="stylesheet" href="/css/learnMyPost.css">
+</head>
+<body>
+    <div class="main">
+        <iconify-icon icon="cil:x" class="back-btn" onclick="backHome()"></iconify-icon>
+        <div class="title-plus-div">
+            <div class="title-div">
+                <div class="title">나의 게시물</div>
+            </div>
+        </div>
+        <div class="learn-div">
+            <div class="post-Info">
+                <div class="post-user-info">
+                    <iconify-icon icon="healthicons:ui-user-profile" class="user-profile"></iconify-icon>
+                    <div class="user-nickname">2314_조서현</div>
+                    <div class="post-date">2023-09-14 12:01</div>
+                </div>
+                <div class="edit-my-post">
+                    <div class="join-btn">답변완료하기</div>
+                    <iconify-icon icon="iconamoon:menu-kebab-vertical-light" class="edit-content"></iconify-icon>
+                </div>
+            </div>
+            <div class="post-content" onclick="showContent()">
+                스택에 같이 나갈 프론트 1명, 백 2명, 디자인 1명을 구해요!
+                프론트는 react 사용 가능해야함. 백은 node.js 사용 가능해야함.sdfnksfdsdfnksfdsdfnksfdsdfnksfdsdfnks
+                fdsdfnksfdsdfnksfdsdfnksfdsdfnk
+                sdkhfsdf sdhfkhsfdkkdfhkdfksdfksdbfdbfk
+            </div>
+            <div class="comment-cnt-div">
+                <img src="/img/comment-cnt.png" class="comment-cnt-img">
+                <div class="comment-cnt-num">13</div>
+            </div>
+        </div>
+    
+        <div class="learn-div">
+            <div class="post-Info">
+                <div class="post-user-info">
+                    <iconify-icon icon="healthicons:ui-user-profile" class="user-profile"></iconify-icon>
+                    <div class="user-nickname">2314_조서현</div>
+                    <div class="post-date">2023-09-14 12:01</div>
+                </div>
+                <div class="edit-my-post">
+                    <div class="join-btn">답변완료하기</div>
+                    <iconify-icon icon="iconamoon:menu-kebab-vertical-light" class="edit-content"></iconify-icon>
+                </div>
+            </div>
+            <div class="post-content"  onclick="showContent()">
+                스택에 같이 나갈 프론트 1명, 백 2명, 디자인 1명을 구해요!
+                프론트는 react 사용 가능해야함. 백은 node.js 사용 가능해야함.sdfnksfdsdfnksfdsdfnksfdsdfnksfdsdfnks
+                fdsdfnksfdsdfnksfdsdfnksfdsdfnk
+                sdkhfsdf sdhfkhsfdkkdfhkdfksdfksdbfdbfk
+            </div>
+            <div class="comment-cnt-div">
+                <img src="/img/comment-cnt.png" class="comment-cnt-img">
+                <div class="comment-cnt-num">13</div>
+            </div>
+        </div>
+    
+        <div class="learn-div">
+            <div class="post-Info">
+                <div class="post-user-info">
+                    <iconify-icon icon="healthicons:ui-user-profile" class="user-profile"></iconify-icon>
+                    <div class="user-nickname">2314_조서현</div>
+                    <div class="post-date">2023-09-14 12:01</div>
+                </div>
+                <div class="edit-my-post">
+                    <div class="join-btn">답변완료하기</div>
+                    <iconify-icon icon="iconamoon:menu-kebab-vertical-light" class="edit-content"></iconify-icon>
+                </div>
+                
+            </div>
+            <div class="post-content"  onclick="showContent()">
+                스택에 같이 나갈 프론트 1명, 백 2명, 디자인 1명을 구해요!
+                프론트는 react 사용 가능해야함. 백은 node.js 사용 가능해야함.sdfnksfdsdfnksfdsdfnksfdsdfnksfdsdfnks
+                fdsdfnksfdsdfnksfdsdfnksfdsdfnk
+                sdkhfsdf sdhfkhsfdkkdfhkdfksdfksdbfdbfk
+            </div>
+            <div class="comment-cnt-div">
+                <img src="/img/comment-cnt.png" class="comment-cnt-img">
+                <div class="comment-cnt-num">13</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="nav">
+        <div class="nav-page no-choose-page" onclick="navChoose(1, 0)">모든 게시물</div>
+        <div class="nav-page choose-page" onclick="navChoose(0, 1)">나의 게시물</div>
+    </div>
+
+    <div class="edit-post-div">
+        <div class="edit-post" onclick="editMyPost()">글 수정</div>
+        <div class="line"></div>
+        <div class="delete-post" onclick="deleteMyPost()">글 삭제</div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <script src="/js/config.js"></script>
+    <script src="/js/learnMyPost.js"></script>
+</body>
+</html>

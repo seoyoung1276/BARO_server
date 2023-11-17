@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/basic.css">
+    <link rel="stylesheet" href="/css/myPage.css">
+</head>
+<body>
+    <header id="header">
+        <iconify-icon icon="fluent:ios-arrow-24-filled" class="back-btn" onclick="backHome()"></iconify-icon>
+        <div id="title">마이 페이지</div>
+    </header>
+    <div id="my-profile-container">
+        <div id="my-profile">
+            <iconify-icon icon="healthicons:ui-user-profile" class="user-profile"></iconify-icon>
+            <div class="user-nickname">
+                <div class="student-id"></div>
+                <div class="major"></div>
+            </div>
+        </div>
+        <iconify-icon icon="ep:arrow-right" class="my-profile-left-arrow" onclick="goMyAccount()"></iconify-icon>
+    </div>
+
+    <div class="my-level-container container">
+        <div class="my-level-title-container title-container">
+            <div class="level-title title">나의 등급</div>
+            <iconify-icon icon="ep:arrow-right" class="my-level-left-arrow" onclick="goMyLevel()"></iconify-icon>
+        </div>
+        <div class="my-level-info">
+            <div class="level-icon"></div>
+            <div class="level-name"></div>
+        </div>
+        <div class="my-history-container">
+            <div class="give-help">
+                <div class="help-title">도움 받은 횟수</div>
+                <div class="help-cnt-container">
+                    <div class="help-cnt">6</div>
+                    <div class="help-unit">회</div>
+                </div>
+            </div>
+            <div class="get-help">
+                <div class="help-title">도움 준 횟수</div>
+                <div class="help-cnt-container">
+                    <div class="help-cnt">1</div>
+                    <div class="help-unit">회</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="my-post-container container">
+        <div class="post-title-container  title-container">
+            <div class="post-title title">나의 게시물</div>
+        </div>
+        <div class="posts-show-container">
+            <div class="share-post-container my-posts" onclick="shareMyPost()">
+                <div class="my-post-cnt-container">
+                    <div class="post-cnt">3</div>
+                    <div class="post-unit">개</div>
+                </div>
+                <div class="post-name">나누기</div>
+            </div>
+            <div class="together-post-container my-posts">
+                <div class="my-post-cnt-container">
+                    <div class="post-cnt">2</div>
+                    <div class="post-unit">개</div>
+                </div>
+                <div class="post-name">같이하기</div>
+            </div>
+            <div class="learn-post-container my-posts">
+                <div class="my-post-cnt-container">
+                    <div class="post-cnt">1</div>
+                    <div class="post-unit">개</div>
+                </div>
+                <div class="post-name">배우기</div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <script src="/js/config.js"></script>
+    <script src="/js/myPage.js"></script>
+</body>
+</html>

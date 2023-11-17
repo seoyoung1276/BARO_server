@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/basic.css">
+    <link rel="stylesheet" href="/css/togetherNewPost.css">
+</head>
+<body>
+    <iconify-icon icon="cil:x" class="close-btn" onclick="backTogether()"></iconify-icon>
+
+    <div class="main">
+        <div class="new-post-write-title-div">
+            <input type="text" class="new-post-title" placeholder="제목을 입력하세요!">
+            <div class="line"></div>
+        </div>
+        <div class="post-content-div">
+            <div class="post-title">글 내용</div>
+            <textarea class="post-content post-content-input"></textarea>
+        </div>
+
+
+        <div class="place-div">
+            <div class="post-title">장소</div>
+            <input type="text" class="post-input post-place">
+        </div>
+
+        <div class="date-div">
+            <div class="post-title">날짜</div>
+            <input type="text" class="post-input post-date" placeholder="YYYY/MM/DD">
+        </div>
+
+        <div class="recruitment">
+            <div class="post-title">모집인원</div>  
+            <div class="recruitment-input-div">
+                <input type="text" class="post-input recruitment-input">
+                <div class="myung">명</div>
+            </div>
+        </div>
+    </div>
+    
+    
+
+    <div class="make-btn" onclick="makePost()">게시물 생성</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <script src="/js/config.js"></script>
+    <script src="/js/togetherNewPost.js"></script>
+</body>
+</html>

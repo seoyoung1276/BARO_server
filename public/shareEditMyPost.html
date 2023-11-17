@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/basic.css">
+    <link rel="stylesheet" href="/css/shareEditMyPost.css">
+</head>
+<body>
+    <iconify-icon icon="cil:x" class="x-btn" onclick="backShare()"></iconify-icon>
+
+    <div class="post-write-div">
+        <input type="text" class="post-title" placeholder="제목을 입력하세요!">
+        <div class="hr"></div>
+        <textarea class="post-main" placeholder="내용을 입력하세요!"></textarea>
+    </div>
+
+    <div class="edit-btn" onclick="editPost()">게시물 수정</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <script src="/js/config.js"></script>
+    <script src="/js/shareEditMyPost.js"></script>
+</body>
+</html>

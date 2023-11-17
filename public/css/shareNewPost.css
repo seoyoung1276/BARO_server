@@ -1,0 +1,54 @@
+*{
+    height: 100%;
+    width: 100%;
+}
+.x-btn{
+    float: right;
+    margin: 15px;
+    font-size: 30px;
+    width: 30px;
+    height: 30px;
+}
+.post-write-div{
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+    height: 65%;
+    width: 90%;
+    top: 85px;
+}
+.post-title{
+    position: relative;
+    width: 100%;
+    height: 50px;
+    top: -60px;
+    outline: none;
+    border: none;
+    font-size: 22px;
+}
+.hr{
+    position: relative;
+    top: -60px;
+}
+.post-main{
+    position: relative;
+    top: -60px;
+    margin-top: 10px;
+    outline: none;
+    border: none;
+    font-size: 18px;
+}
+.make-btn{
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+    width: 275px;
+    height: 49px;
+    top: 170px;
+    margin-top: 30px;
+    border-radius: 10px;
+    background: #FFD159;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
