@@ -12,7 +12,7 @@ module.exports = () => {
             {
                 clientID: process.env.GOOGLE_ID,
                 clientSecret: process.env.GOOGLE_SECRET,
-                callbackURL: 'http://localhost:3000/auth/google/callback',
+                callbackURL: '13.125.87.160:3000/auth/google/callback',
                 scope: ['profile', 'email']
             },
             async (accessToken, refreshToken, profile, done) =>{
