@@ -15,14 +15,14 @@ const { db } = require('./models');
 const app = express();
 passportConfig();
 
-const whiteList = ['http://localhost:5500', 'http://127.0.0.1:5500', 'http://ec2-13-125-87-160.ap-northeast-2.compute.amazonaws.com'];
+// const whiteList = ['http://localhost:5500', 'http://127.0.0.1:5500', 'http://ec2-13-125-87-160.ap-northeast-2.compute.amazonaws.com'];
 
-const corsOptions = {
-   origin: whiteList,
-   credentials: true
-}
+// const corsOptions = {
+//    origin: whiteList,
+//    credentials: true
+// }
 
-app.use(cors(corsOptions));
+app.use(cors());
 
 app.use(bodyParser.json())
 app.use(cookieParser(process.env.COOKIE_SECRET));
