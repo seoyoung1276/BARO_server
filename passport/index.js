@@ -5,7 +5,7 @@ require('dotenv').config();
 
 const User = require('../models/User');
 
-module.exports = () => {
+ module.exports = () => {
     
     passport.serializeUser((user, done) =>{
         done(null, user.user_no);
