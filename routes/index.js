@@ -17,6 +17,6 @@ router.use('/user', user);
 router.use('/share/post', sharePost);
 router.use('/together/post',togetherPost);
 router.use('/learn/post',learnPost);
-//router.use('/share/post/comment', shareComment);
+router.use('/share/comment', shareComment);
 
 module.exports = router;
