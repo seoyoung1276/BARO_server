@@ -89,10 +89,6 @@ function navChoose(ch, no){
 
 function plusPost(){
     window.location.href = '/shareNewPost.html';
-    function showPost(e, i){
-        console.log(e, i);
-        // window.location.href = '/shareShowPost.html';
-    }
 }
 function showCurrectPost(e, i){
     // console.log(e, i);
