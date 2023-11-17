@@ -14,7 +14,6 @@ router.get(
     passport.authenticate('google', { failureRedirect: '/login-failed'}),
     async (req, res) => { 
         try {
-            await userController();
             console.log(req.user)
             res.redirect(`${FRONT_URL}/main.html`)
         }catch (error) {
