@@ -4,7 +4,7 @@ const FRONT_URL = 'http://localhost:5500'
 // 유저 정보 조회
 exports.userController = async (req, res) => {
     try{
-        if(req.isAuthenticated()){
+        if(await req.isAuthenticated()){
             res.json(req.user);
         } else {
             console.log(error)
