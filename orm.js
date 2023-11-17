@@ -3,8 +3,8 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 const SQL_PW = process.env.SQL_PW;
-const auto = new SequelizeAuto("baro", "root", SQL_PW, {
-      host: "127.0.0.1",
+const auto = new SequelizeAuto("baro", SQL_USERNAME, SQL_PW, {
+      host: SQL_HOST,
       port: "3306",
       dialect: "mysql",
       directory: './models'
