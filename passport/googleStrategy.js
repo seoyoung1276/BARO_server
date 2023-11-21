@@ -37,15 +37,22 @@ module.exports = () => {
                         }else{
                             major = "뉴미디어디자인과";
                         }
+
+                        if(email.includes('e-mirim.hs.kr')){
+
                         
-                        const newUser = await User.create({
-                            email: profile?.emails[0].value,
-                            name: profile.displayName,
-                            major: major,
-                            snsId: profile.id,
-                        });
+                           const newUser = await User.create({
+                                email: profile?.emails[0].value,
+                                name: profile.displayName,
+                                major: major,
+                                snsId: profile.id,
+                            });
                         
-                        done(null, newUser);
+                            done(null, newUser);
+                        }else{
+                            console.error("이메일에 e-mirim.hs.kr이 포함되어있지 않음");
+                            done(error);
+                        }
                     }
 
                 }catch(error){
