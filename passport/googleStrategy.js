@@ -51,7 +51,7 @@ module.exports = () => {
                             done(null, newUser);
                         }else{
                             console.error("이메일에 e-mirim.hs.kr이 포함되어있지 않음");
-                            done(error);
+                            return done(null, false, { message: '미림마이스터고 학교 이메일로만 가입할 수 있습니다.' });
                         }
                     }
 
