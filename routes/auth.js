@@ -1,7 +1,7 @@
 const express = require('express')
 const session = require('express-session')
 const passport = require('passport');
-const { userController, logout } = require('../controllers/auth')
+const { userController, logout, loginFailed } = require('../controllers/auth')
 const router = express.Router()
 const FRONT_URL = '';
 
