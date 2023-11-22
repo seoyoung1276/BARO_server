@@ -9,7 +9,7 @@ router.get('/', getAllPost);
 
 router.get('/:postno', getOnePost)
 
-router.get('user/:userno', getUserPost)
+router.get('/user/:userno', getUserPost)
 
 router.patch('/:postno', updatePost)
 
