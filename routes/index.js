@@ -16,7 +16,6 @@ const router = express.Router();
 
 router.get('/login-failed', loginFailed);
 
-router.use('/loginfailed')
 router.use('/auth', auth);
 router.use('/user', user);
 router.use('/share/post', sharePost);
