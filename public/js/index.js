@@ -6,7 +6,7 @@ function handleGoogleLogin() {
 
 axios.get('/login-failed')
 .then(response =>{
-    alert('회원가입은 미림 학교 계정으로만 가능합니다.')
+    alert('회원가입은 미림 학교 계정으로만 가능합니다.');
 })
 .catch(error =>{
     console.error('There has been a problem with your axios request:', error);

@@ -15,6 +15,10 @@ exports.userController = async (req, res) => {
     }
 }
 
+exports.loginFailed = async (req, res) => {
+    res.json({result : "ok"})
+}
+
 exports.logout = (req, res) => {
     req.logout(() => {
         res.json('ok')
