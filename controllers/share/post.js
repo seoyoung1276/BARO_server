@@ -87,14 +87,12 @@ exports.updatePost = async (req, res) =>{
 exports.deletePost = async (req, res) =>{
   try{
     const postNo = req.params.postno;
-
     const deletePost = await SharePost.destory({
       where: {
         id: postNo
       }
-    }).then(() =>{
-      res.json(deletePost);
     })
+    res.json(deletePost);
 
   }catch(error){
     console.log(error);
