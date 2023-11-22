@@ -11,7 +11,7 @@ router.get('/google', passport.authenticate('google', {scope: ['profile', 'email
 
 router.get(
     '/google/callback',
-    passport.authenticate('google', { failureRedirect: 'index.html'}),
+    passport.authenticate('google', { failureRedirect: '/login-failed'}),
     async (req, res) => { 
         try {
             console.log(req.user)
@@ -27,6 +27,8 @@ router.get(
         }
     }
 )
+
+router.get('/login-failed');
 
 // 로그인한 유저 정보 조회 (내 정보)
 router.get('/userinfo', userController);
