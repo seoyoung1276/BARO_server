@@ -11,19 +11,14 @@ router.get('/google', passport.authenticate('google', {scope: ['profile', 'email
 
 router.get(
     '/google/callback',
-    passport.authenticate('google', { failureRedirect: '/login-failed'}),
+    passport.authenticate('google', { failureRedirect: 'auth/login-failed'}),
     async (req, res) => { 
         try {
             console.log(req.user)
             res.redirect(`${FRONT_URL}/main.html`)
         }catch (error) {
-            if(error && error.message) {
-                res.status(401).send({ message: error.message });
-            }else{
                 console.log(error);
                 res.status(500).send('Internal Server Error');
-            }
-
         }
     }
 )
