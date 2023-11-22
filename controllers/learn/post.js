@@ -88,7 +88,7 @@ exports.deletePost = async (req, res) =>{
   try{
     const postNo = req.params.postno;
 
-    const deletePost = await LearnPost.destory({
+    const deletePost = await LearnPost.destroy({
       where: {
         id: postNo
       }

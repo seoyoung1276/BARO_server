@@ -91,7 +91,7 @@ exports.deletePost = async (req, res) =>{
   try{
     const postNo = req.params.postno;
 
-    const deletePost = await TogetherPost.destory({
+    const deletePost = await TogetherPost.destroy({
       where: {
         id: postNo
       }
