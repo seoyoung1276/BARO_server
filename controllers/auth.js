@@ -16,7 +16,7 @@ exports.userController = async (req, res) => {
 }
 
 exports.loginFailed = async (req, res) => {
-    res.json({result : "ok"})
+    res.send("<script>alert('미림마이스터고 학교 계정으로만 가입할 수 있습니다.'); window.location.replace('index.html');</script>");
 }
 
 exports.logout = (req, res) => {
