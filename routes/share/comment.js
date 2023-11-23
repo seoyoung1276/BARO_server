@@ -1,12 +1,12 @@
 const express = require('express')
 const router = express.Router()
-const { postComment } = require('../../controllers/share/comment')
+const { postComment, getComment } = require('../../controllers/share/comment')
 
 // 댓글 작성
 router.post('/:postid', postComment)
 
-// // 댓글 불러오기
-// router.get('/')
+// 댓글 불러오기
+router.get('/:postid', getComment)
 
 // // 댓글 수정
 // router.patch('/patch')

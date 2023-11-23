@@ -27,10 +27,10 @@ exports.postComment = async (req, res) => {
     }
 };
 
-// exports.getComment = async (req, res) =>{
-//     try{
-//         const postId = req.params.postid;
-//     }catch (error){
-//         res.status(500).json({ error: error })
-//     }
-// }
+exports.getComment = async (req, res) =>{
+    try{
+        const postId = req.params.postid;
+    }catch (error){
+        res.status(500).json({ error: error })
+    }
+}
