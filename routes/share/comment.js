@@ -8,8 +8,8 @@ router.post('/:postid', postComment)
 // 댓글 불러오기
 router.get('/:postid', getComment)
 
-// // 댓글 수정
-// router.patch('/patch')
+// 댓글 수정
+router.patch('/patch')
 
 // // 댓글 삭제
 // router.delete('/')

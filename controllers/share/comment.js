@@ -34,3 +34,5 @@ exports.getComment = async (req, res) =>{
         res.status(500).json({ error: error })
     }
 }
+
+// 댓글 수정
