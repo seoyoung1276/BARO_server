@@ -36,8 +36,36 @@ exports.getComment = async (req, res) => {
     }
 };
 
-// exports.patchComment = async (req, res) => {
-//     try{
+exports.updateComment = async (req, res) => {
+    try {
+        const commentId = req.params.commentid;
+        const { user_no, content } = req.body;
 
-//     }
-// }
+        const comment = await ShareComment.findById(commentId);
+        if (comment.user_no !== user_no) {
+            return res.status(403).json({ error: '해당 댓글의 작성자가 아닙니다.' });
+        }
+
+        const updatedComment = await ShareComment.findByIdAndUpdate(commentId, { content: content }, { new: true });
+        res.json(updatedComment);
+    } catch (error) {
+        res.status(500).json({ error: error });
+    }
+};
+
+exports.deleteComment = async (req, res) => {
+    try {
+        const commentId = req.params.commentid;
+        const { user_no } = req.body;
+
+        const comment = await ShareComment.findById(commentId);
+        if (comment.user_no !== user_no) {
+            return res.status(403).json({ error: '해당 댓글의 작성자가 아닙니다.' });
+        }
+
+        await ShareComment.findByIdAndDelete(commentId);
+        res.json({ message: '댓글이 삭제되었습니다.' });
+    } catch (error) {
+        res.status(500).json({ error: error });
+    }
+};
