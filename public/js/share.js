@@ -18,7 +18,6 @@ function getUserName(posts){
             console.error('There has been a problem with your axios request:', error);
         });
     }
-    
 }
 
 function showPosts(post, userName){
