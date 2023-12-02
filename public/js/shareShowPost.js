@@ -40,7 +40,7 @@ function showComments(comments){
     for(let comment of comments){
         console.log(comment);
         let userName = getUserName(comment);
-        if(comment.responseto === 1) subComment(comment, userName);
+        if(comment.responseto !== null || comment.responseto !== undefined) subComment(comment, userName);
         else {
             let parentDiv = document.getElementsByClassName('comment-area')[0];
             
@@ -86,8 +86,10 @@ let subIndex;
 function functionOpen(){
     let subComment = [...document.getElementsByClassName('add-comment')];
     subComment.forEach((e, i) => {
-        subIndex = i;
-        addSubComment(i);
+        e.onclick = () => {
+            subIndex = i;
+            addSubComment(i);
+        }
     })
 }
 
