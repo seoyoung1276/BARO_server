@@ -30,9 +30,12 @@ exports.postComment = async (req, res) => {
 exports.getComment = async (req, res) => {
     try {
         const postId = req.params.postid;
-        const comments = await ShareComment.find({ post_id: postId }); // 특정 포스트 ID에 대한 댓글 가져오기
+        const comments = await ShareComment.find(
+            { post_id: postId }
+            ); // 특정 포스트 ID에 대한 댓글 가져오기
         res.json(comments);
     } catch (error) {
+        console.log(error)
         res.status(500).json({ error: error });
     }
 };
