@@ -165,6 +165,7 @@ sendCommentInput.addEventListener("keyup", function(event){
 });
 
 async function sendComment(){
+    const userno = await getUserNo();
     comments = comments.filter(e => e.responseTo == "" || e.responseTo == undefined);
 
     if(sendCommentInput.placeholder === "댓글 추가"){
@@ -203,10 +204,6 @@ async function sendComment(){
         });
 
     }
-
-    const userno = await getUserNo();
-
-    
 }
 
 function showCurrectPost(postInfo, userInfo){
