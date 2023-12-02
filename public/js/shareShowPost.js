@@ -2,6 +2,7 @@ const urlParams = new URL(location.href).searchParams;
 const id = urlParams.get('id');
 
 let commentId;
+let comments;
 axios.get(`${BASE_URL}/share/post`)
 .then(Response => {
     getUserInfo(Response.data[id]);
@@ -26,6 +27,7 @@ function getComment(commentid){
     axios.get(`${BASE_URL}/share/comment/${commentid}`)
     .then(Response => {
         console.log(Response.data);
+        comments = Response.data;
         showComments(Response.data);
     })
     .catch(error => {
@@ -49,10 +51,10 @@ function showComments(comments){
             profileDiv.className = "comment-profile";
 
             let commentUsername = document.createElement('div');
-            commentUsername.className = "comment-profile";
+            commentUsername.className = "comment-username";
             commentUsername.innerHTML = userName;
 
-            commentUsername.innerHTML = `<iconify-icon icon="healthicons:ui-user-profile" class="user-comment-profile-img"></iconify-icon>`;
+            profileDiv.innerHTML = `<iconify-icon icon="healthicons:ui-user-profile" class="user-comment-profile-img"></iconify-icon>`;
 
             profileDiv.appendChild(commentUsername);
 
@@ -77,6 +79,21 @@ function showComments(comments){
             parentDiv.appendChild(finalDiv);
         }
     }
+    functionOpen();
+}
+
+let subIndex;
+function functionOpen(){
+    let subComment = [...document.getElementsByClassName('add-comment')];
+    subComment.forEach((e, i) => {
+        subIndex = i;
+        addSubComment(i);
+    })
+}
+
+function addSubComment(index){
+    let comment = document.getElementsByClassName('comment-username')[index];
+    document.getElementsByClassName('input-comment')[0].placeholder = `${comment.innerText}님 에게`;
 }
 
 function getUserName(comment){
@@ -148,26 +165,48 @@ sendCommentInput.addEventListener("keyup", function(event){
 });
 
 async function sendComment(){
-    console.log(sendCommentInput.value);
+    comments = comments.filter(e => e.responseTo == "" || e.responseTo == undefined);
+
+    if(sendCommentInput.placeholder === "댓글 추가"){
+        const req = {
+            user_no: userno,
+            content: sendCommentInput.value
+        }
+    
+        axios.post(`${BASE_URL}/share/comment/${commentId}`, req)
+        .then(Response => {
+            console.log(Response.data);
+            document.getElementsByClassName('comment-area')[0].replaceChildren();
+            sendCommentInput.value = "";
+            getComment(commentId);
+        })
+        .catch(error => {
+            console.error('There has been a problem with your axios request:', error);
+        });
+    }else{
+        const req = {
+            user_no: userno,
+            content: sendCommentInput.value,
+            responseTo: comments[subIndex].id
+        }
+    
+        axios.post(`${BASE_URL}/share/comment/${commentId}`, req)
+        .then(Response => {
+            console.log(Response.data);
+            document.getElementsByClassName('comment-area')[0].replaceChildren();
+            sendCommentInput.value = "";
+            sendCommentInput.placeholder = "댓글 추가"
+            getComment(commentId);
+        })
+        .catch(error => {
+            console.error('There has been a problem with your axios request:', error);
+        });
+
+    }
 
     const userno = await getUserNo();
 
-    const req = {
-        user_no: userno,
-        content: sendCommentInput.value,
-        responseto : true
-    }
-
-    axios.post(`${BASE_URL}/share/comment/${commentId}`, req)
-    .then(Response => {
-        console.log(Response.data);
-        document.getElementsByClassName('comment-area')[0].replaceChildren();
-        sendCommentInput.value = "";
-        getComment(commentId);
-    })
-    .catch(error => {
-        console.error('There has been a problem with your axios request:', error);
-    });
+    
 }
 
 function showCurrectPost(postInfo, userInfo){
