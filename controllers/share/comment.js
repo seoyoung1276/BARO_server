@@ -40,9 +40,24 @@ exports.getComment = async (req, res) => {
     }
 };
 
+exports.getOneComment = async (req, res) => {
+    try{
+        const commentId = req.params.commentid;
+        const comments = await ShareComment.findOne(
+            { comment_id: commentId}
+        );
+        res.json(comments);
+    }catch (error) {
+        console.log(error)
+        res.status(500).json({ error: error}) ;
+
+    }
+}
+
+
 exports.getUserComments = async (req, res) => {
     try {
-        const userNo = req.params.userNo; // 특정 사용자의 userNo를 파라미터에서 받습니다.
+        const userNo = req.params.userNo; 
         const userComments = await ShareComment.findAll({ user_no: userNo });
         res.json(userComments);
     } catch (error) {
