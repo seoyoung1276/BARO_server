@@ -48,9 +48,10 @@ function showComments(comments){
     console.log(notSubComments);
     console.log(subComments);
 
+    let userName;
     for(let comment of notSubComments){
         console.log(comment);
-        let userName = getUserName(comment);
+        getUserName(comment);
         console.log(userName);
         let parentDiv = document.getElementsByClassName('comment-area')[0];
         
@@ -173,7 +174,7 @@ function getUserName(comment){
     axios.get(`${BASE_URL}/user/${comment.user_no}`)
     .then(Response => {
         console.log(Response.data.result.name)
-        return Response.data.result.name;
+        userName = Response.data.result.name;
     })
     .catch(error => {
         console.error('There has been a problem with your axios request:', error);
@@ -194,7 +195,8 @@ sendCommentInput.addEventListener("keyup", function(event){
 
 async function sendComment(){
     const userno = await getUserNo();
-    comments = comments.filter(e => e.responseTo == "" || e.responseTo == undefined);
+    notSubComments = comments.filter(e => e.responseto == null || e.responseto == undefined);
+    console.log(notSubComments);
 
     if(sendCommentInput.placeholder === "댓글 추가"){
         const req = {
@@ -213,10 +215,12 @@ async function sendComment(){
             console.error('There has been a problem with your axios request:', error);
         });
     }else{
+        console.log(subIndex);
+        console.log(notSubComments[subIndex].id);
         const req = {
             user_no: userno,
             content: sendCommentInput.value,
-            responseTo: comments[subIndex].id
+            responseTo: notSubComments[subIndex].id
         }
     
         axios.post(`${BASE_URL}/share/comment/${commentId}`, req)
