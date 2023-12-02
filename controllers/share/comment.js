@@ -17,7 +17,7 @@ exports.postComment = async (req, res) => {
                 user_no: user_no,
                 post_id: postId, // postId 변수 이름을 'postId'로 변경하여 일관성 있게 수정
                 content: content,
-                responseTo: responseTo // 'responseTo'의 대소문자를 올바르게 수정
+                responseTo: responseTo 
             });
         }
         res.json(response);

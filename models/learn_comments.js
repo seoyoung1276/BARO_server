@@ -33,7 +33,7 @@ module.exports = function(sequelize, DataTypes) {
       defaultValue: Sequelize.Sequelize.literal('CURRENT_TIMESTAMP')
     },
     responseto: {
-      type: DataTypes.BOOLEAN,
+      type: DataTypes.INTEGER,
       allowNull: true
     }
   }, {

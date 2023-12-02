@@ -36,7 +36,7 @@ class ShareComment extends Sequelize.Model {
       defaultValue: Sequelize.Sequelize.literal('CURRENT_TIMESTAMP')
     },
     responseto: {
-      type: DataTypes.BOOLEAN,
+      type: DataTypes.INTEGER,
       allowNull: true
     }
   }, {
