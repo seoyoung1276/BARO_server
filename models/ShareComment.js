@@ -50,8 +50,8 @@ class ShareComment extends Sequelize.Model {
     collate: 'utf8_general_ci',
   });
 } static associate(db) {
-  db.ShareComment.belongsTo(db.User, {foriegnKey: 'user_no'})
-  db.ShareComment.belongsTo(db.SharePost, {foriegnKey: 'id'})
+  db.ShareComment.belongsTo(db.User, {foreignKey: 'user_no'})
+  db.ShareComment.belongsTo(db.SharePost, {foreignKey: 'id'})
 }
 };
 
