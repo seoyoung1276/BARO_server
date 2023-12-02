@@ -22,8 +22,8 @@ function getUserInfo(post){
     });
 }
 
-function getComment(id){
-    axios.get(`${BASE_URL}/share/comment/${id}`)
+function getComment(commentid){
+    axios.get(`${BASE_URL}/share/comment/${commentid}`)
     .then(Response => {
         console.log(Response.data);
         showComments(Response.data);
@@ -158,7 +158,7 @@ async function sendComment(){
         responseto : true
     }
 
-    axios.post(`${BASE_URL}/share/comment/${id}`, req)
+    axios.post(`${BASE_URL}/share/comment/${commentId}`, req)
     .then(Response => {
         
         console.log(Response.data);
