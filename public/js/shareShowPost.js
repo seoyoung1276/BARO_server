@@ -37,7 +37,7 @@ function showComments(comments){
     console.log(comments);
     for(let comment of comments){
         console.log(comment);
-        let userName = getUserName(comments);
+        let userName = getUserName(comment);
         if(comment.responseto === 1) subComment(comment, userName);
         else {
             let parentDiv = document.getElementsByClassName('comment-area')[0];
@@ -160,9 +160,9 @@ async function sendComment(){
 
     axios.post(`${BASE_URL}/share/comment/${commentId}`, req)
     .then(Response => {
-        
         console.log(Response.data);
         document.getElementsByClassName('comment-area')[0].replaceChildren();
+        sendCommentInput.value = "";
         getComment(commentId);
     })
     .catch(error => {
