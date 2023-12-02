@@ -41,7 +41,7 @@ function showComments(comments){
     let subComments = [];
     let notSubComments = comments.filter(e => {
         console.log(e);
-        if(isNaN(e.responseto)) return e;
+        if(e.responseto == null || e.responseto == undefined) return e;
         else subComments.push(e);
     });
 
