@@ -40,9 +40,13 @@ function showComments(comments){
 
     let subComments = [];
     let notSubComments = comments.filter(e => {
+        console.log(e);
         if(isNaN(e.responseto)) return e;
         else subComments.push(e);
     });
+
+    console.log(notSubComments);
+    console.log(subComments);
 
     for(let comment of notSubComments){
         console.log(comment);
@@ -102,6 +106,7 @@ function showComments(comments){
         notSubComments.forEach((e, i) => {
             if(e.id === comment.responseto) commentIndex = i;
         });
+        console.log(commentIndex);
 
         let userName = getUserName(comment);
     
