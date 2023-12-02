@@ -152,7 +152,7 @@ async function sendComment(){
 
     const userno = await getUserNo();
 
-    axios.post(`${BASE_URL}/share/comment/${userno}`, req)
+    axios.post(`${BASE_URL}/share/comment/${userno}`)
     .then(Response => {
         console.log(Response.data);
         document.getElementsByClassName('comment-area')[0].replaceChildren();
