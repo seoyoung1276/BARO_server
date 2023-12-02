@@ -37,47 +37,112 @@ function getComment(commentid){
 
 function showComments(comments){
     console.log(comments);
-    for(let comment of comments){
+
+    let subComments = [];
+    let notSubComments = comments.filter(e => {
+        if(isNaN(e.responseto)) return e;
+        else subComments.push(e);
+    });
+
+    for(let comment of notSubComments){
         console.log(comment);
         let userName = getUserName(comment);
-        if(comment.responseto !== null || comment.responseto !== undefined) subComment(comment, userName);
-        else {
-            let parentDiv = document.getElementsByClassName('comment-area')[0];
-            
-            let finalDiv = document.createElement('div');
-            finalDiv.className = "comments";
+        console.log(userName);
+        let parentDiv = document.getElementsByClassName('comment-area')[0];
+        
+        let finalDiv = document.createElement('div');
+        finalDiv.className = "comments";
 
-            let profileDiv = document.createElement('div');
-            profileDiv.className = "comment-profile";
+        let profileDiv = document.createElement('div');
+        profileDiv.className = "comment-profile";
 
-            let commentUsername = document.createElement('div');
-            commentUsername.className = "comment-username";
-            commentUsername.innerHTML = userName;
+        let commentUsername = document.createElement('div');
+        commentUsername.className = "comment-username";
+        commentUsername.innerHTML = userName;
 
-            profileDiv.innerHTML = `<iconify-icon icon="healthicons:ui-user-profile" class="user-comment-profile-img"></iconify-icon>`;
+        profileDiv.innerHTML = `<iconify-icon icon="healthicons:ui-user-profile" class="user-comment-profile-img"></iconify-icon>`;
 
-            profileDiv.appendChild(commentUsername);
+        profileDiv.appendChild(commentUsername);
 
-            let commentContentDiv = document.createElement('div');
-            commentContentDiv.className = "comment-content";
-            commentContentDiv.innerHTML = comment.content;
+        let commentContentDiv = document.createElement('div');
+        commentContentDiv.className = "comment-content";
+        commentContentDiv.innerHTML = comment.content;
 
-            let commentInfoDiv = document.createElement('div');
-            commentInfoDiv.className = "comment-info";
+        let commentInfoDiv = document.createElement('div');
+        commentInfoDiv.className = "comment-info";
 
-            let commentDate = document.createElement('div');
-            commentDate.className = "comment-date";
-            commentDate.innerHTML = comment.date;
+        let commentDate = document.createElement('div');
+        commentDate.className = "comment-date";
+        commentDate.innerHTML = comment.date;
 
-            commentInfoDiv.appendChild(commentDate);
-            commentInfoDiv.innerHTML += `<iconify-icon icon="ic:baseline-comment" class="add-comment"></iconify-icon>`;
-       
-            finalDiv.appendChild(profileDiv);
-            finalDiv.appendChild(commentContentDiv);
-            finalDiv.appendChild(commentInfoDiv);
+        commentInfoDiv.appendChild(commentDate);
+        commentInfoDiv.innerHTML += `<iconify-icon icon="ic:baseline-comment" class="add-comment"></iconify-icon>`;
+    
+        finalDiv.appendChild(profileDiv);
+        finalDiv.appendChild(commentContentDiv);
+        finalDiv.appendChild(commentInfoDiv);
 
-            parentDiv.appendChild(finalDiv);
-        }
+        parentDiv.appendChild(finalDiv);
+    }
+
+    let sortSubComments = subComments.sort((one, two) => {
+        if(one.responseto > two.responseto) return 1;
+        else if(one.responseto == two.responseto) return 0;
+        else return -1;
+    });
+
+    sortSubComments.sort((one, two) => {
+        if(one.responseto === two.responseto && one.id < two.id) return 1;
+        else if(one.responseto === two.responseto && one.id === two.id) return 0;
+        else return -1;
+    })
+
+    for(let comment of sortSubComments){
+        let commentIndex;
+        notSubComments.forEach((e, i) => {
+            if(e.id === comment.responseto) commentIndex = i;
+        });
+
+        let userName = getUserName(comment);
+    
+        let finalDiv = document.createElement('div');
+        finalDiv.className = "sub-comments";
+    
+        let commentDetailDiv = document.createElement('div');
+        commentDetailDiv.className = "comment-detail"
+    
+        let commentProfileDiv = document.createElement('div');
+        commentProfileDiv.className = "comment-profile";
+    
+        let commentUsername = document.createElement('div');
+        commentUsername.className = "comment-username";
+        commentUsername.innerHTML = userName;
+    
+        commentProfileDiv.innerHTML = `<iconify-icon icon="healthicons:ui-user-profile" class="user-comment-profile-img"></iconify-icon>`;
+        commentProfileDiv.appendChild(commentUsername);
+    
+        let commetContentDiv = document.createElement('div');
+        commetContentDiv.className = "comment-content";
+        commetContentDiv.innerHTML = comment.comment;
+    
+        let commentInfoDiv = document.createElement('div');
+        commentInfoDiv.className = "sub-comment-info";
+    
+        let commentDate = document.createElement('div');
+        commentDate.className = "comment-date";
+        commentDate.innerHTML = comment.date;
+    
+        commentInfoDiv.appendChild(commentDate);
+        // commentInfoDiv.innerHTML += `<iconify-icon icon="ic:baseline-comment" class="add-comment"></iconify-icon>`;
+    
+        commentDetailDiv.appendChild(commentProfileDiv);
+        commentDetailDiv.appendChild(commetContentDiv);
+        commentDetailDiv.appendChild(commentInfoDiv);
+    
+        finalDiv.innerHTML = `<iconify-icon icon="tdesign:enter" class="sub-comment-enter"></iconify-icon>`;
+        finalDiv.appendChild(commentDetailDiv);
+
+        document.getElementsByClassName('comments')[commentIndex].after(finalDiv);
     }
     functionOpen();
 }
@@ -108,50 +173,6 @@ function getUserName(comment){
     .catch(error => {
         console.error('There has been a problem with your axios request:', error);
     });
-}
-    
-
-function subComment(comments, userName){
-    let parentDiv = document.getElementsByClassName('comment-area')[0];
-
-    let finalDiv = document.createElement('div');
-    finalDiv.className = "sub-comments";
-
-    let commentDetailDiv = document.createElement('div');
-    commentDetailDiv.className = "comment-detail"
-
-    let commentProfileDiv = document.createElement('div');
-    commentProfileDiv.className = "comment-profile";
-
-    let commentUsername = document.createElement('div');
-    commentUsername.className = "comment-username";
-    commentUsername.innerHTML = userName;
-
-    commentProfileDiv.innerHTML = `<iconify-icon icon="healthicons:ui-user-profile" class="user-comment-profile-img"></iconify-icon>`;
-    commentProfileDiv.appendChild(commentUsername);
-
-    let commetContentDiv = document.createElement('div');
-    commetContentDiv.className = "comment-content";
-    commetContentDiv.innerHTML = comments.comment;
-
-    let commentInfoDiv = document.createElement('div');
-    commentInfoDiv.className = "sub-comment-info";
-
-    let commentDate = document.createElement('div');
-    commentDate.className = "comment-date";
-    commentDate.innerHTML = comments.date;
-
-    commentInfoDiv.appendChild(commentDate);
-    // commentInfoDiv.innerHTML += `<iconify-icon icon="ic:baseline-comment" class="add-comment"></iconify-icon>`;
-
-    commentDetailDiv.appendChild(commentProfileDiv);
-    commentDetailDiv.appendChild(commetContentDiv);
-    commentDetailDiv.appendChild(commentInfoDiv);
-
-    finalDiv.innerHTML = `<iconify-icon icon="tdesign:enter" class="sub-comment-enter"></iconify-icon>`;
-    finalDiv.appendChild(commentDetailDiv);
-
-    parentDiv.appendChild(finalDiv);
 }
 
 function backBtn(){
