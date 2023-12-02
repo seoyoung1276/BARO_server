@@ -5,7 +5,8 @@ let commentId;
 axios.get(`${BASE_URL}/share/post`)
 .then(Response => {
     getUserInfo(Response.data[id]);
-    commentId = Response.data[id].id
+    commentId = Response.data[id].id;
+    console.log(commentId);
     getComment(commentId);
 })
 .catch(error => {
@@ -33,7 +34,9 @@ function getComment(id){
 }
 
 function showComments(comments){
+    console.log(comments);
     for(let comment of comments){
+        console.log(comment);
         let userName = getUserName(comments);
         if(comment.responseto === 1) subComment(comment, userName);
         else {
@@ -77,8 +80,10 @@ function showComments(comments){
 }
 
 function getUserName(comment){
+    console.log(comment);
     axios.get(`${BASE_URL}/user/${comment.user_no}`)
     .then(Response => {
+        console.log(Response.data.result.name)
         return Response.data.result.name;
     })
     .catch(error => {
