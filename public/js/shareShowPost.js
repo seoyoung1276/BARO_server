@@ -123,7 +123,7 @@ function subComment(comments, userName){
     commentDate.innerHTML = comments.date;
 
     commentInfoDiv.appendChild(commentDate);
-    commentInfoDiv.innerHTML += `<iconify-icon icon="ic:baseline-comment" class="add-comment"></iconify-icon>`;
+    // commentInfoDiv.innerHTML += `<iconify-icon icon="ic:baseline-comment" class="add-comment"></iconify-icon>`;
 
     commentDetailDiv.appendChild(commentProfileDiv);
     commentDetailDiv.appendChild(commetContentDiv);
