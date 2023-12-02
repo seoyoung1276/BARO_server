@@ -158,7 +158,7 @@ async function sendComment(){
         responseto : true
     }
 
-    axios.post(`${BASE_URL}/share/comment/${commentid}`, req)
+    axios.post(`${BASE_URL}/share/comment/${commentId}`, req)
     .then(Response => {
         
         console.log(Response.data);
