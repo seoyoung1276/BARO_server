@@ -302,7 +302,6 @@ function showCurrectPost(postInfo, userInfo){
 }
 
 async function getIsJoin(postInfo){
-    // router.get('/:postno/isattend/:userno', isAttend)
     const userno = await getUserNo();
 
     axios.get(`${BASE_URL}/together/post/${postInfo.id}/isattend/${userno}`)
