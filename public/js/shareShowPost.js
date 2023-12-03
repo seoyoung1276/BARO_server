@@ -257,7 +257,7 @@ async function sendComment(){
         const req = {
             user_no: userno,
             content: sendCommentInput.value,
-            responseTo: notSubComments[subIndex].id
+            responseto: notSubComments[subIndex].id
         }
     
         console.log(req);
