@@ -3,15 +3,15 @@ const ShareComment = require('../../models/ShareComment');
 exports.postComment = async (req, res) => {
     try {
         const postId = req.params.postid;
-        const { user_no, content, responseTo } = req.body;
+        const { user_no, content, responseto } = req.body;
 
         let response;
-        if (responseTo != undefined) {
+        if (responseto !== undefined && responseto !== null) {
             response = await ShareComment.create({
                 user_no: user_no,
                 post_id: postId, 
                 content: content,
-                responseTo: responseTo 
+                responseto: responseto 
             });
         } else {
             response = await ShareComment.create({
