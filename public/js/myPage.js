@@ -132,7 +132,7 @@ async function getFisishiOne(){
     axios.get(`${BASE_URL}/share/post/isfinish/${userno}`)
     .then(Response => {
         console.log(Response.data);
-        finisiPost += Response.data.length;
+        finisiPost += Response.data
         getFisishiTwo();
     })
     .catch(error => {
@@ -147,7 +147,7 @@ async function getFisishiTwo(){
     axios.get(`${BASE_URL}/together/post/isfinish/${userno}`)
     .then(Response => {
         console.log(Response.data);
-        finisiPost += Response.data.length;
+        finisiPost += Response.data;
         getFisishiThree();
     })
     .catch(error => {
@@ -162,7 +162,7 @@ async function getFisishiThree(){
     axios.get(`${BASE_URL}/learn/post/isfinish/${userno}`)
     .then(Response => {
         console.log(Response.data);
-        finisiPost += Response.data.length;
+        finisiPost += Response.data;
         getFisishiPosts(finisiPost);
     })
     .catch(error => {
