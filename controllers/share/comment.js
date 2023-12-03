@@ -31,7 +31,7 @@ exports.getComment = async (req, res) => {
     try {
         const postId = req.params.postid;
         const comments = await ShareComment.findAll(
-            { post_id: postId }
+            { where : {post_id: postId} }
             ); // 특정 포스트 ID에 대한 댓글 가져오기
         res.json(comments);
     } catch (error) {
@@ -44,7 +44,7 @@ exports.getOneComment = async (req, res) => {
     try{
         const commentId = req.params.commentid;
         const comments = await ShareComment.findOne(
-            { comment_id: commentId}
+            { where: {comment_id: commentId}}
         );
         res.json(comments);
     }catch (error) {
@@ -58,7 +58,7 @@ exports.getOneComment = async (req, res) => {
 exports.getUserComments = async (req, res) => {
     try {
         const userNo = req.params.userNo; 
-        const userComments = await ShareComment.findAll({ user_no: userNo });
+        const userComments = await ShareComment.findAll({ where: {user_no: userNo} });
         res.json(userComments);
     } catch (error) {
         res.status(500).json({ error: error });
