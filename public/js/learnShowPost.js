@@ -291,7 +291,7 @@ function showCurrectPost(postInfo, userInfo){
     document.getElementsByClassName('post-date')[0].innerText = `${Kdate} ${Ktime}`;
     document.getElementsByClassName('post-detail')[0].innerText = postInfo.content;
 
-    if(postInfo.isfinish){
-        document.getElementsByClassName('post-checked')[0].style.visibility = hidden;
+    if(!postInfo.isfinish){
+        document.getElementsByClassName('post-checked')[0].style.visibility = "hidden";
     }
 }

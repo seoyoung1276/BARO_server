@@ -292,6 +292,6 @@ function showCurrectPost(postInfo, userInfo){
     document.getElementsByClassName('post-detail')[0].innerText = postInfo.content;
 
     if(!postInfo.isfinish){
-        document.getElementsByClassName('content-check')[0].style.visibility = hidden;
+        document.getElementsByClassName('content-check')[0].style.visibility = "hidden";
     }
 }
