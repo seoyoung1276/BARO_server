@@ -168,8 +168,7 @@ function makeSubComments(comments, userName, commentIndex){
         finalDiv.appendChild(commentDetailDiv);
 
         document.getElementsByClassName('comments')[commentIndex].after(finalDiv);
-        console.log("subcomment");
-        SharefunctionOpen();
+        
 }
 
 function makeComments(comment, userName){
@@ -211,6 +210,9 @@ function makeComments(comment, userName){
     finalDiv.appendChild(commentInfoDiv);
 
     parentDiv.appendChild(finalDiv);
+
+    console.log("comment");
+    SharefunctionOpen();
 }
 
 function backBtn(){
