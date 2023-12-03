@@ -102,8 +102,8 @@ function plusPost(){
     window.location.href = '/shareNewPost.html';
 }
 function showCurrectPost(e, i){
-    // console.log(e, i);
-    // console.log(AllPost[i]);
-    window.location.href = `/shareShowPost.html?id=${AllPost[i].id}`;
+    console.log(e, i);
+    console.log(AllPost[i]);
+    // window.location.href = `/shareShowPost.html?id=${AllPost[i].id}`;
 }
 
