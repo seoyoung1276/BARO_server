@@ -49,8 +49,8 @@ class TogetherComment extends Sequelize.Model{
       collate: 'utf8_general_ci',
     });
   } static associate(db) {
-    db.togetherComment.belongsTo(db.User, {foreignKey: 'user_no'})
-    db.togetherComment.belongsTo(db.TogetherPost, {foreignKey: 'id'})
+    db.TogetherComment.belongsTo(db.User, {foreignKey: 'user_no'})
+    db.TogetherComment.belongsTo(db.TogetherPost, {foreignKey: 'id'})
   }
 };
 
