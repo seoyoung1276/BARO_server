@@ -255,7 +255,7 @@ async function sendComment(){
         const req = {
             user_no: userno,
             content: sendCommentInput.value,
-            responseTo: 1
+            responseto: 1
         }
     
         axios.post(`${BASE_URL}/share/comment/${commentId}`, req)
