@@ -67,15 +67,17 @@ function showComments(comments){
         else return -1;
     })
 
-    for(let comment of sortSubComments){
-        let commentIndex;
-        notSubComments.forEach((e, i) => {
-            if(e.id === comment.responseto) commentIndex = i;
-        });
-        console.log(commentIndex);
-
-        getSubUserName(comment, commentIndex);
-    }
+    setTimeout(() => {
+        for(let comment of sortSubComments){
+            let commentIndex;
+            notSubComments.forEach((e, i) => {
+                if(e.id === comment.responseto) commentIndex = i;
+            });
+            console.log(commentIndex);
+    
+            getSubUserName(comment, commentIndex);
+        }
+    }, 1000);
     
 }
 
@@ -255,9 +257,11 @@ async function sendComment(){
         const req = {
             user_no: userno,
             content: sendCommentInput.value,
-            responseTo: 1
+            responseTo: notSubComments[subIndex].id
         }
     
+        console.log(req);
+
         axios.post(`${BASE_URL}/share/comment/${commentId}`, req)
         .then(Response => {
             console.log(Response.data);
