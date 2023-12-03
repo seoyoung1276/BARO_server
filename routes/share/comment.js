@@ -15,9 +15,6 @@ router.patch('/:commentid', updateComment)
 router.delete('/:commentid',deleteComment)
 
 // 특정 유저의 댓글을 불러오기
-router.get('/:userno', getUserComments)
-
-// 댓글 한 개 불러오기
-router.get('/:commentid', getOneComment)
+router.get('user/:userno', getUserComments)
 
 module.exports = router;
