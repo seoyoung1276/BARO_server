@@ -25,7 +25,7 @@ getInfo();
 async function getInfo(){
     const userno = await getUserNo();
     // router.get('/:userno', getUserComments)
-    axios.get(`${BASE_URL}/together/comment/${userno}`)
+    axios.get(`${BASE_URL}/together/comment/user/${userno}`)
     .then(Response => {
         console.log(Response.data);
         commentSum += Response.data.length;
@@ -37,7 +37,7 @@ async function getInfo(){
 }
 
 function getShareCommentLength(userno){
-    axios.get(`${BASE_URL}/share/comment/${userno}`)
+    axios.get(`${BASE_URL}/share/comment/user/${userno}`)
     .then(Response => {
         console.log(Response.data);
         commentSum += Response.data.length;
@@ -48,7 +48,7 @@ function getShareCommentLength(userno){
     });
 }
 function getLearnCommentLength(userno){
-    axios.get(`${BASE_URL}/learn/comment/${userno}`)
+    axios.get(`${BASE_URL}/learn/comment/user/${userno}`)
     .then(Response => {
         console.log(Response.data);
         commentSum += Response.data.length;
@@ -78,7 +78,7 @@ function getCurrectLevel(sum){
         icon.innerHTML = `<img src="/img/Lv5_stemp.png" class="stemps">`
         name.innerText = "Lv5.치타"
     }
-    document.getElementsByClassName('help-cnt')[0].innerText = sum;
+    document.getElementsByClassName('help-cnt')[1].innerText = sum;
 }
 getOnePost();
 getTwoPost();
@@ -122,7 +122,57 @@ async function getThreePost(){
     });
 }
 
+let finisiPost = 0;
 
+getFisishiOne();
+async function getFisishiOne(){
+    // router.get('/isfinish/:userno', isFinishGet)
+    const userno = await getUserNo();
+
+    axios.get(`${BASE_URL}/share/post/isfinish/${userno}`)
+    .then(Response => {
+        console.log(Response.data);
+        finisiPost += Response.data.length;
+        getFisishiTwo();
+    })
+    .catch(error => {
+        console.error('There has been a problem with your axios request:', error);
+    });
+}
+
+async function getFisishiTwo(){
+    // router.get('/isfinish/:userno', isFinishGet)
+    const userno = await getUserNo();
+
+    axios.get(`${BASE_URL}/together/post/isfinish/${userno}`)
+    .then(Response => {
+        console.log(Response.data);
+        finisiPost += Response.data.length;
+        getFisishiThree();
+    })
+    .catch(error => {
+        console.error('There has been a problem with your axios request:', error);
+    });
+}
+
+async function getFisishiThree(){
+    // router.get('/isfinish/:userno', isFinishGet)
+    const userno = await getUserNo();
+
+    axios.get(`${BASE_URL}/learn/post/isfinish/${userno}`)
+    .then(Response => {
+        console.log(Response.data);
+        finisiPost += Response.data.length;
+        getFisishiPosts(finisiPost);
+    })
+    .catch(error => {
+        console.error('There has been a problem with your axios request:', error);
+    });
+}
+
+function getFisishiPosts(sum){
+    document.getElementsByClassName('help-cnt')[0].innerText = sum;
+}
 
 function shareMyPost(){
     window.location.href = "/shareMyPost.html";
