@@ -54,4 +54,4 @@ class TogetherComment extends Sequelize.Model{
   }
 };
 
-module.exports = togetherComment;
+module.exports = TogetherComment;
