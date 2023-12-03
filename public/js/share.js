@@ -44,7 +44,7 @@ function showPosts(post, userName, commentLength){
 
     titleDiv.innerHTML += `<iconify-icon icon="healthicons:ui-user-profile" class="user-profile"></iconify-icon>`;
     titleDiv.appendChild(stu_id);
-    titleDiv.innerHTML += `<iconify-icon icon="simple-line-icons:check" class="content-check"></iconify-icon>`;
+    if(post.isfinish) titleDiv.innerHTML += `<iconify-icon icon="simple-line-icons:check" class="content-check"></iconify-icon>`;
 
     let hr = document.createElement('div');
     hr.className = "hr";

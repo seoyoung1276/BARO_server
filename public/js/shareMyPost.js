@@ -14,15 +14,25 @@ async function getUserPosts(){
 function getUserInfo(posts){
     axios.get(`${BASE_URL}/auth/userinfo`, { withCredentials: true})
     .then(response => {
-        showMyPosts(posts, response.data.name);
-
+        getCommentsLength(posts, response.data.name);
     })
     .catch(error => {
         console.error('There has been a problem with your axios request:', error);
     });
 }
 
-function showMyPosts(posts, userName){
+function getCommentsLength(posts, userName){
+    axios.get(`${BASE_URL}/share/comment/${posts.id}`)
+    .then(Response => {
+        console.log(Response.data);
+        showPosts(posts, userName, Response.data.length);
+    })
+    .catch(error => {
+        console.error('There has been a problem with your axios request:', error);
+    });
+}
+
+function showMyPosts(posts, userName, commentLength){
     for(let post of posts){
         let finalDiv = document.createElement('div');
         finalDiv.className = "share-content-div";
@@ -39,7 +49,7 @@ function showMyPosts(posts, userName){
 
         profileDiv.innerHTML += `<iconify-icon icon="healthicons:ui-user-profile" class="user-profile"></iconify-icon>`;
         profileDiv.appendChild(stuId);
-        profileDiv.innerHTML += `<iconify-icon icon="simple-line-icons:check" class="content-check"></iconify-icon>`;
+        if(post.isfinish) profileDiv.innerHTML += `<iconify-icon icon="simple-line-icons:check" class="content-check"></iconify-icon>`;
 
         let editDiv = document.createElement('div');
         editDiv.className = 'edit-content edit-content-btn';
@@ -66,6 +76,7 @@ function showMyPosts(posts, userName){
 
         let commentCnt = document.createElement('div');
         commentCnt.className = "comment-cnt-num";
+        commentCnt.innerText = commentLength;
 
         commentDiv.innerHTML += `<img src="/img/comment-cnt.png" class="comment-cnt-img">`;
         commentDiv.appendChild(commentCnt);
@@ -98,8 +109,8 @@ function functionOpen(){
     });
     
     let successBtnArr = [...document.getElementsByClassName('edit-success')];
-    successBtnArr.forEach((e) => {
-        e.onclick = () => editSuccess(e);
+    successBtnArr.forEach((e, i) => {
+        e.onclick = () => editSuccess(e, i);
     })
 }
 let index = -1;
@@ -156,9 +167,37 @@ function deleteMyPost(i){
     });
 }
 
-function editSuccess(e){
-    if(e.innerHTML === "완료하기") e.innerHTML = "완료함"
-    else e.innerHTML = "완료하기"
+function editSuccess(e, i){
+    if(e.innerHTML === "완료하기") {
+        e.innerHTML = "완료함"
+
+        const req = {
+            isfinish: true
+        }
+
+        axios.patch(`${BASE_URL}/share/post//isfinish/${AllPosts[i].id}`, req)
+        .then(Response => {
+            console.log(Response.data);
+        })
+        .catch(error => {
+            console.error('There has been a problem with your axios request:', error);
+        });
+
+    }else {
+        e.innerHTML = "완료하기"
+
+        const req = {
+            isfinish: false
+        }
+
+        axios.patch(`${BASE_URL}/share/post/isfinish/${AllPosts[i].id}`, req)
+        .then(Response => {
+            console.log(Response.data);
+        })
+        .catch(error => {
+            console.error('There has been a problem with your axios request:', error);
+        });
+    }
 }
 
 function showContent(i){
