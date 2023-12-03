@@ -111,6 +111,7 @@ exports.deletePost = async (req, res) =>{
 exports.addAttend = async (req, res) => {
   try{
       const postNo = req.params.postno;
+      const {user_no} = req.body;
       const addAttend = await TogetherAttend.create({
         together_id: postNo,
         user_no: user_no
