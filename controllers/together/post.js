@@ -168,7 +168,7 @@ exports.isAttend = async (req, res) => {
         user_no: user_no
       }
     })
-      if(isAttend.length > 0){
+      if(isAttend){
         res.json({ result : true})
       }else{
         res.json({ result : false})
