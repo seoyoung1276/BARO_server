@@ -21,6 +21,6 @@ router.patch('/:postno', updatePost)
 router.delete('/:postno', deletePost)
 
 //나누기 완료
-router.patch('isfinish/:postno', isFinishPost)
+router.patch('/isfinish/:postno', isFinishPost)
 
 module.exports = router;
