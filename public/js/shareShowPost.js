@@ -90,8 +90,11 @@ function functionOpen(){
 }
 
 function addSubComment(index){
+    console.log(index);
     let comment = document.getElementsByClassName('comment-username')[index];
     document.getElementsByClassName('input-comment')[0].placeholder = `${comment.innerText}님 에게`;
+    console.log(comment);
+    console.log(comment.innerText);
 }
 
 function getUserName(comment){
@@ -244,7 +247,7 @@ async function sendComment(){
         const req = {
             user_no: userno,
             content: sendCommentInput.value,
-            responseTo: notSubComments[subIndex].id
+            responseTo: 1
         }
     
         axios.post(`${BASE_URL}/share/comment/${commentId}`, req)

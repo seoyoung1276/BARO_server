@@ -100,8 +100,6 @@ function functionOpen(){
         e.onclick = () => togetherJoin(e);
     });
 
-    
-    contentDiv.onclick = () => showContent();
     let showCurrectPostArr = [...document.getElementsByClassName('post-content')];
     showCurrectPostArr.forEach((e, i) => {
         e.onclick = () => showContent(i);
