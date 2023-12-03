@@ -56,10 +56,11 @@ exports.getOneComment = async (req, res) => {
 
 exports.getUserComments = async (req, res) => {
     try {
-        const userNo = req.params.userNo; 
+        const userNo = req.params.userno; 
         const userComments = await ShareComment.findAll({ where: {user_no: userNo} });
         res.json(userComments);
     } catch (error) {
+        console.log(error);
         res.status(500).json({ error: error });
     }
 };
