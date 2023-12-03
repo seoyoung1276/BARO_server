@@ -15,7 +15,7 @@ async function getUserPosts(){
 function getUserInfo(posts){
     axios.get(`${BASE_URL}/auth/userinfo`, { withCredentials: true})
     .then(response => {
-        showMyPosts(posts, response.data.name);
+        getCommentsLength(posts, response.data.name);
 
     })
     .catch(error => {
@@ -23,7 +23,18 @@ function getUserInfo(posts){
     });
 }
 
-function showMyPosts(posts, userName){
+function getCommentsLength(posts, userName){
+    axios.get(`${BASE_URL}/learn/comment/${posts.id}`)
+    .then(Response => {
+        console.log(Response.data);
+        showMyPosts(posts, userName, Response.data.length);
+    })
+    .catch(error => {
+        console.error('There has been a problem with your axios request:', error);
+    });
+}
+
+function showMyPosts(posts, userName, commentsLength){
     let container = document.getElementsByClassName('main')[0];
     
     for(let post of posts){
@@ -73,6 +84,7 @@ function showMyPosts(posts, userName){
 
         let commentCnt = document.createElement('div');
         commentCnt.className = "comment-cnt-num";
+        commentCnt.innerText = commentsLength;
 
         commentDiv.innerHTML += `<img src="/img/comment-cnt.png" class="comment-cnt-img">`;
         commentDiv.appendChild(commentCnt);
@@ -124,9 +136,34 @@ function changeAnswer(e){
     if(e.innerText === "답변완료하기"){
         e.classList.add("success-answer-btn");
         e.innerText = "답변완료"
+
+        const req = {
+            isfinish: true
+        }
+
+        axios.patch(`${BASE_URL}/learn/post/isfinish/${AllPosts[i].id}`, req)
+        .then(Response => {
+            console.log(Response.data);
+        })
+        .catch(error => {
+            console.error('There has been a problem with your axios request:', error);
+        });
+
     }else{
         e.classList.remove("success-answer-btn");
         e.innerText = "답변완료하기"
+
+        const req = {
+            isfinish: false
+        }
+
+        axios.patch(`${BASE_URL}/laern/post/isfinish/${AllPosts[i].id}`, req)
+        .then(Response => {
+            console.log(Response.data);
+        })
+        .catch(error => {
+            console.error('There has been a problem with your axios request:', error);
+        });
     }
 }
 function showContent(){

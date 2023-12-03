@@ -60,7 +60,7 @@ function showPosts(post, userName, commentsLength){
 
     let joinBtn = document.createElement('div');
     joinBtn.className = 'join-btn';
-    joinBtn.innerText = "참여하기"
+    if(post.isfinish) joinBtn.innerText = "답변완료"
 
     infoDiv.appendChild(userDiv)
     infoDiv.appendChild(joinBtn)
@@ -89,10 +89,10 @@ function showPosts(post, userName, commentsLength){
 }
 
 function functionOpen(){
-    let joinBtnArr = [...document.getElementsByClassName('join-btn')];
-    joinBtnArr.forEach((e, i) => {
-        e.onclick = () => clickJoinBtn(e);
-    })
+    // let joinBtnArr = [...document.getElementsByClassName('join-btn')];
+    // joinBtnArr.forEach((e, i) => {
+    //     e.onclick = () => clickJoinBtn(e);
+    // })
 
     let showCurrectPostArr = [...document.getElementsByClassName('post-content')];
     showCurrectPostArr.forEach((e, i)=> {
@@ -104,10 +104,10 @@ function showCurrectPost(index){
     window.location.href = `/learnShowPost.html?id=${index}`;
 }
 
-function clickJoinBtn(e){
-    if(e.innerText === "참여하기") e.innerText = "참여함"
-    else e.innerText = "참여하기"
-}
+// function clickJoinBtn(e){
+//     if(e.innerText === "참여하기") e.innerText = "참여함"
+//     else e.innerText = "참여하기"
+// }
 
 function navChoose(ch, no){
     document.getElementsByClassName('nav-page')[ch].classList.add('choose-page');

@@ -55,7 +55,7 @@
     -webkit-box-orient: vertical;
     height: 66px;
 }
-.post-Info{
+.post-info{
     display: flex;
     justify-content: space-between;
 }
