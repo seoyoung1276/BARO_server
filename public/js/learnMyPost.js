@@ -67,7 +67,13 @@ function showMyPosts(posts, userName, commentsLength){
 
         let joinBtn = document.createElement('div');
         joinBtn.className = "join-btn";
-        joinBtn.innerText = "답변완료하기";
+        if(post.isfinish){
+            joinBtn.innerText = "답변완료";
+            joinBtn.classList.add("success-answer-btn");
+        }else{
+            joinBtn.innerText = "답변완료하기";
+        }
+        
 
         editDiv.appendChild(joinBtn)
         editDiv.innerHTML += `<iconify-icon icon="iconamoon:menu-kebab-vertical-light" class="edit-content"></iconify-icon>`;

@@ -60,6 +60,7 @@ function showPosts(post, userName, commentsLength){
 
     let joinBtn = document.createElement('div');
     joinBtn.className = 'join-btn';
+    console.log(post);
     if(post.isfinish) joinBtn.innerText = "답변완료"
 
     infoDiv.appendChild(userDiv)
