@@ -58,7 +58,10 @@ function showPosts(post, userName){
 
     let date = document.createElement('div');
     date.className = "post-date";
-    date.innerText = post.date.substring(0, 10);
+    let postDate = new Date(post.date);
+    let Kdate = `${postDate.getFullYear()}-${String(postDate.getMonth()+1).padStart(2, 0)}-${String(postDate.getDate()).padStart(2, 0)}`;
+    let Ktime =  `${String(postDate.getHours()).padStart(2, 0)}:${String(postDate.getMinutes()).padStart(2,0)}:${String(postDate.getSeconds()).padStart(2, 0)}`;
+    date.innerText = `${Kdate} ${Ktime}`;
 
     userDiv.innerHTML += `<iconify-icon icon="healthicons:ui-user-profile" class="user-profile"></iconify-icon>`;
     userDiv.appendChild(nickname)
@@ -89,6 +92,29 @@ function showPosts(post, userName){
     finalDiv.appendChild(commentDiv)
 
     container.appendChild(finalDiv);
+
+    functionOpen();
+}
+
+function functionOpen(){
+    let joinBtnArr = [...document.getElementsByClassName('join-btn')];
+    joinBtnArr.forEach((e, i) => {
+        e.onclick = () => clickJoinBtn(e);
+    })
+
+    let showCurrectPostArr = [...document.getElementsByClassName('post-content')];
+    showCurrectPostArr.forEach((e, i)=> {
+        e.onclick = () => showCurrectPost(i);
+    })
+}
+
+function showCurrectPost(index){
+    window.location.href = `/learnShowPost.html?id=${index}`;
+}
+
+function clickJoinBtn(e){
+    if(e.innerText === "참여하기") e.innerText = "참여함"
+    else e.innerText = "참여하기"
 }
 
 function navChoose(ch, no){
