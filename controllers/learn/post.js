@@ -121,7 +121,7 @@ exports.isFinishPost = async (req, res) => {
 
 exports.isFinishGet = async (req, res) => {
   try{
-    const user_no = req.params.user_no;
+    const user_no = req.params.userno;
 
     const isFinish = await LearnPost.findAll({
       where : {
