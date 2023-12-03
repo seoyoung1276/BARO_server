@@ -1,6 +1,6 @@
-const {sequelize, DataTypes } = require('sequelize');
+const {Sequelize, DataTypes } = require('sequelize');
 
-class TogetherAttend extends sequelize.Model{
+class TogetherAttend extends Sequelize.Model{
   static initModel(sequelize) {
     TogetherAttend.init({
       id: {
