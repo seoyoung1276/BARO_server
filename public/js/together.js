@@ -47,9 +47,9 @@ function showPosts(post, userName, commentsLength){
     title.className = "post-title"
     title.innerText = post.title;
 
-    let joinBtn = document.createElement('div');
-    joinBtn.className = "join-btn";
-    joinBtn.innerText = "참여하기";
+    // let joinBtn = document.createElement('div');
+    // joinBtn.className = "join-btn";
+    // joinBtn.innerText = "참여하기";
 
     titleDiv.appendChild(title);
     titleDiv.appendChild(joinBtn);
@@ -108,35 +108,35 @@ function showPosts(post, userName, commentsLength){
 
     container.appendChild(finalDiv);
     functionOpen();
-    getJoiner(post, i);
+    getJoiner(post, joinCnt);
     
 }
 
-function getJoiner(post, index){
+function getJoiner(post, joinCnt){
     axios.get(`${BASE_URL}/together/post/${post.id}/attend`)
         .then(Response => {
             console.log(Response.data);
-            document.getElementsByClassName('join-cnt')[i].innerText = `${Response.data.length}/${post.Hire_personnel}`;
-            getIsJoin(post, index);
+            joinCnt.innerText = `${Response.data.length}/${post.Hire_personnel}`;
+            // getIsJoin(post, index);
         })
         .catch(error => {
             console.error('There has been a problem with your axios request:', error);
         });
 }
-async function getIsJoin(postInfo, index){
-    const userno = await getUserNo();
+// async function getIsJoin(postInfo, index){
+//     const userno = await getUserNo();
 
-    axios.get(`${BASE_URL}/together/post/${postInfo.id}/isattend/${userno}`)
-    .then(Response => {
-        console.log(Response.data);
-        console.log(index);
-        if(Response.data) document.getElementsByClassName('join-btn')[index].innerText = "참여함"
-        else document.getElementsByClassName('join-btn')[index].innerText = "참여하기"
-    })
-    .catch(error => {
-        console.error('There has been a problem with your axios request:', error);
-    });
-}
+//     axios.get(`${BASE_URL}/together/post/${postInfo.id}/isattend/${userno}`)
+//     .then(Response => {
+//         console.log(Response.data);
+//         console.log(index);
+//         if(Response.data) document.getElementsByClassName('join-btn')[index].innerText = "참여함"
+//         else document.getElementsByClassName('join-btn')[index].innerText = "참여하기"
+//     })
+//     .catch(error => {
+//         console.error('There has been a problem with your axios request:', error);
+//     });
+// }
 
 
 
@@ -169,40 +169,40 @@ function navChoose(ch, no){
     }
 }
 
-async function togetherJoin(e, i){
-    if(e.innerHTML ===  "참여하기"){
-        e.innerHTML = "참여함"
+// async function togetherJoin(e, i){
+//     if(e.innerHTML ===  "참여하기"){
+//         e.innerHTML = "참여함"
 
-        const userno = await getUserNo();
+//         const userno = await getUserNo();
        
-        const req = {
-            user_no: userno
-        }
+//         const req = {
+//             user_no: userno
+//         }
 
-        axios.post(`${BASE_URL}/together/post/${allPosts[i].id}/attend`, req)
-        .then(Response => {
-            console.log(Response.data);
-            getJoiner(allPosts[i], i);
-        })
-        .catch(error => {
-            console.error('There has been a problem with your axios request:', error);
-        });
+//         axios.post(`${BASE_URL}/together/post/${allPosts[i].id}/attend`, req)
+//         .then(Response => {
+//             console.log(Response.data);
+//             getJoiner(allPosts[i], i);
+//         })
+//         .catch(error => {
+//             console.error('There has been a problem with your axios request:', error);
+//         });
         
-    }else {
-        e.innerHTML = "참여하기"
+//     }else {
+//         e.innerHTML = "참여하기"
 
-        const userno = await getUserNo();
+//         const userno = await getUserNo();
         
-        axios.delete(`${BASE_URL}/together/post/${allPosts[i].id}/attend/${userno}`)
-        .then(Response => {
-            console.log(Response.data);
-            getJoiner(allPosts[i], i);
-        })
-        .catch(error => {
-            console.error('There has been a problem with your axios request:', error);
-        });
-    }    
-}
+//         axios.delete(`${BASE_URL}/together/post/${allPosts[i].id}/attend/${userno}`)
+//         .then(Response => {
+//             console.log(Response.data);
+//             getJoiner(allPosts[i], i);
+//         })
+//         .catch(error => {
+//             console.error('There has been a problem with your axios request:', error);
+//         });
+//     }    
+// }
 
 function plusPost(){
     window.location.href = '/togetherNewPost.html';
