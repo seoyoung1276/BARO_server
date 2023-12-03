@@ -107,28 +107,28 @@ function showPosts(post, userName, commentsLength){
 
     container.appendChild(finalDiv);
     functionOpen();
-    getJoiner(post);
+    getJoiner(post, joinBtn);
     
 }
 
-function getJoiner(post){
+function getJoiner(post, joinBtn){
     axios.get(`${BASE_URL}/together/post/${post.id}/attend`)
         .then(Response => {
             console.log(Response.data);
             document.getElementsByClassName('join-cnt')[0].innerText = `${Response.data.length}/${post.Hire_personnel}`;
-            getIsJoin(post);
+            getIsJoin(post, joinBtn);
         })
         .catch(error => {
             console.error('There has been a problem with your axios request:', error);
         });
 }
-async function getIsJoin(postInfo){
+async function getIsJoin(postInfo, joinBtn){
     const userno = await getUserNo();
 
     axios.get(`${BASE_URL}/together/post/${postInfo.id}/isattend/${userno}`)
     .then(Response => {
         console.log(Response.data);
-        if(Response.data) document.getElementsByClassName('join-button')[0].innerText = "참여함"
+        if(Response.data) joinBtn.innerText = "참여함"
     })
     .catch(error => {
         console.error('There has been a problem with your axios request:', error);
