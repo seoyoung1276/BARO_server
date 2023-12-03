@@ -307,7 +307,7 @@ async function getIsJoin(postInfo){
     axios.get(`${BASE_URL}/together/post/${postInfo.id}/isattend/${userno}`)
     .then(Response => {
         console.log(Response.data);
-        if(Response.data) document.getElementsByClassName('join-button')[0].innerText = "참여함"
+        if(Response.data.result) document.getElementsByClassName('join-button')[0].innerText = "참여함"
     })
     .catch(error => {
         console.error('There has been a problem with your axios request:', error);
