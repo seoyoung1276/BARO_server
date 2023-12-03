@@ -21,17 +21,21 @@ axios.get(`${BASE_URL}/auth/userinfo`, { withCredentials: true})
 
 let commentSum = 0;
 
-const userno = await getUserNo();
-// router.get('/:userno', getUserComments)
-axios.get(`${BASE_URL}/together/comment/${userno}`)
-.then(Response => {
-    console.log(Response.data);
-    commentSum += Response.data.length;
-    getShareCommentLength(userno);
-})
-.catch(error => {
-    console.error('There has been a problem with your axios request:', error);
-});
+getInfo();
+async function getInfo(){
+    const userno = await getUserNo();
+    // router.get('/:userno', getUserComments)
+    axios.get(`${BASE_URL}/together/comment/${userno}`)
+    .then(Response => {
+        console.log(Response.data);
+        commentSum += Response.data.length;
+        getShareCommentLength(userno);
+    })
+    .catch(error => {
+        console.error('There has been a problem with your axios request:', error);
+    });
+}
+
 function getShareCommentLength(userno){
     axios.get(`${BASE_URL}/share/comment/${userno}`)
     .then(Response => {
