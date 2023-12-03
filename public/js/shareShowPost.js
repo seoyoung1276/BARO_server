@@ -167,6 +167,7 @@ function makeSubComments(comments, userName, commentIndex){
         finalDiv.innerHTML = `<iconify-icon icon="tdesign:enter" class="sub-comment-enter"></iconify-icon>`;
         finalDiv.appendChild(commentDetailDiv);
 
+        console.log(document.getElementsByClassName('comments')[commentIndex]);
         document.getElementsByClassName('comments')[commentIndex].after(finalDiv);
         
 }
@@ -254,7 +255,7 @@ async function sendComment(){
         const req = {
             user_no: userno,
             content: sendCommentInput.value,
-            responseTo: notSubComments[subIndex].id
+            responseTo: 1
         }
     
         axios.post(`${BASE_URL}/share/comment/${commentId}`, req)
