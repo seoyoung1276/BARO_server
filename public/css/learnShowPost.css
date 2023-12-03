@@ -137,3 +137,12 @@
     font-size: 24px;
     color: #A9A9A9;
 }
+.post-info-div{
+    display: flex;
+    justify-content: space-between;
+}
+.post-checked{
+    color: #FFB700;
+    font-size: 14px;
+    font-weight: 700;
+}

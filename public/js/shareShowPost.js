@@ -290,4 +290,8 @@ function showCurrectPost(postInfo, userInfo){
     document.getElementsByClassName('post-user')[0].innerText = userInfo;
     document.getElementsByClassName('post-date')[0].innerText = `${Kdate} ${Ktime}`;
     document.getElementsByClassName('post-detail')[0].innerText = postInfo.content;
+
+    if(!postInfo.isfinish){
+        document.getElementsByClassName('content-check')[0].style.visibility = hidden;
+    }
 }
