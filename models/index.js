@@ -8,6 +8,7 @@ const LearnPost = require('./LearnPost');
 const LearnComment = require('./LearnComment');
 const TogetherPost = require('./TogetherPost');
 const TogetherComment = require('./TogetherComment');
+const TogetherAttend = require('./TogetherAttend')
 
 
 const db = {};
@@ -21,6 +22,7 @@ db.LearnPost = LearnPost;
 db.LearnComment = LearnComment;
 db.TogetherPost = TogetherPost;
 db.TogetherComment = TogetherComment;
+db.TogetherAttend = TogetherAttend;
 
 User.initModel(sequelize);
 SharePost.initModel(sequelize);
@@ -29,6 +31,7 @@ LearnPost.initModel(sequelize);
 LearnComment.initModel(sequelize);
 TogetherPost.initModel(sequelize);
 TogetherComment.initModel(sequelize);
+TogetherAttend.initModel(sequelize);
 
 // 연관 관계 설정은 initModel 이후에 호출
 User.associate(db);
@@ -38,5 +41,6 @@ LearnPost.associate(db);
 LearnComment.associate(db);
 TogetherPost.associate(db);
 TogetherComment.associate(db);
+TogetherAttend.associate(db);
 
 module.exports = db;
