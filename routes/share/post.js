@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const { createPost, getAllPost, getOnePost, getUserPost, updatePost, deletePost, isFinishPost} = require('../../controllers/share/post');
+const { createPost, getAllPost, getOnePost, getUserPost, updatePost, deletePost, isFinishPost, isFinishGet} = require('../../controllers/share/post');
 
 // 나누기 글쓰기
 router.post('/', createPost);
@@ -22,5 +22,8 @@ router.delete('/:postno', deletePost)
 
 //나누기 완료
 router.patch('/isfinish/:postno', isFinishPost)
+
+// 나누기 중 완료한 게시물 개수 리턴
+router.get('/isfinish/:userno', isFinishGet)
 
 module.exports = router;

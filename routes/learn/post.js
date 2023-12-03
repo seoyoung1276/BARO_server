@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const { createPost, getAllPost, getOnePost, getUserPost, updatePost, deletePost, isFinishPost} = require('../../controllers/learn/post');
+const { createPost, getAllPost, getOnePost, getUserPost, updatePost, deletePost, isFinishPost, isFinishGet} = require('../../controllers/learn/post');
 
 
 router.post('/', createPost);
@@ -16,5 +16,8 @@ router.patch('/:postno', updatePost)
 router.delete('/:postno', deletePost)
 
 router.patch('/isfinish/:postno', isFinishPost)
+
+//완료한 게시물 개수 리턴
+router.get('/isfinish/:userno', isFinishGet)
 
 module.exports = router;

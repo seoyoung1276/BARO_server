@@ -118,3 +118,20 @@ exports.isFinishPost = async (req, res) => {
     res.status(500).json({error:"서버오류"})
   }
 }
+
+exports.isFinishGet = async (req, res) => {
+  try{
+    const user_no = req.params.user_no;
+
+    const isFinish = await LearnPost.findAll({
+      where : {
+        user_no: user_no,
+        isfinish: true
+      }
+    })
+    res.json(isFinish.length)
+  }catch(error){
+    console.log(error);
+    res.status(500).json({error:"서버오류"})
+  }
+}
