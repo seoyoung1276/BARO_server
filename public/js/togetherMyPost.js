@@ -114,8 +114,23 @@ function showMyPosts(posts, userName, commentsLength){
         finalDiv.appendChild(infoDiv);
     
         container.appendChild(finalDiv);
+
+        getJoiner(post, joinCnt);
     }
     functionOpen();
+    
+}
+
+function getJoiner(post, joinCnt){
+    axios.get(`${BASE_URL}/together/post/${post.id}/attend`)
+        .then(Response => {
+            console.log(Response.data);
+            joinCnt.innerText = `${Response.data.length}/${post.Hire_personnel}`;
+            // getIsJoin(post, index);
+        })
+        .catch(error => {
+            console.error('There has been a problem with your axios request:', error);
+        });
 }
 
 let index = -1;
@@ -138,6 +153,11 @@ function functionOpen(){
     joinBtnArr.forEach((e, i) => {
         e.onclick = () => joinClose(e);
     });
+
+    let contentArr = [...document.getElementsByClassName('content-text')];
+    contentArr.forEach((e, i) => {
+        e.onclick = () => showContent(i);
+    })
 }
 
 // nav바
@@ -203,6 +223,6 @@ function backHome(){
     window.location.href = "/main.html"
 }
 
-function showContent(){
-    window.location.href = "/togetherShowPost.html";
+function showContent(i){
+    window.location.href = `/shareShowPost.html?id=${i}`;
 }

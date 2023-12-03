@@ -1,13 +1,20 @@
 const urlParams = new URL(location.href).searchParams;
-const id = urlParams.get('id');
+const paramId = urlParams.get('id');
 
 let commentId;
 let comments;
 axios.get(`${BASE_URL}/share/post`)
 .then(Response => {
     console.log(Response.data);
-    getUserInfo(Response.data[id]);
-    commentId = Response.data[id].id;
+    let currectPost;
+
+    Response.data.forEach((e) => {
+        if(e.id === paramId) currectPost = e;
+    })
+    console.log(currectPost);
+
+    getUserInfo(Response.data[paramId]);
+    commentId = Response.data[paramId].id;
     console.log(commentId);
     getComment(commentId);
 })

@@ -104,6 +104,6 @@ function plusPost(){
 function showCurrectPost(e, i){
     // console.log(e, i);
     // console.log(AllPost[i]);
-    window.location.href = `/shareShowPost.html?id=${i}`;
+    window.location.href = `/shareShowPost.html?id=${AllPost[i].id}`;
 }
 

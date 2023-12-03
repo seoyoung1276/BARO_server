@@ -202,5 +202,5 @@ function editSuccess(e, i){
 }
 
 function showContent(i){
-    window.location.href = `/shareShowPost.html?id=${i}`;
+    window.location.href = `/shareShowPost.html?id=${AllPosts[i].id}`;
 }
