@@ -21,7 +21,7 @@ function getUserName(posts){
 }
 
 function getCommentLength(post, userName){
-    axios.get(`${BASE_URL}/together/comment/${post.id}`)
+    axios.get(`${BASE_URL}/learn/comment/${post.id}`)
     .then(Response => {
         console.log(Response.data);
         showPosts(post, userName, Response.data.length);
