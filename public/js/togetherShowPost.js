@@ -340,7 +340,7 @@ function showJoinPeople(){
             showPanel.style.left =`${buttonX - 150}px`;
             showPanel.style.height = `${height}px`;
 
-            addJoinPeople(Response.data);
+            getJoinerInfo(Response.data);
         })
         .catch(error => {
             console.error('There has been a problem with your axios request:', error);
@@ -352,7 +352,7 @@ function getJoinerInfo(People){
         axios.get(`${BASE_URL}/user/${person.user_no}`)
         .then(Response => {
             console.log(Response.data)
-            showCurrectPost(Response.data.result.name);
+            addJoinPeople(Response.data.result.name);
         })
         .catch(error => {
             console.error('There has been a problem with your axios request:', error);
