@@ -10,7 +10,7 @@ function getUserName(posts){
     for(let post of posts){
         axios.get(`${BASE_URL}/user/${post.user_no}`)
         .then(Response => {
-            showPosts(post, Response.data.result.name)
+            getCommentLength(post, Response.data.result.name)
         })
         .catch(error => {
             console.error('There has been a problem with your axios request:', error);
@@ -19,7 +19,18 @@ function getUserName(posts){
     
 }
 
-function showPosts(post, userName){
+function getCommentLength(post, userName){
+    axios.get(`${BASE_URL}/together/comment/${post.id}`)
+    .then(Response => {
+        console.log(Response.data);
+        showPosts(post, userName, Response.data.length);
+    })
+    .catch(error => {
+        console.error('There has been a problem with your axios request:', error);
+    });
+}
+
+function showPosts(post, userName, commentsLength){
     let container = document.getElementsByClassName('main')[0];
 
     let finalDiv = document.createElement('div');
@@ -75,6 +86,7 @@ function showPosts(post, userName){
 
     let commentCnt = document.createElement('div');
     commentCnt.className = "comment-cnt-num";
+    commentCnt.innerText = commentsLength;
 
     commentDiv.innerHTML += `<img src="/img/comment-cnt.png" class="comment-cnt-img">`;
     commentDiv.appendChild(commentCnt);
