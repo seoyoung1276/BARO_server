@@ -326,6 +326,7 @@ function showJoinPeople(){
             
             let joinProfile = document.getElementsByClassName('join-profile')[0];
             let showPanel = document.getElementsByClassName('show-join-people')[0];
+            showPanel.replaceChildren();
 
             let people = Response.data.length;
             let height = 40 + (45 * people);
@@ -350,7 +351,7 @@ function getJoinerInfo(People){
     for(let person of People){
         axios.get(`${BASE_URL}/user/${person.user_no}`)
         .then(Response => {
-            console.log(person)
+            console.log(Response.data)
             showCurrectPost(Response.data.result.name);
         })
         .catch(error => {
