@@ -6,7 +6,7 @@ exports.postComment = async (req, res) => {
         const { user_no, content, responseTo } = req.body;
 
         let response;
-        if (responseTo != undefined) {
+        if (responseTo !== undefined && responseTo !== null) {
             response = await ShareComment.create({
                 user_no: user_no,
                 post_id: postId, 
