@@ -57,7 +57,7 @@ function showComments(comments){
 
     setTimeout(() => {
         let sortSubComments = subComments.sort((one, two) => {
-            if(one.responseto > two.responseto) return 1;
+            if(one.responseto < two.responseto) return 1;
             else if(one.responseto == two.responseto) return 0;
             else return -1;
         });
@@ -67,6 +67,8 @@ function showComments(comments){
             else if(one.responseto === two.responseto && one.id === two.id) return 0;
             else return -1;
         })
+
+        console.log(sortSubComments);
 
         for(let comment of sortSubComments){
             let commentIndex;
