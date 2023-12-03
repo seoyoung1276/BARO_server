@@ -167,13 +167,12 @@ exports.isAttend = async (req, res) => {
         together_id: postNo,
         user_no: user_no
       }
-    }).then(() => {
+    })
       if(isAttend.length > 0){
         res.json({ result : true})
       }else{
         res.json({ result : false})
       }
-    })
   }catch(error){
     console.log(error);
     res.status(500).json({ error : "서버 오류"})
