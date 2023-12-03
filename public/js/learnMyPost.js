@@ -106,8 +106,8 @@ function showMyPosts(posts, userName, commentsLength){
 
 function functionOpen(){
     let answerBtnArr = [...document.getElementsByClassName('join-btn')];
-    answerBtnArr.forEach(e => {
-        e.onclick = () => changeAnswer(e);
+    answerBtnArr.forEach((e, i) => {
+        e.onclick = () => changeAnswer(e, i);
     })
 
     let index = -1;
@@ -138,7 +138,7 @@ function backHome(){
 
 
 
-function changeAnswer(e){
+function changeAnswer(e, i){
     if(e.innerText === "답변완료하기"){
         e.classList.add("success-answer-btn");
         e.innerText = "답변완료"
