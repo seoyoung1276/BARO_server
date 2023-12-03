@@ -2,7 +2,7 @@ const { Sequelize, DataTypes } = require('sequelize');
 
 class TogetherComment extends Sequelize.Model{
   static initModel(sequelize) {
-    TogetherComment.initModel({
+    TogetherComment.init({
       id: {
         autoIncrement: true,
         type: DataTypes.INTEGER,
