@@ -63,7 +63,7 @@ function showComments(comments){
         });
     
         sortSubComments.sort((one, two) => {
-            if(one.responseto === two.responseto && one.id < two.id) return 1;
+            if(one.responseto === two.responseto && one.id > two.id) return 1;
             else if(one.responseto === two.responseto && one.id === two.id) return 0;
             else return -1;
         })
