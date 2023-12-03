@@ -1,4 +1,6 @@
 const TogetherPost = require('../../models/TogetherPost'); 
+const TogetherAttend = require('../../models/TogetherAttend');
+const { post } = require('../../routes/together/post');
 
 // 글 쓰기
 exports.createPost = async (req, res) => {
@@ -99,6 +101,82 @@ exports.deletePost = async (req, res) =>{
       res.json(deletePost);
     })
 
+  }catch(error){
+    console.log(error);
+    res.status(500).json({ error : "서버 오류"})
+  }
+}
+
+// 참가하기
+exports.addAttend = async (req, res) => {
+  try{
+      const postNo = req.params.postno;
+      const {user_no} = req.body;
+      const addAttend = await TogetherAttend.create({
+        together_id: postNo,
+        user_no: user_no
+      }).then(() => {
+        res.json(addAttend)
+      })
+  }catch(error){
+    console.log(error);
+    res.status(500).json({ error : "서버 오류"})
+  }
+}
+
+// 참가취소
+exports.deleteAttend = async (req, res) => {
+  try{
+    const postNo = req.params.postno;
+    const user_no = req.params.userno;
+    const deleteAttend = await TogetherAttend.destroy({
+      where : {
+        together_id: postNo,
+        user_no: user_no
+      }
+    }).then(() => {
+      res.json(deleteAttend)
+    })
+  }catch(error){
+    console.log(error);
+    res.status(500).json({ error: "서버 오류"})
+  }
+}
+
+// 참가 목록 조회
+exports.getAttend = async (req, res) => {
+  try{
+    const postNo = req.params.postno;
+    const getAttend = await TogetherAttend.findAll({
+      where: {
+        together_id: postNo
+      }
+    }).then(() => {
+      res.json(getAttend)
+    })
+  }catch(error){
+    console.log(error);
+    res.status(500).json({ error: "서버 오류"})
+  }
+}
+
+// 참가 했는지? 
+exports.isAttend = async (req, res) => {
+  try{
+    const postNo = req.params.postno;
+    const user_no = req.params.user_no;
+    const isAttend = await TogetherAttend.findOne({
+      where: {
+        together_id: postNo,
+        user_no: user_no
+      }
+    }).then(() => {
+      if(isAttend.length > 0){
+        res.json({ result : true})
+      }else{
+        res.json({ result : false})
+      }
+    })
   }catch(error){
     console.log(error);
     res.status(500).json({ error : "서버 오류"})
