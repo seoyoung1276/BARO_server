@@ -108,13 +108,15 @@ function showPosts(post, userName, commentsLength){
     container.appendChild(finalDiv);
     functionOpen();
     getJoiner(post);
+    
 }
 
 function getJoiner(post){
     axios.get(`${BASE_URL}/together/post/${post.id}/attend`)
         .then(Response => {
             console.log(Response.data);
-            document.getElementsByClassName('join-cnt')[0].innerText = `${Response.data.length}/${postInfo.Hire_personnel}`;
+            document.getElementsByClassName('join-cnt')[0].innerText = `${Response.data.length}/${post.Hire_personnel}`;
+            getIsJoin(post);
         })
         .catch(error => {
             console.error('There has been a problem with your axios request:', error);
