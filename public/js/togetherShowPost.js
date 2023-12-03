@@ -350,6 +350,7 @@ function getJoinerInfo(People){
     for(let person of People){
         axios.get(`${BASE_URL}/user/${person.user_no}`)
         .then(Response => {
+            console.log(person)
             showCurrectPost(Response.data.result.name);
         })
         .catch(error => {
@@ -359,6 +360,7 @@ function getJoinerInfo(People){
 }
 
 function addJoinPeople(username){
+    console.log(username)
     let showPanel = document.getElementsByClassName('show-join-people')[0];
     let joinPersen = document.createElement('div');
     joinPersen.className ="join-peoeple";
@@ -379,10 +381,12 @@ async function getJoin(e){
         axios.post(`${BASE_URL}/together/post/${postINFO.id}/attend`, req)
         .then(Response => {
             console.log(Response.data);
+            getJoiners(postINFO);
         })
         .catch(error => {
             console.error('There has been a problem with your axios request:', error);
         });
+        
     }else{
         e.target.innerText = "참여하기"
 
@@ -391,9 +395,11 @@ async function getJoin(e){
         axios.delete(`${BASE_URL}/together/post/${postINFO.id}/attend/${userno}`)
         .then(Response => {
             console.log(Response.data);
+            getJoiners(postINFO);
         })
         .catch(error => {
             console.error('There has been a problem with your axios request:', error);
         });
+        
     } 
 }
