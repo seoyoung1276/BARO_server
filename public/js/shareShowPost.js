@@ -52,6 +52,7 @@ function showComments(comments){
     for(let comment of notSubComments){
         console.log(comment);
         getUserName(comment);
+        functionOpen();
     }
 
     let sortSubComments = subComments.sort((one, two) => {
@@ -75,7 +76,7 @@ function showComments(comments){
 
         getSubUserName(comment, commentIndex);
     }
-    functionOpen();
+    
 }
 
 let subIndex;
@@ -85,6 +86,7 @@ function functionOpen(){
         e.onclick = () => {
             subIndex = i;
             addSubComment(i);
+            console.log(i);
         }
     })
 }
@@ -247,7 +249,7 @@ async function sendComment(){
         const req = {
             user_no: userno,
             content: sendCommentInput.value,
-            responseTo: 1
+            responseTo: notSubComments[subIndex].id
         }
     
         axios.post(`${BASE_URL}/share/comment/${commentId}`, req)
