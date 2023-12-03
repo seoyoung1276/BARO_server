@@ -30,7 +30,8 @@ class TogetherAttend extends Sequelize.Model{
       underscored: false,
       modelName: 'TogetherAttend',
       tableName: 'together_attend',
-      paranoid: false
+      paranoid: false,
+      timestamps: false
     });
   } static associate(db) {
     db.TogetherAttend.belongsTo(db.TogetherPost, {foreignKey: 'id'})
