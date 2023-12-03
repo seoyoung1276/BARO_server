@@ -80,33 +80,48 @@ function getCurrectLevel(sum){
     }
     document.getElementsByClassName('help-cnt')[0].innerText = sum;
 }
+getOnePost();
+getTwoPost();
+getThreePost();
+async function getOnePost(){
+    const userno = await getUserNo();
 
-axios.get(`${BASE_URL}/together/post/user/${userno}`)
-.then(Response => {
-    console.log(Response.data);
-    document.getElementsByClassName('post-cnt')[1].innerText = Response.data.length;
-})
-.catch(error => {
-    console.error('There has been a problem with your axios request:', error);
-});
+    axios.get(`${BASE_URL}/together/post/user/${userno}`)
+    .then(Response => {
+        console.log(Response.data);
+        document.getElementsByClassName('post-cnt')[1].innerText = Response.data.length;
+    })
+    .catch(error => {
+        console.error('There has been a problem with your axios request:', error);
+    });
+}
 
-axios.get(`${BASE_URL}/share/post/user/${userno}`)
-.then(Response => {
-    console.log(Response.data);
-    document.getElementsByClassName('post-cnt')[0].innerText = Response.data.length;
-})
-.catch(error => {
-    console.error('There has been a problem with your axios request:', error);
-});
+async function getTwoPost(){
+    const userno = await getUserNo();
 
-axios.get(`${BASE_URL}/learn/post/user/${userno}`)
-.then(Response => {
-    console.log(Response.data);
-    document.getElementsByClassName('post-cnt')[2].innerText = Response.data.length;
-})
-.catch(error => {
-    console.error('There has been a problem with your axios request:', error);
-});
+    axios.get(`${BASE_URL}/share/post/user/${userno}`)
+    .then(Response => {
+        console.log(Response.data);
+        document.getElementsByClassName('post-cnt')[0].innerText = Response.data.length;
+    })
+    .catch(error => {
+        console.error('There has been a problem with your axios request:', error);
+    });
+}
+
+async function getThreePost(){
+    const userno = await getUserNo();
+
+    axios.get(`${BASE_URL}/learn/post/user/${userno}`)
+    .then(Response => {
+        console.log(Response.data);
+        document.getElementsByClassName('post-cnt')[2].innerText = Response.data.length;
+    })
+    .catch(error => {
+        console.error('There has been a problem with your axios request:', error);
+    });
+}
+
 
 
 function shareMyPost(){
