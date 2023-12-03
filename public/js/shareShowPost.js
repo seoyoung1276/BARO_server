@@ -76,12 +76,13 @@ function showComments(comments){
 
         getSubUserName(comment, commentIndex);
     }
-    
+    SharefunctionOpen();
 }
 
 let subIndex;
 function SharefunctionOpen(){
     let subComment = [...document.getElementsByClassName('add-comment')];
+    console.log(subComment);
     subComment.forEach((e, i) => {
         e.onclick = () => {
             subIndex = i;
@@ -168,7 +169,7 @@ function makeSubComments(comments, userName, commentIndex){
 
         document.getElementsByClassName('comments')[commentIndex].after(finalDiv);
 
-        SharefunctionOpen();
+        
 }
 
 function makeComments(comment, userName){
