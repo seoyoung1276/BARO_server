@@ -50,8 +50,8 @@ class LearnComment extends Sequelize.Model {
       collate: 'utf8_general_ci',
     });
   } static associate(db){
-    db.LearnComment.belongTo(db.User, {foreignKey: 'user_no'})
-    db.LearnComment.belongTo(db.LearnPost, {foreignKey: 'id'})
+    db.LearnComment.belongsTo(db.User, {foreignKey: 'user_no'})
+    db.LearnComment.belongsTo(db.LearnPost, {foreignKey: 'id'})
   }
 };
 
