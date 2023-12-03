@@ -296,6 +296,19 @@ function showCurrectPost(postInfo, userInfo){
     document.getElementsByClassName('post-user')[0].innerText = userInfo;
     document.getElementsByClassName('post-date')[0].innerText = `${Kdate} ${Ktime}`;
     document.getElementsByClassName('post-detail')[0].innerText = postInfo.content;
+    getJoiners(postInfo);
+    
+}
+
+function getJoiners(postInfo){
+    axios.get(`${BASE_URL}/together/post/${postInfo.id}/attend`)
+        .then(Response => {
+            console.log(Response.data);
+            document.getElementsByClassName('join-cnt')[0].innerText = `${Response.data.length}/${postInfo.Hire_personnel}`;
+        })
+        .catch(error => {
+            console.error('There has been a problem with your axios request:', error);
+        });
 }
 
 document.addEventListener('click', (e) => {
@@ -307,13 +320,10 @@ document.addEventListener('click', (e) => {
 });
 
 function showJoinPeople(){
-
-    // router.get('/:postno/attend', getAttend);
-    axios.get(`${BASE_URL}/together/post/${postINFO.id}/attend`, req)
+    axios.get(`${BASE_URL}/together/post/${postINFO.id}/attend`)
         .then(Response => {
             console.log(Response.data);
             
-
             let joinProfile = document.getElementsByClassName('join-profile')[0];
             let showPanel = document.getElementsByClassName('show-join-people')[0];
 
