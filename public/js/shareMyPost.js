@@ -56,6 +56,7 @@ function showMyPosts(posts, userName, commentLength){
 
         let editBtn = document.createElement('div');
         editBtn.className = "edit-success";
+        if(post.isfinish) editBtn.innerText = "완료함";
         editBtn.innerText = "완료하기";
 
         editDiv.appendChild(editBtn);

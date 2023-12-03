@@ -32,7 +32,7 @@
     color: #414141;
     font-size: 12px;
     padding-bottom: 5px;
-    border-bottom: 1px solid #414141;
+    
 }
 .post-detail{
     margin-top: 20px;
@@ -136,4 +136,14 @@
 .send-comment{
     font-size: 24px;
     color: #A9A9A9;
+}
+.post-info-div{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #414141;
+}
+.post-checked{
+    color: #FFB700;
+    font-size: 14px;
+    font-weight: 700;
 }
