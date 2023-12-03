@@ -1,5 +1,8 @@
+
+let allPosts;
 axios.get(`${BASE_URL}/together/post`)
 .then(Response => {
+    allPosts = Response.data;
     getUserName(Response.data);
 })
 .catch(error => {
@@ -108,8 +111,8 @@ function showPosts(post, userName, commentsLength){
 
 function functionOpen(){
     let joinArr = [...document.getElementsByClassName('join-btn')];
-    joinArr.forEach((e) => {
-        e.onclick = () => togetherJoin(e);
+    joinArr.forEach((e, i) => {
+        e.onclick = () => togetherJoin(e, i);
     });
 
     let showCurrectPostArr = [...document.getElementsByClassName('post-content')];
@@ -135,10 +138,41 @@ function navChoose(ch, no){
     }
 }
 
-function togetherJoin(e){
+async function togetherJoin(e, i){
     if(e.innerHTML ===  "참여하기"){
         e.innerHTML = "참여함"
-    }else e.innerHTML = "참여하기"
+
+        const userno = await getUserNo();
+       
+        const req = {
+            user_no: userno
+        }
+
+        axios.post(`${BASE_URL}/together/post/${allPosts[i].id}/attend`, req)
+        .then(Response => {
+            console.log(Response.data);
+        })
+        .catch(error => {
+            console.error('There has been a problem with your axios request:', error);
+        });
+        
+    }else {
+        e.innerHTML = "참여하기"
+
+        const userno = await getUserNo();
+        
+        axios.delete(`${BASE_URL}/together/post/${allPosts[i].id}/attend/${userno}`)
+        .then(Response => {
+            console.log(Response.data);
+        })
+        .catch(error => {
+            console.error('There has been a problem with your axios request:', error);
+        });
+    }
+
+
+    
+    
 }
 
 function plusPost(){
