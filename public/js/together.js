@@ -47,9 +47,9 @@ function showPosts(post, userName, commentsLength){
     title.className = "post-title"
     title.innerText = post.title;
 
-    // let joinBtn = document.createElement('div');
-    // joinBtn.className = "join-btn";
-    // joinBtn.innerText = "참여하기";
+    let joinBtn = document.createElement('div');
+    joinBtn.className = "join-btn";
+    joinBtn.innerText = "";
 
     titleDiv.appendChild(title);
     titleDiv.appendChild(joinBtn);
