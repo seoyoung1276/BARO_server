@@ -3,9 +3,12 @@ const id = urlParams.get('id');
 
 let commentId;
 let comments;
+
+let postINFO;
 axios.get(`${BASE_URL}/together/post`)
 .then(Response => {
     console.log(Response.data);
+    postINFO = Response.data[id];
     getUserInfo(Response.data[id]);
     commentId = Response.data[id].id;
     console.log(commentId);
@@ -293,6 +296,33 @@ function showCurrectPost(postInfo, userInfo){
     document.getElementsByClassName('post-user')[0].innerText = userInfo;
     document.getElementsByClassName('post-date')[0].innerText = `${Kdate} ${Ktime}`;
     document.getElementsByClassName('post-detail')[0].innerText = postInfo.content;
+    getIsJoin(postInfo);
+    getJoiners(postInfo);
+    
+}
+
+async function getIsJoin(postInfo){
+    const userno = await getUserNo();
+
+    axios.get(`${BASE_URL}/together/post/${postInfo.id}/isattend/${userno}`)
+    .then(Response => {
+        console.log(Response.data);
+        if(Response.data.result) document.getElementsByClassName('join-button')[0].innerText = "참여함"
+    })
+    .catch(error => {
+        console.error('There has been a problem with your axios request:', error);
+    });
+}
+
+function getJoiners(postInfo){
+    axios.get(`${BASE_URL}/together/post/${postInfo.id}/attend`)
+        .then(Response => {
+            console.log(Response.data);
+            document.getElementsByClassName('join-cnt')[0].innerText = `${Response.data.length}/${postInfo.Hire_personnel}`;
+        })
+        .catch(error => {
+            console.error('There has been a problem with your axios request:', error);
+        });
 }
 
 document.addEventListener('click', (e) => {
@@ -304,29 +334,87 @@ document.addEventListener('click', (e) => {
 });
 
 function showJoinPeople(){
-    let joinProfile = document.getElementsByClassName('join-profile')[0];
-    let showPanel = document.getElementsByClassName('show-join-people')[0];
+    axios.get(`${BASE_URL}/together/post/${postINFO.id}/attend`)
+        .then(Response => {
+            console.log(Response.data);
+            
+            let joinProfile = document.getElementsByClassName('join-profile')[0];
+            let showPanel = document.getElementsByClassName('show-join-people')[0];
+            showPanel.replaceChildren();
 
-    let people = 3;
-    for(let i = 0; i<people; i++){
-        let joinPersen = document.createElement('div');
-        joinPersen.className ="join-peoeple";
-        joinPersen.innerText = "2314_조서현"
-        showPanel.appendChild(joinPersen);
-    }
-    let height = 40 + (45 * people);
-    
-    let buttonRect = joinProfile.getBoundingClientRect();
-    let buttonX = buttonRect.left + window.pageXOffset;
-    let buttonY = buttonRect.top + window.pageYOffset;
-    
-    showPanel.style.visibility = "visible";
-    showPanel.style.top = `${buttonY}px`;
-    showPanel.style.left =`${buttonX - 150}px`;
-    showPanel.style.height = `${height}px`;
+            let people = Response.data.length;
+            let height = 40 + (45 * people);
+            
+            let buttonRect = joinProfile.getBoundingClientRect();
+            let buttonX = buttonRect.left + window.pageXOffset;
+            let buttonY = buttonRect.top + window.pageYOffset;
+            
+            showPanel.style.visibility = "visible";
+            showPanel.style.top = `${buttonY}px`;
+            showPanel.style.left =`${buttonX - 150}px`;
+            showPanel.style.height = `${height}px`;
+
+            getJoinerInfo(Response.data);
+        })
+        .catch(error => {
+            console.error('There has been a problem with your axios request:', error);
+        });
 }
 
-function getJoin(e){
-    if(e.target.innerText === "참여하기") e.target.innerText = "참여함"
-    else e.target.innerText = "참여하기"
+function getJoinerInfo(People){
+    for(let person of People){
+        axios.get(`${BASE_URL}/user/${person.user_no}`)
+        .then(Response => {
+            console.log(Response.data)
+            addJoinPeople(Response.data.result.name);
+        })
+        .catch(error => {
+            console.error('There has been a problem with your axios request:', error);
+        });
+    }
+}
+
+function addJoinPeople(username){
+    console.log(username)
+    let showPanel = document.getElementsByClassName('show-join-people')[0];
+    let joinPersen = document.createElement('div');
+    joinPersen.className ="join-peoeple";
+    joinPersen.innerText = username;
+    showPanel.appendChild(joinPersen);
+}
+
+async function getJoin(e){
+    if(e.target.innerText === "참여하기") {
+        e.target.innerText = "참여함"
+
+        const userno = await getUserNo();
+    
+        const req = {
+            user_no: userno
+        }
+
+        axios.post(`${BASE_URL}/together/post/${postINFO.id}/attend`, req)
+        .then(Response => {
+            console.log(Response.data);
+            getJoiners(postINFO);
+        })
+        .catch(error => {
+            console.error('There has been a problem with your axios request:', error);
+        });
+        
+    }else{
+        e.target.innerText = "참여하기"
+
+        const userno = await getUserNo();
+        
+        axios.delete(`${BASE_URL}/together/post/${postINFO.id}/attend/${userno}`)
+        .then(Response => {
+            console.log(Response.data);
+            getJoiners(postINFO);
+        })
+        .catch(error => {
+            console.error('There has been a problem with your axios request:', error);
+        });
+        
+    } 
 }
