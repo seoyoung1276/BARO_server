@@ -79,7 +79,7 @@ function showComments(comments){
     
             getSubUserName(comment, commentIndex);
         }
-    }, 500);
+    }, 100);
     
 }
 
