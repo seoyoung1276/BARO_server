@@ -115,9 +115,8 @@ exports.addAttend = async (req, res) => {
       const addAttend = await TogetherAttend.create({
         together_id: postNo,
         user_no: user_no
-      }).then(() => {
-        res.json(addAttend)
-      })
+      }) 
+      res.json(addAttend)
   }catch(error){
     console.log(error);
     res.status(500).json({ error : "서버 오류"})
@@ -134,9 +133,8 @@ exports.deleteAttend = async (req, res) => {
         together_id: postNo,
         user_no: user_no
       }
-    }).then(() => {
-      res.json(deleteAttend)
     })
+      res.json(deleteAttend)
   }catch(error){
     console.log(error);
     res.status(500).json({ error: "서버 오류"})
@@ -151,9 +149,8 @@ exports.getAttend = async (req, res) => {
       where: {
         together_id: postNo
       }
-    }).then(() => {
-      res.json(getAttend)
     })
+    res.json(getAttend)
   }catch(error){
     console.log(error);
     res.status(500).json({ error: "서버 오류"})
