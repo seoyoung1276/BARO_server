@@ -3,7 +3,7 @@ const { Sequelize, DataTypes} = require('sequelize')
 
 class LearnComment extends Sequelize.Model {
   static initModel(sequelize) {
-    LearnComment.initModel({
+    LearnComment.init({
       id: {
         autoIncrement: true,
         type: DataTypes.INTEGER,
