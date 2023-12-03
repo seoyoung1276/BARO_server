@@ -23,7 +23,6 @@ function showPosts(post, userName){
     let container = document.getElementsByClassName('main')[0];
 
     let finalDiv = document.createElement('div');
-    finalDiv.onclick = () => showContent();
     finalDiv.className = "together-div";
 
     let titleDiv = document.createElement('post-title-div');
@@ -100,6 +99,13 @@ function functionOpen(){
     joinArr.forEach((e) => {
         e.onclick = () => togetherJoin(e);
     });
+
+    
+    contentDiv.onclick = () => showContent();
+    let showCurrectPostArr = [...document.getElementsByClassName('post-content')];
+    showCurrectPostArr.forEach((e, i) => {
+        e.onclick = () => showContent(i);
+    })
 }
 function backHome(){
     window.location.href = '/main.html';
@@ -129,6 +135,6 @@ function plusPost(){
     window.location.href = '/togetherNewPost.html';
 }
 
-function showContent(){
-    window.location.href = '/togetherShowPost.html';
+function showContent(index){
+    window.location.href = `/togetherShowPost.html?id=${index}`;
 }

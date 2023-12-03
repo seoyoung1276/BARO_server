@@ -92,6 +92,29 @@ function showPosts(post, userName){
     finalDiv.appendChild(commentDiv)
 
     container.appendChild(finalDiv);
+
+    functionOpen();
+}
+
+function functionOpen(){
+    let joinBtnArr = [...document.getElementsByClassName('join-btn')];
+    joinBtnArr.forEach((e, i) => {
+        e.onclick = () => clickJoinBtn(e);
+    })
+
+    let showCurrectPostArr = [...document.getElementsByClassName('post-content')];
+    showCurrectPostArr.forEach((e, i)=> {
+        e.onclick = () => showCurrectPost(i);
+    })
+}
+
+function showCurrectPost(index){
+    window.location.href = `/learnShowPost.html?id=${index}`;
+}
+
+function clickJoinBtn(e){
+    if(e.innerText === "참여하기") e.innerText = "참여함"
+    else e.innerText = "참여하기"
 }
 
 function navChoose(ch, no){

@@ -5,6 +5,7 @@ let commentId;
 let comments;
 axios.get(`${BASE_URL}/share/post`)
 .then(Response => {
+    console.log(Response.data);
     getUserInfo(Response.data[id]);
     commentId = Response.data[id].id;
     console.log(commentId);
