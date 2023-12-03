@@ -76,7 +76,7 @@ function showComments(comments){
 
         getSubUserName(comment, commentIndex);
     }
-    SharefunctionOpen();
+    
 }
 
 let subIndex;
@@ -168,8 +168,8 @@ function makeSubComments(comments, userName, commentIndex){
         finalDiv.appendChild(commentDetailDiv);
 
         document.getElementsByClassName('comments')[commentIndex].after(finalDiv);
-
-        
+        console.log("subcomment");
+        SharefunctionOpen();
 }
 
 function makeComments(comment, userName){
