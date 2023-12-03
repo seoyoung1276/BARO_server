@@ -48,12 +48,9 @@ function showComments(comments){
     console.log(notSubComments);
     console.log(subComments);
 
-    let userName;
     for(let comment of notSubComments){
         console.log(comment);
         getUserName(comment);
-        console.log(userName);
-        
     }
 
     let sortSubComments = subComments.sort((one, two) => {
@@ -75,7 +72,7 @@ function showComments(comments){
         });
         console.log(commentIndex);
 
-        getSubUserName(comment);
+        getSubUserName(comment, commentIndex);
     }
     functionOpen();
 }
@@ -109,20 +106,20 @@ function getUserName(comment){
     });
 }
 
-function getSubUserName(comment){
+function getSubUserName(comment, commentIndex){
     console.log(comment);
     axios.get(`${BASE_URL}/user/${comment.user_no}`)
     .then(Response => {
         console.log(Response.data.result.name)
         userName = Response.data.result.name;
-        makeSubComments(comment, Response.data.result.name);
+        makeSubComments(comment, Response.data.result.name, commentIndex);
     })
     .catch(error => {
         console.error('There has been a problem with your axios request:', error);
     });
 }
 
-function makeSubComments(comment, userName){
+function makeSubComments(comment, userName, commentIndex){
     let finalDiv = document.createElement('div');
         finalDiv.className = "sub-comments";
     
@@ -148,7 +145,10 @@ function makeSubComments(comment, userName){
     
         let commentDate = document.createElement('div');
         commentDate.className = "comment-date";
-        commentDate.innerHTML = comment.date;
+        let postDate = new Date(comment.date);
+        let Kdate = `${postDate.getFullYear()}-${String(postDate.getMonth()+1).padStart(2, 0)}-${String(postDate.getDate()).padStart(2, 0)}`;
+        let Ktime =  `${String(postDate.getHours()).padStart(2, 0)}:${String(postDate.getMinutes()).padStart(2,0)}:${String(postDate.getSeconds()).padStart(2, 0)}`;
+        commentDate.innerHTML = `${Kdate} ${Ktime}`;
     
         commentInfoDiv.appendChild(commentDate);
         // commentInfoDiv.innerHTML += `<iconify-icon icon="ic:baseline-comment" class="add-comment"></iconify-icon>`;
@@ -189,7 +189,10 @@ function makeComments(comment, userName){
 
     let commentDate = document.createElement('div');
     commentDate.className = "comment-date";
-    commentDate.innerHTML = comment.date;
+    let postDate = new Date(comment.date);
+    let Kdate = `${postDate.getFullYear()}-${String(postDate.getMonth()+1).padStart(2, 0)}-${String(postDate.getDate()).padStart(2, 0)}`;
+    let Ktime =  `${String(postDate.getHours()).padStart(2, 0)}:${String(postDate.getMinutes()).padStart(2,0)}:${String(postDate.getSeconds()).padStart(2, 0)}`;
+    commentDate.innerHTML = `${Kdate} ${Ktime}`;
 
     commentInfoDiv.appendChild(commentDate);
     commentInfoDiv.innerHTML += `<iconify-icon icon="ic:baseline-comment" class="add-comment"></iconify-icon>`;
@@ -260,7 +263,12 @@ async function sendComment(){
 
 function showCurrectPost(postInfo, userInfo){
     console.log(postInfo, userInfo);
+
+    let postDate = new Date(postInfo.date);
+    let Kdate = `${postDate.getFullYear()}-${String(postDate.getMonth()+1).padStart(2, 0)}-${String(postDate.getDate()).padStart(2, 0)}`;
+    let Ktime =  `${String(postDate.getHours()).padStart(2, 0)}:${String(postDate.getMinutes()).padStart(2,0)}:${String(postDate.getSeconds()).padStart(2, 0)}`;
+
     document.getElementsByClassName('post-user')[0].innerText = userInfo;
-    document.getElementsByClassName('post-date')[0].innerText = postInfo.date
+    document.getElementsByClassName('post-date')[0].innerText = `${Kdate} ${Ktime}`;
     document.getElementsByClassName('post-detail')[0].innerText = postInfo.content;
 }
