@@ -25,7 +25,7 @@ function getCommentsLength(posts, userName){
     axios.get(`${BASE_URL}/share/comment/${posts.id}`)
     .then(Response => {
         console.log(Response.data);
-        showPosts(posts, userName, Response.data.length);
+        showMyPosts(posts, userName, Response.data.length);
     })
     .catch(error => {
         console.error('There has been a problem with your axios request:', error);
