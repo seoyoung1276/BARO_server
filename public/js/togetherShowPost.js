@@ -296,8 +296,23 @@ function showCurrectPost(postInfo, userInfo){
     document.getElementsByClassName('post-user')[0].innerText = userInfo;
     document.getElementsByClassName('post-date')[0].innerText = `${Kdate} ${Ktime}`;
     document.getElementsByClassName('post-detail')[0].innerText = postInfo.content;
+    getIsJoin(postInfo);
     getJoiners(postInfo);
     
+}
+
+async function getIsJoin(postInfo){
+    // router.get('/:postno/isattend/:userno', isAttend)
+    const userno = await getUserNo();
+
+    axios.get(`${BASE_URL}/together/post/${postInfo.id}/isattend/${userno}`)
+    .then(Response => {
+        console.log(Response.data);
+        if(Response.data) document.getElementsByClassName('join-button')[0].innerText = "참여함"
+    })
+    .catch(error => {
+        console.error('There has been a problem with your axios request:', error);
+    });
 }
 
 function getJoiners(postInfo){
