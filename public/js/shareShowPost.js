@@ -52,7 +52,7 @@ function showComments(comments){
     for(let comment of notSubComments){
         console.log(comment);
         getUserName(comment);
-        functionOpen();
+        
     }
 
     let sortSubComments = subComments.sort((one, two) => {
@@ -80,7 +80,7 @@ function showComments(comments){
 }
 
 let subIndex;
-function functionOpen(){
+function SharefunctionOpen(){
     let subComment = [...document.getElementsByClassName('add-comment')];
     subComment.forEach((e, i) => {
         e.onclick = () => {
@@ -125,7 +125,7 @@ function getSubUserName(comment, commentIndex){
     });
 }
 
-function makeSubComments(comment, userName, commentIndex){
+function makeSubComments(comments, userName, commentIndex){
     let finalDiv = document.createElement('div');
         finalDiv.className = "sub-comments";
     
@@ -144,14 +144,14 @@ function makeSubComments(comment, userName, commentIndex){
     
         let commetContentDiv = document.createElement('div');
         commetContentDiv.className = "comment-content";
-        commetContentDiv.innerHTML = comment.comment;
+        commetContentDiv.innerHTML = comments.comment;
     
         let commentInfoDiv = document.createElement('div');
         commentInfoDiv.className = "sub-comment-info";
     
         let commentDate = document.createElement('div');
         commentDate.className = "comment-date";
-        let postDate = new Date(comment.date);
+        let postDate = new Date(comments.date);
         let Kdate = `${postDate.getFullYear()}-${String(postDate.getMonth()+1).padStart(2, 0)}-${String(postDate.getDate()).padStart(2, 0)}`;
         let Ktime =  `${String(postDate.getHours()).padStart(2, 0)}:${String(postDate.getMinutes()).padStart(2,0)}:${String(postDate.getSeconds()).padStart(2, 0)}`;
         commentDate.innerHTML = `${Kdate} ${Ktime}`;
@@ -167,6 +167,8 @@ function makeSubComments(comment, userName, commentIndex){
         finalDiv.appendChild(commentDetailDiv);
 
         document.getElementsByClassName('comments')[commentIndex].after(finalDiv);
+
+        SharefunctionOpen();
 }
 
 function makeComments(comment, userName){
