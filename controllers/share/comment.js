@@ -6,18 +6,18 @@ exports.postComment = async (req, res) => {
         const { user_no, content, responseTo } = req.body;
 
         let response;
-        if (responseTo === undefined) {
+        if (responseTo != undefined) {
             response = await ShareComment.create({
                 user_no: user_no,
-                post_id: postId,
-                content: content
+                post_id: postId, 
+                content: content,
+                responseTo: responseTo 
             });
         } else {
             response = await ShareComment.create({
                 user_no: user_no,
-                post_id: postId, // postId 변수 이름을 'postId'로 변경하여 일관성 있게 수정
+                post_id: postId, 
                 content: content,
-                responseTo: responseTo 
             });
         }
         res.json(response);
