@@ -161,7 +161,7 @@ exports.getAttend = async (req, res) => {
 exports.isAttend = async (req, res) => {
   try{
     const postNo = req.params.postno;
-    const user_no = req.params.user_no;
+    const user_no = req.params.userno;
     const isAttend = await TogetherAttend.findOne({
       where: {
         together_id: postNo,
