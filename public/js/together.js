@@ -129,6 +129,7 @@ async function getIsJoin(postInfo, index){
     axios.get(`${BASE_URL}/together/post/${postInfo.id}/isattend/${userno}`)
     .then(Response => {
         console.log(Response.data);
+        console.log(index);
         if(Response.data) document.getElementsByClassName('join-btn')[index].innerText = "참여함"
         else document.getElementsByClassName('join-btn')[index].innerText = "참여하기"
     })
@@ -181,7 +182,7 @@ async function togetherJoin(e, i){
         axios.post(`${BASE_URL}/together/post/${allPosts[i].id}/attend`, req)
         .then(Response => {
             console.log(Response.data);
-            getJoiner(allPosts[i]);
+            getJoiner(allPosts[i], i);
         })
         .catch(error => {
             console.error('There has been a problem with your axios request:', error);
@@ -195,7 +196,7 @@ async function togetherJoin(e, i){
         axios.delete(`${BASE_URL}/together/post/${allPosts[i].id}/attend/${userno}`)
         .then(Response => {
             console.log(Response.data);
-            getJoiner(allPosts[i]);
+            getJoiner(allPosts[i], i);
         })
         .catch(error => {
             console.error('There has been a problem with your axios request:', error);
