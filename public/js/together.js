@@ -32,8 +32,9 @@ function getCommentLength(post, userName){
         console.error('There has been a problem with your axios request:', error);
     });
 }
-
+let i = -1;
 function showPosts(post, userName, commentsLength){
+    i++;
     let container = document.getElementsByClassName('main')[0];
 
     let finalDiv = document.createElement('div');
@@ -107,28 +108,28 @@ function showPosts(post, userName, commentsLength){
 
     container.appendChild(finalDiv);
     functionOpen();
-    getJoiner(post, joinBtn);
+    getJoiner(post);
     
 }
 
-function getJoiner(post, joinBtn){
+function getJoiner(post){
     axios.get(`${BASE_URL}/together/post/${post.id}/attend`)
         .then(Response => {
             console.log(Response.data);
-            document.getElementsByClassName('join-cnt')[0].innerText = `${Response.data.length}/${post.Hire_personnel}`;
-            getIsJoin(post, joinBtn);
+            document.getElementsByClassName('join-cnt')[i].innerText = `${Response.data.length}/${post.Hire_personnel}`;
+            getIsJoin(post);
         })
         .catch(error => {
             console.error('There has been a problem with your axios request:', error);
         });
 }
-async function getIsJoin(postInfo, joinBtn){
+async function getIsJoin(postInfo){
     const userno = await getUserNo();
 
     axios.get(`${BASE_URL}/together/post/${postInfo.id}/isattend/${userno}`)
     .then(Response => {
         console.log(Response.data);
-        if(Response.data) joinBtn.innerText = "참여함"
+        if(Response.data) document.getElementsByClassName('join-btn')[i].innerText = "참여함"
     })
     .catch(error => {
         console.error('There has been a problem with your axios request:', error);
