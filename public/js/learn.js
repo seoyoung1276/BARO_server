@@ -11,37 +11,28 @@ function getUserName(posts){
     for(let post of posts){
         axios.get(`${BASE_URL}/user/${post.user_no}`)
         .then(Response => {
-            showPosts(post, Response.data.result.name)
+            getCommentLength(post, Response.data.result.name)
             console.log(post, Response.data.result.name)
         })
         .catch(error => {
             console.error('There has been a problem with your axios request:', error);
         });
     }
-    
 }
-function showPosts(post, userName){
+
+function getCommentLength(post, userName){
+    axios.get(`${BASE_URL}/together/comment/${post.id}`)
+    .then(Response => {
+        console.log(Response.data);
+        showPosts(post, userName, Response.data.length);
+    })
+    .catch(error => {
+        console.error('There has been a problem with your axios request:', error);
+    });
+}
+
+function showPosts(post, userName, commentsLength){
     let container = document.getElementsByClassName('main')[0];
-//     <div class="learn-div" onclick="showContent()">
-//         <div class="post-Info">
-//             <div class="post-user-info">
-//                 <iconify-icon icon="healthicons:ui-user-profile" class="user-profile"></iconify-icon>
-//                 <div class="user-nickname">2314_조서현</div>
-//                 <div class="post-date">2023-09-14 12:01</div>
-//             </div>
-//             <div class="join-btn">참여하기</div>
-//         </div>
-//         <div class="post-content">
-//             스택에 같이 나갈 프론트 1명, 백 2명, 디자인 1명을 구해요!
-//             프론트는 react 사용 가능해야함. 백은 node.js 사용 가능해야함.sdfnksfdsdfnksfdsdfnksfdsdfnksfdsdfnks
-//             fdsdfnksfdsdfnksfdsdfnksfdsdfnk
-//             sdkhfsdf sdhfkhsfdkkdfhkdfksdfksdbfdbfk
-//         </div>
-//         <div class="comment-cnt-div">
-//             <img src="/img/comment-cnt.png" class="comment-cnt-img">
-//             <div class="comment-cnt-num">13</div>
-//         </div>
-//     </div>
 
     let finalDiv = document.createElement('div');
     finalDiv.className  = "learn-div";
@@ -83,6 +74,7 @@ function showPosts(post, userName){
 
     let commentNum = document.createElement('div');
     commentNum.className = "comment-cnt-num";
+    commentNum.innerText = commentsLength;
 
     commentDiv.innerHTML += `<img src="/img/comment-cnt.png" class="comment-cnt-img">`;
     commentDiv.appendChild(commentNum);

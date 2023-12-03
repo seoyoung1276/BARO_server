@@ -52,46 +52,56 @@ function showComments(comments){
     for(let comment of notSubComments){
         console.log(comment);
         getUserName(comment);
+        
     }
 
-    let sortSubComments = subComments.sort((one, two) => {
-        if(one.responseto > two.responseto) return 1;
-        else if(one.responseto == two.responseto) return 0;
-        else return -1;
-    });
-
-    sortSubComments.sort((one, two) => {
-        if(one.responseto === two.responseto && one.id < two.id) return 1;
-        else if(one.responseto === two.responseto && one.id === two.id) return 0;
-        else return -1;
-    })
-
-    for(let comment of sortSubComments){
-        let commentIndex;
-        notSubComments.forEach((e, i) => {
-            if(e.id === comment.responseto) commentIndex = i;
+    setTimeout(() => {
+        let sortSubComments = subComments.sort((one, two) => {
+            if(one.responseto < two.responseto) return 1;
+            else if(one.responseto == two.responseto) return 0;
+            else return -1;
         });
-        console.log(commentIndex);
+    
+        sortSubComments.sort((one, two) => {
+            if(one.responseto === two.responseto && one.id < two.id) return 1;
+            else if(one.responseto === two.responseto && one.id === two.id) return 0;
+            else return -1;
+        })
 
-        getSubUserName(comment, commentIndex);
-    }
-    functionOpen();
+        console.log(sortSubComments);
+
+        for(let comment of sortSubComments){
+            let commentIndex;
+            notSubComments.forEach((e, i) => {
+                if(e.id === comment.responseto) commentIndex = i;
+            });
+            console.log(commentIndex);
+    
+            getSubUserName(comment, commentIndex);
+        }
+    }, 500);
+    
 }
 
 let subIndex;
-function functionOpen(){
+function TogetherfunctionOpen(){
     let subComment = [...document.getElementsByClassName('add-comment')];
+    console.log(subComment);
     subComment.forEach((e, i) => {
         e.onclick = () => {
             subIndex = i;
             addSubComment(i);
+            console.log(i);
         }
     })
 }
 
 function addSubComment(index){
-    let comment = document.getElementsByClassName('comment-username')[index];
+    console.log(index);
+    let comment = document.getElementsByClassName('notsubusername')[index];
     document.getElementsByClassName('input-comment')[0].placeholder = `${comment.innerText}님 에게`;
+    console.log(comment);
+    console.log(comment.innerText);
 }
 
 function getUserName(comment){
@@ -120,7 +130,8 @@ function getSubUserName(comment, commentIndex){
     });
 }
 
-function makeSubComments(comment, userName, commentIndex){
+function makeSubComments(comments, userName, commentIndex){
+    console.log(comments);
     let finalDiv = document.createElement('div');
         finalDiv.className = "sub-comments";
     
@@ -139,14 +150,14 @@ function makeSubComments(comment, userName, commentIndex){
     
         let commetContentDiv = document.createElement('div');
         commetContentDiv.className = "comment-content";
-        commetContentDiv.innerHTML = comment.comment;
+        commetContentDiv.innerHTML = comments.content;
     
         let commentInfoDiv = document.createElement('div');
         commentInfoDiv.className = "sub-comment-info";
     
         let commentDate = document.createElement('div');
         commentDate.className = "comment-date";
-        let postDate = new Date(comment.date);
+        let postDate = new Date(comments.date);
         let Kdate = `${postDate.getFullYear()}-${String(postDate.getMonth()+1).padStart(2, 0)}-${String(postDate.getDate()).padStart(2, 0)}`;
         let Ktime =  `${String(postDate.getHours()).padStart(2, 0)}:${String(postDate.getMinutes()).padStart(2,0)}:${String(postDate.getSeconds()).padStart(2, 0)}`;
         commentDate.innerHTML = `${Kdate} ${Ktime}`;
@@ -161,7 +172,9 @@ function makeSubComments(comment, userName, commentIndex){
         finalDiv.innerHTML = `<iconify-icon icon="tdesign:enter" class="sub-comment-enter"></iconify-icon>`;
         finalDiv.appendChild(commentDetailDiv);
 
+        console.log(document.getElementsByClassName('comments')[commentIndex]);
         document.getElementsByClassName('comments')[commentIndex].after(finalDiv);
+        
 }
 
 function makeComments(comment, userName){
@@ -174,7 +187,7 @@ function makeComments(comment, userName){
     profileDiv.className = "comment-profile";
 
     let commentUsername = document.createElement('div');
-    commentUsername.className = "comment-username";
+    commentUsername.className = "comment-username notsubusername";
     commentUsername.innerHTML = userName;
 
     profileDiv.innerHTML = `<iconify-icon icon="healthicons:ui-user-profile" class="user-comment-profile-img"></iconify-icon>`;
@@ -203,6 +216,9 @@ function makeComments(comment, userName){
     finalDiv.appendChild(commentInfoDiv);
 
     parentDiv.appendChild(finalDiv);
+
+    console.log("comment");
+    TogetherfunctionOpen();
 }
 
 function backBtn(){
@@ -228,7 +244,7 @@ async function sendComment(){
             content: sendCommentInput.value
         }
     
-        axios.post(`${BASE_URL}/share/comment/${commentId}`, req)
+        axios.post(`${BASE_URL}/together/comment/${commentId}`, req)
         .then(Response => {
             console.log(Response.data);
             document.getElementsByClassName('comment-area')[0].replaceChildren();
@@ -244,10 +260,12 @@ async function sendComment(){
         const req = {
             user_no: userno,
             content: sendCommentInput.value,
-            responseTo: notSubComments[subIndex].id
+            responseto: notSubComments[subIndex].id
         }
     
-        axios.post(`${BASE_URL}/share/comment/${commentId}`, req)
+        console.log(req);
+
+        axios.post(`${BASE_URL}/together/comment/${commentId}`, req)
         .then(Response => {
             console.log(Response.data);
             document.getElementsByClassName('comment-area')[0].replaceChildren();
@@ -262,6 +280,8 @@ async function sendComment(){
     }
 }
 
+
+//추가 부분
 function showCurrectPost(postInfo, userInfo){
     console.log(postInfo, userInfo);
 
