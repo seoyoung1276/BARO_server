@@ -54,7 +54,7 @@ function showComments(comments){
         getUserName(comment);
         
     }
-    
+
     setTimeout(() => {
         let sortSubComments = subComments.sort((one, two) => {
             if(one.responseto > two.responseto) return 1;
@@ -77,7 +77,7 @@ function showComments(comments){
     
             getSubUserName(comment, commentIndex);
         }
-    }, 2000);
+    }, 500);
     
 }
 
@@ -148,7 +148,7 @@ function makeSubComments(comments, userName, commentIndex){
     
         let commetContentDiv = document.createElement('div');
         commetContentDiv.className = "comment-content";
-        commetContentDiv.innerHTML = comments.comment;
+        commetContentDiv.innerHTML = comments.content;
     
         let commentInfoDiv = document.createElement('div');
         commentInfoDiv.className = "sub-comment-info";
