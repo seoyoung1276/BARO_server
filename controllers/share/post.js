@@ -99,3 +99,20 @@ exports.deletePost = async (req, res) =>{
     res.status(500).json({ error : "서버 오류"})
   }
 }
+
+exports.isFinishPost = async (req, res) => {
+  try{
+    const postNo = req.params.postno;
+    const isfinish = req.body.isfinish;
+    const makeFinish = await SharePost.update(
+      {isfinish},
+      {where: {
+        id: postNo,
+      }
+    })
+    res.json(makeFinish)
+  }catch(error){
+    console.log(error);
+    res.status(500).json({error:"서버오류"})
+  }
+}

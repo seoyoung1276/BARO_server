@@ -54,7 +54,6 @@ exports.getOneComment = async (req, res) => {
     }
 }
 
-
 exports.getUserComments = async (req, res) => {
     try {
         const userNo = req.params.userNo; 

@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const { createPost, getAllPost, getOnePost, getUserPost, updatePost, deletePost} = require('../../controllers/share/post');
+const { createPost, getAllPost, getOnePost, getUserPost, updatePost, deletePost, isFinishPost} = require('../../controllers/share/post');
 
 // 나누기 글쓰기
 router.post('/', createPost);
@@ -20,7 +20,7 @@ router.patch('/:postno', updatePost)
 // 게시글 삭제
 router.delete('/:postno', deletePost)
 
-//나누기 완료 해주는 라우터!! 완료하기 버튼을 누르면 해당 포스트에 저장된 user_no(fk)랑 req.user랑 비교하고 음........ 
-router.post
+//나누기 완료
+router.patch('isfinish/:postno', isFinishPost)
 
 module.exports = router;
