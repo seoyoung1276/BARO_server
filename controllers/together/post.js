@@ -70,10 +70,10 @@ exports.getUserPost = async (req, res) =>{
 exports.updatePost = async (req, res) =>{
   try{
     const postNo = req.params.postno;
-    const { title, content } = req.body;
+    const { title, content, place, meet_date, Hire_personnel } = req.body;
 
     const update = await TogetherPost.update(
-      {title, content},
+      {title, content, place, meet_date, Hire_personnel},
       {
         where: {
           id: postNo,
