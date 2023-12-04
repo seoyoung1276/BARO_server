@@ -50,7 +50,7 @@ function editPost(){
     axios.patch(`${BASE_URL}/learn/post/${post_no}`, req)
     .then(Response => {
         console.log(Response.data);
-        window.location.href = '/shareMyPost.html'
+        window.location.href = '/learnMyPost.html'
     })
     .catch(error => {
         console.error('There has been a problem with your axios request:', error);

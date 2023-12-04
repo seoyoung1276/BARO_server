@@ -232,7 +232,7 @@ function editMyPost(e, i){
 
     window.location.href = `/togetherEditMyPost.html?id=${currId}`;
 }
-function deleteMyPost(i){
+function deleteMyPost(e, i){
     let currId;
 
     console.log(e, i);
