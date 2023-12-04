@@ -1,10 +1,26 @@
 const urlParams = new URL(location.href).searchParams;
-const id = urlParams.get('id');
+const paramId = urlParams.get('id');
 let contentInfo;
 axios.get(`${BASE_URL}/share/post`)
 .then(Response => {
-    contentInfo = Response.data[id];
-    showData(Response.data[id]);
+
+    console.log(Response.data);
+    let currectPost;
+    let currectIndex;
+
+    Response.data.forEach((e, i) => {
+        console.log(e);
+        console.log(paramId);
+        if(e.id == paramId){
+            currectPost = e;
+            currectIndex = i;
+        } 
+    })
+    console.log(currectPost);
+    console.log(currectIndex);
+
+    contentInfo = Response.data[currectIndex];
+    showData(Response.data[currectIndex]);
 })
 .catch(error => {
     console.error('There has been a problem with your axios request:', error);

@@ -149,17 +149,37 @@ function showEditDiv(e, i){
 
     let editButton = document.getElementsByClassName('edit-post')[0];
     let deleteButton = document.getElementsByClassName('delete-post')[0];
-    editButton.onclick = () => editMyPost(i);
-    deleteButton.onclick = () => deleteMyPost(i);
+    editButton.onclick = () => editMyPost(e, i);
+    deleteButton.onclick = () => deleteMyPost(e, i);
 }
 
-function editMyPost(i){
-    window.location.href = `/shareEditMyPost.html?id=${i}`;
+function editMyPost(e, i){
+    let currId;
+
+    console.log(e, i);
+    console.log(AllPosts[i]);
+    AllPosts.forEach((v) => {
+        console.log(v.content);
+        console.log(document.getElementsByClassName('content-text')[i].innerText);
+        if(v.content == document.getElementsByClassName('content-text')[i].innerText) currId = v.id;
+    })
+
+    window.location.href = `/shareEditMyPost.html?id=${currId}`;
 }
 
-function deleteMyPost(i){
-    let post_no = AllPosts[i].id;
-    axios.delete(`${BASE_URL}/share/post/${post_no}`)
+function deleteMyPost(e, i){
+    let currId;
+
+    console.log(e, i);
+    console.log(AllPosts[i]);
+    AllPosts.forEach((v) => {
+        console.log(v.content);
+        console.log(document.getElementsByClassName('content-text')[i].innerText);
+        if(v.content == document.getElementsByClassName('content-text')[i].innerText) currId = v.id;
+    })
+
+
+    axios.delete(`${BASE_URL}/share/post/${currId}`)
     .then(Response => {
         console.log(Response.data);
     })
