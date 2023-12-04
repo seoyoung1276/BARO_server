@@ -213,8 +213,8 @@ function showContent(e, i){
     let currId;
 
     console.log(e, i);
-    console.log(AllPost[i]);
-    AllPost.forEach((v) => {
+    console.log(allPosts[i]);
+    allPosts.forEach((v) => {
         console.log(v.content);
         console.log(document.getElementsByClassName('content-text')[i].innerText);
         if(v.content == document.getElementsByClassName('content-text')[i].innerText) currId = v.id;

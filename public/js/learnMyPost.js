@@ -122,6 +122,25 @@ function functionOpen(){
     editArr.forEach((e, i) => {
         e.onclick = () => showEditDiv(e, i);
     });
+
+    let showCurrectPostArr = [...document.getElementsByClassName('post-content')];
+    showCurrectPostArr.forEach((e, i) => {
+        e.onclick = () => showCurrectPost(e, i);
+    })
+}
+
+function showCurrectPost(e, i){
+    let currId;
+
+    console.log(e, i);
+    console.log(AllPosts[i]);
+    AllPosts.forEach((v) => {
+        console.log(v.content);
+        console.log(document.getElementsByClassName('content-text')[i].innerText);
+        if(v.content == document.getElementsByClassName('content-text')[i].innerText) currId = v.id;
+    })
+    console.log(currId);
+    window.location.href = `/learnShowPost.html?id=${currId}`;
 }
 
 function navChoose(ch, no){
