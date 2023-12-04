@@ -38,6 +38,7 @@ function showMyPosts(posts, userName, commentsLength){
     let container = document.getElementsByClassName('main')[0];
     
     for(let post of posts){
+        console.log(post);
         let finalDiv = document.createElement('div');
         finalDiv.className = "together-div";
     
@@ -53,7 +54,11 @@ function showMyPosts(posts, userName, commentsLength){
     
         let joinBtn = document.createElement('div');
         joinBtn.className = "join-btn";
-        joinBtn.innerText = "모집 종료하기"
+        if(post.isfinish){
+            joinBtn.innerText = "모집 종료됨"
+            joinBtn.classList.add("join-close-btn")
+        }
+        else joinBtn.innerText = "모집 종료하기"
     
         editDiv.appendChild(joinBtn);
         editDiv.innerHTML += `<iconify-icon icon="iconamoon:menu-kebab-vertical-light" class="edit-content"></iconify-icon>`;
@@ -151,7 +156,7 @@ function functionOpen(){
     // 모집 종료
     let joinBtnArr = [...document.getElementsByClassName('join-btn')];
     joinBtnArr.forEach((e, i) => {
-        e.onclick = () => joinClose(e);
+        e.onclick = () => joinClose(e, i);
     });
 
     let contentArr = [...document.getElementsByClassName('content-text')];
@@ -209,13 +214,38 @@ function deleteMyPost(i){
     });
 }
 
-function joinClose(e){
-    if(e.innerHTML === "모집 종료하기") {
-        e.innerHTML = "모집 종료됨"
-        e.classList.add("join-close-btn")
+function joinClose(e, i){
+    if(e.innerText === "모집 종료하기"){
+        e.classList.add("join-close-btn");
+        e.innerText = "모집 종료됨"
+
+        const req = {
+            isfinish: true
+        }
+
+        axios.patch(`${BASE_URL}/together/post/isfinish/${AllPosts[i].id}`, req)
+        .then(Response => {
+            console.log(Response.data);
+        })
+        .catch(error => {
+            console.error('There has been a problem with your axios request:', error);
+        });
+
     }else{
-        e.innerHTML = "모집 종료하기"
-        e.classList.remove("join-close-btn")
+        e.classList.remove("join-close-btn");
+        e.innerText = "모집 종료하기"
+
+        const req = {
+            isfinish: false
+        }
+
+        axios.patch(`${BASE_URL}/together/post/isfinish/${AllPosts[i].id}`, req)
+        .then(Response => {
+            console.log(Response.data);
+        })
+        .catch(error => {
+            console.error('There has been a problem with your axios request:', error);
+        });
     }
 }
 

@@ -7,14 +7,21 @@ axios.get(`${BASE_URL}/share/post`)
 .then(Response => {
     console.log(Response.data);
     let currectPost;
+    let currectIndex;
 
-    Response.data.forEach((e) => {
-        if(e.id === paramId) currectPost = e;
+    Response.data.forEach((e, i) => {
+        console.log(e);
+        console.log(paramId);
+        if(e.id == paramId){
+            currectPost = e;
+            currectIndex = i;
+        } 
     })
     console.log(currectPost);
+    console.log(currectIndex);
 
-    getUserInfo(Response.data[paramId]);
-    commentId = Response.data[paramId].id;
+    getUserInfo(Response.data[currectIndex]);
+    commentId = Response.data[currectIndex].id;
     console.log(commentId);
     getComment(commentId);
 })

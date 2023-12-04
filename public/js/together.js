@@ -49,7 +49,8 @@ function showPosts(post, userName, commentsLength){
 
     let joinBtn = document.createElement('div');
     joinBtn.className = "join-btn";
-    joinBtn.innerText = "";
+    if(post.isfinish) joinBtn.innerText = "모집 종료됨";
+    else joinBtn.innerText = "";
 
     titleDiv.appendChild(title);
     titleDiv.appendChild(joinBtn);
@@ -148,7 +149,7 @@ function functionOpen(){
 
     let showCurrectPostArr = [...document.getElementsByClassName('post-content')];
     showCurrectPostArr.forEach((e, i) => {
-        e.onclick = () => showContent(i);
+        e.onclick = () => showContent(e, i);
     })
 }
 function backHome(){
@@ -208,6 +209,16 @@ function plusPost(){
     window.location.href = '/togetherNewPost.html';
 }
 
-function showContent(index){
-    window.location.href = `/togetherShowPost.html?id=${index}`;
+function showContent(e, i){
+    let currId;
+
+    console.log(e, i);
+    console.log(AllPost[i]);
+    AllPost.forEach((v) => {
+        console.log(v.content);
+        console.log(document.getElementsByClassName('content-text')[i].innerText);
+        if(v.content == document.getElementsByClassName('content-text')[i].innerText) currId = v.id;
+    })
+    console.log(currId);
+    window.location.href = `/togetherShowPost.html?id=${currId}`;
 }

@@ -1,5 +1,5 @@
 const urlParams = new URL(location.href).searchParams;
-const id = urlParams.get('id');
+const paramId = urlParams.get('id');
 
 let commentId;
 let comments;
@@ -8,10 +8,22 @@ let postINFO;
 axios.get(`${BASE_URL}/together/post`)
 .then(Response => {
     console.log(Response.data);
-    postINFO = Response.data[id];
-    getUserInfo(Response.data[id]);
-    commentId = Response.data[id].id;
+    let currectPost;
+    let currectIndex;
+
+    Response.data.forEach((e, i) => {
+        if(e.id === paramId){
+            currectPost = e;
+            currectIndex = i;
+        } 
+    })
+    console.log(currectPost);
+    console.log(currectIndex);
+
+    getUserInfo(Response.data[currectIndex]);
+    commentId = Response.data[currectIndex].id;
     console.log(commentId);
+    postINFO = Response.data[currectIndex];
     getComment(commentId);
 })
 .catch(error => {
