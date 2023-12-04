@@ -108,6 +108,7 @@ function showCurrectPost(e, i){
     console.log(e, i);
     console.log(AllPost[i]);
     AllPost.forEach((v) => {
+        console.log(v.content);
         console.log(document.getElementsByClassName('content-text')[i]);
         if(v.content == document.getElementsByClassName('content-text')[i]) currId = v.id;
     })
