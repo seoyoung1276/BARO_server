@@ -163,7 +163,7 @@ function changeAnswer(e, i){
             isfinish: false
         }
 
-        axios.patch(`${BASE_URL}/laern/post/isfinish/${AllPosts[i].id}`, req)
+        axios.patch(`${BASE_URL}/learn/post/isfinish/${AllPosts[i].id}`, req)
         .then(Response => {
             console.log(Response.data);
         })

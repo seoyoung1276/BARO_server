@@ -49,7 +49,8 @@ function showPosts(post, userName, commentsLength){
 
     let joinBtn = document.createElement('div');
     joinBtn.className = "join-btn";
-    joinBtn.innerText = "";
+    if(post.isfinish) joinBtn.innerText = "모집 종료됨";
+    else joinBtn.innerText = "";
 
     titleDiv.appendChild(title);
     titleDiv.appendChild(joinBtn);
