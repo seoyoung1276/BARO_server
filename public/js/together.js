@@ -216,8 +216,8 @@ function showContent(e, i){
     console.log(allPosts[i]);
     allPosts.forEach((v) => {
         console.log(v.content);
-        console.log(document.getElementsByClassName('content-text')[i].innerText);
-        if(v.content == document.getElementsByClassName('content-text')[i].innerText) currId = v.id;
+        console.log(document.getElementsByClassName('post-content')[i].innerText);
+        if(v.content == document.getElementsByClassName('post-content')[i].innerText && v.title == document.getElementsByClassName('post-title')[i]) currId = v.id;
     })
     console.log(currId);
     window.location.href = `/togetherShowPost.html?id=${currId}`;
