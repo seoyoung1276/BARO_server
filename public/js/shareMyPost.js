@@ -57,7 +57,7 @@ function showMyPosts(posts, userName, commentLength){
         let editBtn = document.createElement('div');
         editBtn.className = "edit-success";
         if(post.isfinish) editBtn.innerText = "완료함";
-        editBtn.innerText = "완료하기";
+        else editBtn.innerText = "완료하기";
 
         editDiv.appendChild(editBtn);
         editDiv.innerHTML += `<iconify-icon icon="iconamoon:menu-kebab-vertical-light" class="edit-content"></iconify-icon>`
@@ -172,11 +172,12 @@ function editSuccess(e, i){
     if(e.innerHTML === "완료하기") {
         e.innerHTML = "완료함"
 
+        document.getElementsByClassName('content-profile')[i].removeChild(document.getElementsByClassName('content-profile')[i].lastElementChild);
         const req = {
             isfinish: true
         }
 
-        axios.patch(`${BASE_URL}/share/post//isfinish/${AllPosts[i].id}`, req)
+        axios.patch(`${BASE_URL}/share/post/isfinish/${AllPosts[i].id}`, req)
         .then(Response => {
             console.log(Response.data);
         })
@@ -187,6 +188,7 @@ function editSuccess(e, i){
     }else {
         e.innerHTML = "완료하기"
 
+        document.getElementsByClassName('content-profile')[i].innerHTML += `<iconify-icon icon="iconamoon:menu-kebab-vertical-light" class="edit-content"></iconify-icon>`;
         const req = {
             isfinish: false
         }
