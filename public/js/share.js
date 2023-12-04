@@ -113,6 +113,6 @@ function showCurrectPost(e, i){
         if(v.content == document.getElementsByClassName('content-text')[i].innerText) currId = v.id;
     })
     console.log(currId);
-    // window.location.href = `/shareShowPost.html?id=${AllPost[i].id}`;
+    window.location.href = `/shareShowPost.html?id=${currId}`;
 }
 
