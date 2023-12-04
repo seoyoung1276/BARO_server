@@ -94,7 +94,7 @@ function showMyPosts(posts, userName, commentLength){
 function functionOpen(){
     let contentArr = [...document.getElementsByClassName('content-text')];
     contentArr.forEach((e, i) => {
-        e.onclick = () => showContent(i);
+        e.onclick = () => showContent(e, i);
     })
     
     document.addEventListener('click', (e) => {
@@ -201,6 +201,16 @@ function editSuccess(e, i){
     }
 }
 
-function showContent(i){
-    window.location.href = `/shareShowPost.html?id=${AllPosts[i].id}`;
+function showContent(e, i){
+    let currId;
+
+    console.log(e, i);
+    console.log(AllPost[i]);
+    AllPost.forEach((v) => {
+        console.log(v.content);
+        console.log(document.getElementsByClassName('content-text')[i].innerText);
+        if(v.content == document.getElementsByClassName('content-text')[i].innerText) currId = v.id;
+    })
+    console.log(currId);
+    window.location.href = `/shareShowPost.html?id=${currId}`;
 }

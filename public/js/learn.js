@@ -97,12 +97,22 @@ function functionOpen(){
 
     let showCurrectPostArr = [...document.getElementsByClassName('post-content')];
     showCurrectPostArr.forEach((e, i)=> {
-        e.onclick = () => showCurrectPost(i);
+        e.onclick = () => showCurrectPost(e, i);
     })
 }
 
-function showCurrectPost(index){
-    window.location.href = `/learnShowPost.html?id=${index}`;
+function showCurrectPost(e, i){
+    let currId;
+
+    console.log(e, i);
+    console.log(AllPost[i]);
+    AllPost.forEach((v) => {
+        console.log(v.content);
+        console.log(document.getElementsByClassName('content-text')[i].innerText);
+        if(v.content == document.getElementsByClassName('content-text')[i].innerText) currId = v.id;
+    })
+    console.log(currId);
+    window.location.href = `/learnShowPost.html?id=${currId}`;
 }
 
 // function clickJoinBtn(e){
@@ -122,10 +132,6 @@ function navChoose(ch, no){
     }else{
         window.location.href = '/learn.html'
     }
-}
-
-function showContent(){
-    window.location.href = "/learnShowPost.html";
 }
 
 function plusPost(){
