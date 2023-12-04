@@ -239,8 +239,9 @@ function deleteMyPost(e, i){
     console.log(AllPosts[i]);
     AllPosts.forEach((v) => {
         console.log(v.content);
-        console.log(document.getElementsByClassName('content-text')[i].innerText);
-        if(v.content == document.getElementsByClassName('post-content')[i].innerText && v.title == document.getElementsByClassName('post-title')[i].innerText) currId = v.id;
+        console.log(document.getElementsByClassName('post-content')[i]);
+        console.log(document.getElementsByClassName('post-content')[i].innerHTML);
+        if(v.content == document.getElementsByClassName('post-content')[i].innerHTML && v.title == document.getElementsByClassName('post-title')[i].innerHTML) currId = v.id;
     })
 
     axios.delete(`${BASE_URL}/together/post/${currId}`)
