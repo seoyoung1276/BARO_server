@@ -102,6 +102,8 @@ function functionOpen(){
     showCurrectPostArr.forEach((e, i)=> {
         e.onclick = () => showCurrectPost(e, i);
     })
+
+    if(document.getElementsByClassName('post-detail')[0].innerText.length > 70) document.getElementsByClassName('post-detail')[0].style.height = "450px";
 }
 
 function showCurrectPost(e, i){
