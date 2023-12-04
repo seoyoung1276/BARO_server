@@ -137,7 +137,7 @@ function showCurrectPost(e, i){
     AllPosts.forEach((v) => {
         console.log(v.content);
         console.log(document.getElementsByClassName('post-content')[i].innerText);
-        if(v.content == document.getElementsByClassName('post-content')[i].innerText) currId = v.id;
+        if(v.content.substr(0, 10) == document.getElementsByClassName('post-content')[i].innerText.substr(0, 10)) currId = v.id;
     })
     console.log(currId);
     window.location.href = `/learnShowPost.html?id=${currId}`;
