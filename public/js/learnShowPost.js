@@ -109,6 +109,7 @@ function LearnfunctionOpen(){
             console.log(i);
         }
     })
+    if(document.getElementsByClassName('post-detail')[0].innerText.length > 70) document.getElementsByClassName('post-detail')[0].style.height = "450px";
 }
 
 function addSubComment(index){
