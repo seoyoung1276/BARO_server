@@ -109,6 +109,8 @@ function LearnfunctionOpen(){
             console.log(i);
         }
     })
+    console.log(document.getElementsByClassName('post-detail')[0].innerText)
+    console.log(document.getElementsByClassName('post-detail')[0].innerText.length);
     if(document.getElementsByClassName('post-detail')[0].innerText.length > 70) document.getElementsByClassName('post-detail')[0].style.height = "450px";
 }
 
