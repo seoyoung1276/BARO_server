@@ -110,9 +110,9 @@ function showCurrectPost(e, i){
     console.log(e, i);
     console.log(AllPost[i]);
     AllPost.forEach((v) => {
-        console.log(v.content);
-        console.log(document.getElementsByClassName('post-content')[i].innerText);
-        if(v.content == document.getElementsByClassName('post-content')[i].innerText) currId = v.id;
+        console.log(v.content.substr(0, 10));
+        console.log(document.getElementsByClassName('post-content')[i].innerText.substr(0, 10));
+        if(v.content.substr(0, 10) == document.getElementsByClassName('post-content')[i].innerText.substr(0, 10)) currId = v.id;
     })
     console.log(currId);
     // window.location.href = `/learnShowPost.html?id=${currId}`;
