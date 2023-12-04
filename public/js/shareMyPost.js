@@ -172,7 +172,8 @@ function editSuccess(e, i){
     if(e.innerHTML === "완료하기") {
         e.innerHTML = "완료함"
 
-        document.getElementsByClassName('content-profile')[i].removeChild(document.getElementsByClassName('content-profile')[i].lastElementChild);
+        document.getElementsByClassName('content-profile')[i].innerHTML += `<iconify-icon icon="simple-line-icons:check" class="content-check"></iconify-icon>`;
+
         const req = {
             isfinish: true
         }
@@ -188,7 +189,8 @@ function editSuccess(e, i){
     }else {
         e.innerHTML = "완료하기"
 
-        document.getElementsByClassName('content-profile')[i].innerHTML += `<iconify-icon icon="iconamoon:menu-kebab-vertical-light" class="edit-content"></iconify-icon>`;
+        document.getElementsByClassName('content-profile')[i].removeChild(document.getElementsByClassName('content-profile')[i].lastElementChild);
+
         const req = {
             isfinish: false
         }

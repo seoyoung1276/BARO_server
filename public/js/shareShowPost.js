@@ -12,7 +12,7 @@ axios.get(`${BASE_URL}/share/post`)
     Response.data.forEach((e, i) => {
         console.log(e);
         console.log(paramId);
-        if(e.id === paramId){
+        if(e.id == paramId){
             currectPost = e;
             currectIndex = i;
         } 
