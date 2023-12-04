@@ -92,10 +92,8 @@ exports.deletePost = async (req, res) =>{
       where: {
         id: postNo
       }
-    }).then(() =>{
-      res.json(deletePost);
     })
-
+      res.json(deletePost);
   }catch(error){
     console.log(error);
     res.status(500).json({ error : "서버 오류"})
