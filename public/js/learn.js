@@ -115,7 +115,7 @@ function showCurrectPost(e, i){
         if(v.content == document.getElementsByClassName('post-content')[i].innerText) currId = v.id;
     })
     console.log(currId);
-    window.location.href = `/learnShowPost.html?id=${currId}`;
+    // window.location.href = `/learnShowPost.html?id=${currId}`;
 }
 
 // function clickJoinBtn(e){
