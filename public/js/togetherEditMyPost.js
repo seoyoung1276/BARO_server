@@ -1,16 +1,33 @@
 const urlParams = new URL(location.href).searchParams;
-const id = urlParams.get('id');
+const paramId = urlParams.get('id');
 let contentInfo;
 axios.get(`${BASE_URL}/together/post`)
 .then(Response => {
-    contentInfo = Response.data[id];
-    showData(Response.data[id]);
+    console.log(Response.data);
+    let currectPost;
+    let currectIndex;
+
+    Response.data.forEach((e, i) => {
+        console.log(e);
+        console.log(paramId);
+        if(e.id == paramId){
+            currectPost = e;
+            currectIndex = i;
+        } 
+    })
+    console.log(currectPost);
+    console.log(currectIndex);
+
+    console.log(Response.data[currectIndex]);
+    contentInfo = Response.data[currectIndex];
+    showData(Response.data[currectIndex]);
 })
 .catch(error => {
     console.error('There has been a problem with your axios request:', error);
 });
 
 function showData(data){
+    console.log(data);
     document.getElementsByClassName('new-post-title')[0].value = data.title;
     document.getElementsByClassName('post-content-input')[0].value = data.content;
     document.getElementsByClassName('post-place')[0].value = data.place;
@@ -22,7 +39,7 @@ function backTogether(){
     window.location.href = "/togetherMyPost.html"
 }
 
-function makePost(){
+async function makePost(){
     const dateFormat = /^\d{4}\/\d{2}\/\d{2}$/;
 
     let title = document.getElementsByClassName('new-post-title')[0].value;
@@ -31,6 +48,14 @@ function makePost(){
     let meet_date = document.getElementsByClassName('post-date')[0].value;
     let hire_personnal = document.getElementsByClassName('recruitment-input')[0].value;
     
+    console.log(title);
+    console.log(content);
+    console.log(place);
+    console.log(meet_date);
+    console.log(hire_personnal);
+
+    console.log(document.getElementsByClassName('post-content-input')[0]);
+
     if(title === "") return alert('제목을 입력하세요')
     else if(content === "") return alert('글 내용을 입력하세요')
     else if(place === "") return alert('장소를 입력하세요');
@@ -40,22 +65,21 @@ function makePost(){
     else if(isNaN(hire_personnal)) return alert('모집인원을 다시 입력하세요')
 
     // const userNo = await getUserNo();
+    // title, content, place, meet_date, Hire_personnel
+    const req = {
+        title: title,
+        content: content,
+        place: place,
+        meet_date: meet_date,
+        Hire_personnel: hire_personnal
+    }
 
-    // const req = {
-    //     user_no: userNo,
-    //     title: title,
-    //     content: content,
-    //     place: place,
-    //     meet_date: meet_date,
-    //     Hire_personnel: hire_personnal
-    // }
-
-    // axios.post(`${BASE_URL}/together/post`, req)
-    // .then(Response => {
-    //     console.log(Response.data);
-    // })
-    // .catch(error => {
-    //     console.error('There has been a problem with your axios request:', error);
-    // });
+    axios.patch(`${BASE_URL}/together/post/${contentInfo.id}`, req)
+    .then(Response => {
+        console.log(Response.data);
+    })
+    .catch(error => {
+        console.error('There has been a problem with your axios request:', error);
+    });
     window.location.href = "/together.html";
 }

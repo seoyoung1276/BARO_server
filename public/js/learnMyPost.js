@@ -128,7 +128,7 @@ function functionOpen(){
         e.onclick = () => showCurrectPost(e, i);
     })
 }
-
+let index = -1;
 function showCurrectPost(e, i){
     let currId;
 
@@ -211,12 +211,40 @@ function showEditDiv(e, i){
 
     let editButton = document.getElementsByClassName('edit-post')[0];
     let deleteButton = document.getElementsByClassName('delete-post')[0];
-    editButton.onclick = () => editMyPost(i);
-    deleteButton.onclick = () => deleteMyPost(i);
+    editButton.onclick = () => editMyPost(e, i);
+    deleteButton.onclick = () => deleteMyPost(e, i);
 }
-function editMyPost(i){
-    window.location.href = `/learnEditMyPost.html?id=${i}`;
-}
-function deleteMyPost(i){
+function editMyPost(e, i){
+    let currId;
 
+    console.log(e, i);
+    console.log(AllPosts[i]);
+    AllPosts.forEach((v) => {
+        console.log(v.content);
+        console.log(document.getElementsByClassName('post-content')[i].innerText);
+        if(v.content == document.getElementsByClassName('post-content')[i].innerText) currId = v.id;
+    })
+
+    window.location.href = `/learnEditMyPost.html?id=${currId}`;
+}
+function deleteMyPost(e, i){
+    let currId;
+
+    console.log(e, i);
+    console.log(AllPosts[i]);
+    AllPosts.forEach((v) => {
+        console.log(v.content);
+        console.log(document.getElementsByClassName('post-content')[i].innerText);
+        if(v.content == document.getElementsByClassName('post-content')[i].innerText) currId = v.id;
+    })
+
+
+    axios.delete(`${BASE_URL}/learn/post/${currId}`)
+    .then(Response => {
+        console.log(Response.data);
+        window.location.href = "/learnMyPost.html"
+    })
+    .catch(error => {
+        console.error('There has been a problem with your axios request:', error);
+    });
 }
