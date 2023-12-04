@@ -179,6 +179,23 @@ exports.isAttend = async (req, res) => {
   }
 }
 
+exports.isFinishPost = async (req, res) => {
+  try{
+    const postNo = req.params.postno;
+    const isfinish = req.body.isfinish;
+    const makeFinish = await TogetherPost.update(
+      {isfinish},
+      {where: {
+        id: postNo,
+      }
+    })
+    res.json(makeFinish)
+  }catch(error){
+    console.log(error);
+    res.status(500).json({error:"서버오류"})
+  }
+}
+
 exports.isFinishGet = async (req, res) => {
   try{
     const user_no = req.params.userno;
