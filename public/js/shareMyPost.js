@@ -182,6 +182,7 @@ function deleteMyPost(e, i){
     axios.delete(`${BASE_URL}/share/post/${currId}`)
     .then(Response => {
         console.log(Response.data);
+        window.location.href = "/shareMyPost.html"
     })
     .catch(error => {
         console.error('There has been a problem with your axios request:', error);

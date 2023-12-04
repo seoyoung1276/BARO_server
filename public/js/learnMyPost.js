@@ -242,6 +242,7 @@ function deleteMyPost(e, i){
     axios.delete(`${BASE_URL}/learn/post/${currId}`)
     .then(Response => {
         console.log(Response.data);
+        window.location.href = "/learnMyPost.html"
     })
     .catch(error => {
         console.error('There has been a problem with your axios request:', error);

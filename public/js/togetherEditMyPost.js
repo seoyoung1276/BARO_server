@@ -27,6 +27,7 @@ axios.get(`${BASE_URL}/together/post`)
 });
 
 function showData(data){
+    console.log(data);
     document.getElementsByClassName('new-post-title')[0].value = data.title;
     document.getElementsByClassName('post-content-input')[0].value = data.content;
     document.getElementsByClassName('post-place')[0].value = data.place;
@@ -47,6 +48,14 @@ async function makePost(){
     let meet_date = document.getElementsByClassName('post-date')[0].value;
     let hire_personnal = document.getElementsByClassName('recruitment-input')[0].value;
     
+    console.log(title);
+    console.log(content);
+    console.log(place);
+    console.log(meet_date);
+    console.log(hire_personnal);
+
+    console.log(document.getElementsByClassName('post-content-input')[0]);
+
     if(title === "") return alert('제목을 입력하세요')
     else if(content === "") return alert('글 내용을 입력하세요')
     else if(place === "") return alert('장소를 입력하세요');

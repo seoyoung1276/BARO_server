@@ -246,6 +246,7 @@ function deleteMyPost(i){
     axios.delete(`${BASE_URL}/together/post/${currId}`)
     .then(Response => {
         console.log(Response.data);
+        window.location.href = "/togetherMyPost.html"
     })
     .catch(error => {
         console.error('There has been a problem with your axios request:', error);
