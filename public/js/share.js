@@ -2,6 +2,7 @@ let AllPost;
 axios.get(`${BASE_URL}/share/post`)
 .then(Response => {
     AllPost = Response.data;
+    console.log(Response.data);
     getUserName(Response.data);
 })
 .catch(error => {
