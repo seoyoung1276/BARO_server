@@ -103,8 +103,15 @@ function plusPost(){
     window.location.href = '/shareNewPost.html';
 }
 function showCurrectPost(e, i){
+    let currId;
+
     console.log(e, i);
     console.log(AllPost[i]);
+    AllPost.forEach((v, i) => {
+        console.log(e.target.children);
+        if(v.content == e.target.children[2].innerText) currId = v.id;
+    })
+    console.log(currId);
     // window.location.href = `/shareShowPost.html?id=${AllPost[i].id}`;
 }
 
