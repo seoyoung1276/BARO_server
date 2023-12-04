@@ -109,8 +109,8 @@ function showCurrectPost(e, i){
     console.log(AllPost[i]);
     AllPost.forEach((v) => {
         console.log(v.content);
-        console.log(document.getElementsByClassName('content-text')[i]);
-        if(v.content == document.getElementsByClassName('content-text')[i]) currId = v.id;
+        console.log(document.getElementsByClassName('content-text')[i].innerText);
+        if(v.content == document.getElementsByClassName('content-text')[i].innerText) currId = v.id;
     })
     console.log(currId);
     // window.location.href = `/shareShowPost.html?id=${AllPost[i].id}`;
