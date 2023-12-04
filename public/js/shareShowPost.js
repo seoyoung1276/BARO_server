@@ -10,6 +10,8 @@ axios.get(`${BASE_URL}/share/post`)
     let currectIndex;
 
     Response.data.forEach((e, i) => {
+        console.log(e);
+        console.log(paramId);
         if(e.id === paramId){
             currectPost = e;
             currectIndex = i;
