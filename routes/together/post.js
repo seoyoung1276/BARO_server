@@ -17,7 +17,7 @@ router.delete('/:postno', deletePost)
 
 // 완료한 게시물 개수 리턴
 router.get('/isfinish/:userno', isFinishGet)
-router.post('/isfinish/:postno', isFinishPost)
+router.patch('/isfinish/:postno', isFinishPost)
 
 // 참가하기
 router.post('/:postno/attend', addAttend);
