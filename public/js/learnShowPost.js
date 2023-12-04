@@ -10,7 +10,9 @@ axios.get(`${BASE_URL}/learn/post`)
     let currectIndex;
 
     Response.data.forEach((e, i) => {
-        if(e.id === paramId){
+        console.log(e);
+        console.log(paramId);
+        if(e.id == paramId){
             currectPost = e;
             currectIndex = i;
         } 
