@@ -1,5 +1,8 @@
+let AllPost;
+
 axios.get(`${BASE_URL}/learn/post`)
 .then(Response => {
+    AllPost = Response.data;
     getUserName(Response.data);
     console.log(Response.data);
 })
